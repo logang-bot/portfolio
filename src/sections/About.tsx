@@ -9,14 +9,20 @@ export default function About() {
         <div className={styles.text}>
           <h2>A bit about me</h2>
           <p>
-            I'm an Android developer with X years of experience building
-            production apps. I care about clean code, intuitive interfaces,
-            and apps that feel native.
+            I'm a mobile developer with 3+ years of professional experience. I embrace the
+            concept of being a perpetual student — the rapid pace of innovation in this
+            industry fuels my desire for continuous learning and exploration.
           </p>
           <p>
-            I work primarily with Kotlin, Jetpack Compose, and follow MVVM /
-            Clean Architecture patterns. I also have experience with REST APIs,
-            Firebase, and publishing to the Google Play Store.
+            My focus is on native Android and iOS development using Kotlin, Swift, Jetpack
+            Compose, and SwiftUI. I've also taken on freelance projects and independently
+            mastered backend technologies like Node.js, React, and Docker. I apply MVVM and
+            Clean Architecture patterns in my daily work and have contributed to cross-platform
+            projects using .NET, MAUI, and Xamarin.
+          </p>
+          <p>
+            I graduated with the top honor of academic excellence in Systems Engineering
+            from Universidad Autónoma Tomás Frías.
           </p>
           <a href="/resume.pdf" className={`${shared.btn} ${shared.btnSecondary}`}>
             Download resume
@@ -25,7 +31,7 @@ export default function About() {
         {/* Replace src with your actual photo */}
         <img
           src="/avatar.jpg"
-          alt="Your Name"
+          alt="Alvaro Choque"
           className={styles.avatar}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = 'none'

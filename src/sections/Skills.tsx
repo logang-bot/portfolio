@@ -4,19 +4,27 @@ import shared from '../styles/shared.module.css'
 const skillGroups = [
   {
     category: 'Languages',
-    skills: ['Kotlin', 'Java', 'XML'],
+    skills: ['Kotlin', 'Swift', 'Java', 'JavaScript', 'TypeScript', 'C#', 'Python', 'C++', 'HTML/CSS'],
   },
   {
-    category: 'Android',
-    skills: ['Jetpack Compose', 'MVVM', 'Room', 'WorkManager', 'Navigation'],
+    category: 'Android & iOS',
+    skills: ['Jetpack Compose', 'XML / Views', 'UIKit', 'SwiftUI', 'Room', 'Retrofit', 'Navigation Component', 'Maps API', 'Lottie', 'Firebase'],
   },
   {
-    category: 'Networking',
-    skills: ['Retrofit', 'OkHttp', 'REST APIs', 'Firebase'],
+    category: 'Architecture',
+    skills: ['MVVM', 'MVC', 'Clean Architecture', 'MVP', 'VIPER'],
+  },
+  {
+    category: 'Cross-platform',
+    skills: ['.NET Android', '.NET iOS', 'Xamarin', 'MAUI', 'React Native'],
+  },
+  {
+    category: 'Backend & Web',
+    skills: ['Node.js', 'Express', 'React.js', 'MongoDB', 'Microsoft SQL Server', 'Docker'],
   },
   {
     category: 'Tools',
-    skills: ['Android Studio', 'Git', 'Gradle', 'Google Play Console'],
+    skills: ['Git', 'GitHub', 'Android Studio', 'Xcode', 'Jira', 'Postman', 'Azure DevOps', 'CI/CD', 'Unit Testing'],
   },
 ]
 

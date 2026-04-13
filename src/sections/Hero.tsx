@@ -5,10 +5,10 @@ export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
       <p className={styles.heroTag}>Android Developer</p>
-      <h1>Hi, I'm<br />Your Name</h1>
+      <h1>Hi, I'm<br />Alvaro Choque</h1>
       <p className={styles.subtitle}>
-        I build native Android apps focused on clean architecture,
-        great UX, and solid performance.
+        I build native Android and iOS apps with 3+ years of professional experience.
+        Focused on clean architecture, Jetpack Compose, and great user experiences.
       </p>
       <div className={styles.cta}>
         <a href="#projects" className={`${shared.btn} ${shared.btnPrimary}`}>View my work</a>

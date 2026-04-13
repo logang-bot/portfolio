@@ -3,7 +3,7 @@ import styles from './Navbar.module.css'
 export default function Navbar() {
   return (
     <nav className={styles.navbar}>
-      <a href="#hero" className={styles.logo}>YourName</a>
+      <a href="#hero" className={styles.logo}>Alvaro Choque</a>
       <ul className={styles.links}>
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>

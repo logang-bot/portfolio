@@ -3,18 +3,13 @@ import shared from '../styles/shared.module.css'
 
 const links = [
   {
-    label: 'yourname@email.com',
-    href: 'mailto:yourname@email.com',
+    label: 'logangch8v@gmail.com',
+    href: 'mailto:logangch8v@gmail.com',
     icon: '✉',
   },
   {
-    label: 'github.com/yourusername',
-    href: 'https://github.com/yourusername',
-    icon: '⌥',
-  },
-  {
-    label: 'linkedin.com/in/yourprofile',
-    href: 'https://linkedin.com/in/yourprofile',
+    label: 'linkedin.com/in/agrovercgomez',
+    href: 'https://linkedin.com/in/agrovercgomez',
     icon: '⚇',
   },
 ]
