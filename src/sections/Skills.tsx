@@ -1,3 +1,6 @@
+import styles from './Skills.module.css'
+import shared from '../styles/shared.module.css'
+
 const skillGroups = [
   {
     category: 'Languages',
@@ -20,15 +23,15 @@ const skillGroups = [
 export default function Skills() {
   return (
     <section id="skills">
-      <p className="section-label">Skills</p>
+      <p className={shared.sectionLabel}>Skills</p>
       <h2>What I work with</h2>
-      <div className="skills-grid">
+      <div className={styles.grid}>
         {skillGroups.map(({ category, skills }) => (
-          <div key={category} className="skill-group">
+          <div key={category} className={styles.group}>
             <h3>{category}</h3>
-            <div className="skill-list">
+            <div className={styles.list}>
               {skills.map((skill) => (
-                <span key={skill} className="skill-item">{skill}</span>
+                <span key={skill} className={styles.item}>{skill}</span>
               ))}
             </div>
           </div>

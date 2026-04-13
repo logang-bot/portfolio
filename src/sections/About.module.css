@@ -1,0 +1,36 @@
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  line-height: 1.7;
+}
+
+.avatar {
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 320px;
+  border-radius: 16px;
+  object-fit: cover;
+  justify-self: center;
+  background: var(--border);
+}
+
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .avatar {
+    order: -1;
+    max-width: 200px;
+    justify-self: start;
+  }
+}

@@ -1,0 +1,87 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: var(--shadow);
+}
+
+.screenshots {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  background: var(--code-bg);
+  aspect-ratio: 9/16;
+}
+
+.screenshots::-webkit-scrollbar {
+  display: none;
+}
+
+.screenshot {
+  min-width: 100%;
+  scroll-snap-align: start;
+  object-fit: cover;
+  aspect-ratio: 9/16;
+}
+
+.placeholder {
+  min-width: 100%;
+  aspect-ratio: 9/16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info h3 {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.info p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.links {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.links a {
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}

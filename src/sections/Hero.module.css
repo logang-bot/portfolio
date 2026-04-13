@@ -1,0 +1,27 @@
+.hero {
+  min-height: calc(100svh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.heroTag {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 500;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 20px;
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+.cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}

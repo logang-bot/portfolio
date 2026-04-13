@@ -1,9 +1,12 @@
+import styles from './About.module.css'
+import shared from '../styles/shared.module.css'
+
 export default function About() {
   return (
     <section id="about">
-      <p className="section-label">About</p>
-      <div className="about-content">
-        <div className="about-text">
+      <p className={shared.sectionLabel}>About</p>
+      <div className={styles.content}>
+        <div className={styles.text}>
           <h2>A bit about me</h2>
           <p>
             I'm an Android developer with X years of experience building
@@ -15,7 +18,7 @@ export default function About() {
             Clean Architecture patterns. I also have experience with REST APIs,
             Firebase, and publishing to the Google Play Store.
           </p>
-          <a href="/resume.pdf" className="btn btn-secondary" style={{ width: 'fit-content' }}>
+          <a href="/resume.pdf" className={`${shared.btn} ${shared.btnSecondary}`}>
             Download resume
           </a>
         </div>
@@ -23,7 +26,7 @@ export default function About() {
         <img
           src="/avatar.jpg"
           alt="Your Name"
-          className="about-avatar"
+          className={styles.avatar}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = 'none'
           }}

@@ -1,3 +1,6 @@
+import styles from './Contact.module.css'
+import shared from '../styles/shared.module.css'
+
 const links = [
   {
     label: 'yourname@email.com',
@@ -19,23 +22,23 @@ const links = [
 export default function Contact() {
   return (
     <section id="contact">
-      <p className="section-label">Contact</p>
-      <div className="contact-content">
+      <p className={shared.sectionLabel}>Contact</p>
+      <div className={styles.content}>
         <h2>Let's work together</h2>
         <p>
           I'm open to new opportunities, freelance projects, and interesting
           collaborations. Feel free to reach out.
         </p>
-        <div className="contact-links">
+        <div className={styles.links}>
           {links.map(({ label, href, icon }) => (
             <a
               key={href}
               href={href}
-              className="contact-link"
+              className={styles.link}
               target={href.startsWith('http') ? '_blank' : undefined}
               rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
             >
-              <span className="contact-link-icon">{icon}</span>
+              <span className={styles.linkIcon}>{icon}</span>
               {label}
             </a>
           ))}

@@ -1,3 +1,6 @@
+import styles from './Projects.module.css'
+import shared from '../styles/shared.module.css'
+
 interface Project {
   name: string
   description: string
@@ -25,38 +28,37 @@ const projects: Project[] = [
     description: 'Short description of what this app does.',
     screenshots: [],
     tags: ['Kotlin', 'XML', 'Retrofit', 'Room'],
-    playStoreUrl: undefined,
     githubUrl: 'https://github.com/yourusername/anotherapp',
   },
 ]
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="project-card">
-      <div className="project-screenshots">
+    <article className={styles.card}>
+      <div className={styles.screenshots}>
         {project.screenshots.length > 0 ? (
           project.screenshots.map((src, i) => (
             <img
               key={i}
               src={src}
               alt={`${project.name} screenshot ${i + 1}`}
-              className="project-screenshot"
+              className={styles.screenshot}
               loading="lazy"
             />
           ))
         ) : (
-          <div className="project-screenshot-placeholder">No screenshots yet</div>
+          <div className={styles.placeholder}>No screenshots yet</div>
         )}
       </div>
-      <div className="project-info">
+      <div className={styles.info}>
         <h3>{project.name}</h3>
         <p>{project.description}</p>
-        <div className="project-tags">
+        <div className={styles.tags}>
           {project.tags.map((tag) => (
-            <span key={tag} className="tag">{tag}</span>
+            <span key={tag} className={shared.tag}>{tag}</span>
           ))}
         </div>
-        <div className="project-links">
+        <div className={styles.links}>
           {project.playStoreUrl && (
             <a href={project.playStoreUrl} target="_blank" rel="noopener noreferrer">
               Play Store ↗
@@ -76,9 +78,9 @@ function ProjectCard({ project }: { project: Project }) {
 export default function Projects() {
   return (
     <section id="projects">
-      <p className="section-label">Projects</p>
+      <p className={shared.sectionLabel}>Projects</p>
       <h2>Things I've built</h2>
-      <div className="projects-grid">
+      <div className={styles.grid}>
         {projects.map((project) => (
           <ProjectCard key={project.name} project={project} />
         ))}
