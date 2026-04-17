@@ -13,10 +13,28 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 600;
   font-size: 16px;
   color: var(--text-h);
   text-decoration: none;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid var(--accent);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .links {
@@ -38,12 +56,51 @@
   color: var(--text-h);
 }
 
+.langSwitcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.langBtn {
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+}
+
+.langBtn:hover {
+  color: var(--text-h);
+}
+
+.langBtnActive {
+  background: var(--accent);
+  color: #fff;
+}
+
+.langBtnActive:hover {
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .navbar {
     padding: 0 24px;
   }
 
   .links {
-    gap: 20px;
+    gap: 16px;
+  }
+
+  .right {
+    gap: 16px;
   }
 }

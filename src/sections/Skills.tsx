@@ -1,42 +1,58 @@
+import { useLanguage } from '../context/LanguageContext'
+import { type Translations } from '../i18n/translations'
 import styles from './Skills.module.css'
 import shared from '../styles/shared.module.css'
 
-const skillGroups = [
+type SkillCategoryKey = keyof Translations['skills']['categories']
+
+const LEARNING_KEY = 'learning'
+
+const skillGroups: { key: SkillCategoryKey; skills: string[] }[] = [
   {
-    category: 'Languages',
-    skills: ['Kotlin', 'Swift', 'Java', 'JavaScript', 'TypeScript', 'C#', 'Python', 'C++', 'HTML/CSS'],
+    key: 'languages',
+    skills: ['Kotlin', 'Swift', 'Java', 'JavaScript', 'TypeScript', 'C#', 'C++', 'HTML/CSS'],
   },
   {
-    category: 'Android & iOS',
-    skills: ['Jetpack Compose', 'XML / Views', 'UIKit', 'SwiftUI', 'Room', 'Retrofit', 'Navigation Component', 'Maps API', 'Lottie', 'Firebase'],
+    key: 'android',
+    skills: ['Jetpack Compose', 'XML / Views', 'Room', 'Retrofit', 'Navigation Component', 'Maps API', 'Lottie', 'Firebase'],
   },
   {
-    category: 'Architecture',
+    key: 'ios',
+    skills: ['SwiftUI', 'UIKit', 'CoreData', 'Apple Maps API'],
+  },
+  {
+    key: 'architecture',
     skills: ['MVVM', 'MVC', 'Clean Architecture', 'MVP', 'VIPER'],
   },
   {
-    category: 'Cross-platform',
+    key: 'crossPlatform',
     skills: ['.NET Android', '.NET iOS', 'Xamarin', 'MAUI', 'React Native'],
   },
   {
-    category: 'Backend & Web',
+    key: 'backendWeb',
     skills: ['Node.js', 'Express', 'React.js', 'MongoDB', 'Microsoft SQL Server', 'Docker'],
   },
   {
-    category: 'Tools',
+    key: 'tools',
     skills: ['Git', 'GitHub', 'Android Studio', 'Xcode', 'Jira', 'Postman', 'Azure DevOps', 'CI/CD', 'Unit Testing'],
+  },
+  {
+    key: 'learning',
+    skills: ['Python', 'Django', 'Vue.js'],
   },
 ]
 
 export default function Skills() {
+  const { t } = useLanguage()
+
   return (
     <section id="skills">
-      <p className={shared.sectionLabel}>Skills</p>
-      <h2>What I work with</h2>
+      <p className={shared.sectionLabel}>{t.skills.label}</p>
+      <h2>{t.skills.heading}</h2>
       <div className={styles.grid}>
-        {skillGroups.map(({ category, skills }) => (
-          <div key={category} className={styles.group}>
-            <h3>{category}</h3>
+        {skillGroups.map(({ key, skills }) => (
+          <div key={String(key)} className={`${styles.group} ${key === LEARNING_KEY ? styles.learning : ''}`}>
+            <h3>{t.skills.categories[key]}</h3>
             <div className={styles.list}>
               {skills.map((skill) => (
                 <span key={skill} className={styles.item}>{skill}</span>

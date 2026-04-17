@@ -27,3 +27,13 @@
   font-size: 14px;
   color: var(--text);
 }
+
+.learning {
+  border-style: dashed;
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+.learning h3 {
+  color: var(--accent);
+}

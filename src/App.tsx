@@ -1,4 +1,5 @@
 import './index.css'
+import { LanguageProvider } from './context/LanguageContext'
 import Navbar from './components/Navbar'
 import Hero from './sections/Hero'
 import About from './sections/About'
@@ -8,7 +9,7 @@ import Contact from './sections/Contact'
 
 function App() {
   return (
-    <>
+    <LanguageProvider>
       <Navbar />
       <main>
         <Hero />
@@ -17,7 +18,7 @@ function App() {
         <Skills />
         <Contact />
       </main>
-    </>
+    </LanguageProvider>
   )
 }
 

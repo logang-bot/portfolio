@@ -27,5 +27,12 @@
 }
 
 .linkIcon {
-  font-size: 18px;
+  width: 20px;
+  height: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .linkIcon {
+    filter: invert(1);
+  }
 }

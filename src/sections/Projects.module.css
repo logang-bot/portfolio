@@ -1,10 +1,48 @@
+/* Filters */
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: 6px 16px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.filterBtn:hover {
+  border-color: var(--accent-border);
+  color: var(--text-h);
+}
+
+.filterBtnActive {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.filterBtnActive:hover {
+  color: #fff;
+}
+
+/* Grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
-  margin-top: 40px;
+  margin-top: 24px;
 }
 
+/* Card */
 .card {
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -16,29 +54,36 @@
   box-shadow: var(--shadow);
 }
 
+/* Screenshots carousel */
 .screenshots {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   background: var(--code-bg);
-  aspect-ratio: 9/16;
 }
 
 .screenshots::-webkit-scrollbar {
   display: none;
 }
 
+/* Aspect ratio variants */
+.portrait {
+  aspect-ratio: 9/16;
+}
+
+.landscape {
+  aspect-ratio: 16/9;
+}
+
 .screenshot {
   min-width: 100%;
   scroll-snap-align: start;
   object-fit: cover;
-  aspect-ratio: 9/16;
 }
 
 .placeholder {
   min-width: 100%;
-  aspect-ratio: 9/16;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,6 +91,7 @@
   font-size: 13px;
 }
 
+/* Info */
 .info {
   padding: 20px;
   display: flex;
