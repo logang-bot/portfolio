@@ -1,3 +1,14 @@
+/* Section wrapper */
+.section {
+  position: relative;
+}
+
+/* Content sits above glow */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -6,9 +17,17 @@
 }
 
 .group {
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 12px;
   padding: 20px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+:global([data-theme="dark"]) .group {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .group h3 {

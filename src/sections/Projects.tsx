@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
+import { useFadeUp } from '../hooks/useFadeUp'
+import GlowBackground from '../components/GlowBackground'
 import { type Translations } from '../i18n/translations'
 import styles from './Projects.module.css'
 import shared from '../styles/shared.module.css'
@@ -103,6 +105,7 @@ function ProjectCard({ project }: { project: Project }) {
 
 export default function Projects() {
   const { t } = useLanguage()
+  const fadeRef = useFadeUp<HTMLElement>()
   const [activeFilter, setActiveFilter] = useState<FilterKey>('all')
 
   const filtered = activeFilter === 'all'
@@ -110,24 +113,27 @@ export default function Projects() {
     : projects.filter((p) => p.category === activeFilter)
 
   return (
-    <section id="projects">
-      <p className={shared.sectionLabel}>{t.projects.label}</p>
-      <h2>{t.projects.heading}</h2>
-      <div className={styles.filters}>
-        {FILTERS.map((key) => (
-          <button
-            key={key}
-            className={`${styles.filterBtn} ${activeFilter === key ? styles.filterBtnActive : ''}`}
-            onClick={() => setActiveFilter(key)}
-          >
-            {t.projects.filters[key]}
-          </button>
-        ))}
-      </div>
-      <div className={styles.grid}>
-        {filtered.map((project) => (
-          <ProjectCard key={project.name} project={project} />
-        ))}
+    <section id="projects" ref={fadeRef} className={styles.section}>
+      <GlowBackground variant="purple" />
+      <div className={styles.content}>
+        <p className={shared.sectionLabel}>{t.projects.label}</p>
+        <h2>{t.projects.heading}</h2>
+        <div className={styles.filters}>
+          {FILTERS.map((key) => (
+            <button
+              key={key}
+              className={`${styles.filterBtn} ${activeFilter === key ? styles.filterBtnActive : ''}`}
+              onClick={() => setActiveFilter(key)}
+            >
+              {t.projects.filters[key]}
+            </button>
+          ))}
+        </div>
+        <div className={styles.grid}>
+          {filtered.map((project) => (
+            <ProjectCard key={project.name} project={project} />
+          ))}
+        </div>
       </div>
     </section>
   )

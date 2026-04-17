@@ -1,3 +1,14 @@
+/* Section wrapper */
+.section {
+  position: relative;
+}
+
+/* Content sits above glow */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
 /* Filters */
 .filters {
   display: flex;
@@ -34,24 +45,37 @@
   color: #fff;
 }
 
-/* Grid */
+/* Staggered grid (masonry) */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  columns: 280px 2;
+  column-gap: 24px;
   margin-top: 24px;
 }
 
-/* Card */
+.grid > * {
+  break-inside: avoid;
+  margin-bottom: 24px;
+}
+
+/* Card — liquid glass */
 .card {
-  border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+:global([data-theme="dark"]) .card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .card:hover {
   box-shadow: var(--shadow);
+  border-color: var(--accent-border);
 }
 
 /* Screenshots carousel */
@@ -60,7 +84,11 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  background: var(--code-bg);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+:global([data-theme="dark"]) .screenshots {
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .screenshots::-webkit-scrollbar {

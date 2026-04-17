@@ -1,0 +1,78 @@
+.glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0;
+  scale: 0.4;
+  transition: opacity 1.2s ease-out, scale 1.2s ease-out;
+}
+
+.visible .blob {
+  opacity: 1;
+  scale: 1;
+}
+
+/* Purple variant (Projects) */
+.purple1 {
+  width: 420px;
+  height: 420px;
+  background: rgba(124, 58, 237, 0.25);
+  top: 5%;
+  left: -5%;
+}
+
+.purple2 {
+  width: 350px;
+  height: 350px;
+  background: rgba(59, 130, 246, 0.2);
+  top: 40%;
+  right: -8%;
+}
+
+.purple3 {
+  width: 300px;
+  height: 300px;
+  background: rgba(236, 72, 153, 0.18);
+  bottom: 0;
+  left: 30%;
+}
+
+:global([data-theme="dark"]) .purple1 { background: rgba(167, 139, 250, 0.2); }
+:global([data-theme="dark"]) .purple2 { background: rgba(96, 165, 250, 0.15); }
+:global([data-theme="dark"]) .purple3 { background: rgba(244, 114, 182, 0.12); }
+
+/* Green variant (Skills) */
+.green1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(16, 185, 129, 0.2);
+  top: 0;
+  right: -5%;
+}
+
+.green2 {
+  width: 350px;
+  height: 350px;
+  background: rgba(245, 158, 11, 0.18);
+  top: 50%;
+  left: -8%;
+}
+
+.green3 {
+  width: 320px;
+  height: 320px;
+  background: rgba(6, 182, 212, 0.2);
+  bottom: -5%;
+  right: 25%;
+}
+
+:global([data-theme="dark"]) .green1 { background: rgba(52, 211, 153, 0.15); }
+:global([data-theme="dark"]) .green2 { background: rgba(251, 191, 36, 0.1); }
+:global([data-theme="dark"]) .green3 { background: rgba(34, 211, 238, 0.12); }

@@ -31,8 +31,6 @@
   height: 20px;
 }
 
-@media (prefers-color-scheme: dark) {
-  .linkIcon {
-    filter: invert(1);
-  }
+:global([data-theme="dark"]) .linkIcon {
+  filter: invert(1);
 }

@@ -1,6 +1,11 @@
 import { useLanguage } from '../context/LanguageContext'
+import { useTheme } from '../context/ThemeContext'
 import { type Language } from '../i18n/translations'
 import styles from './Navbar.module.css'
+
+// TODO: Replace these placeholder icons with your own icon components/SVGs
+const SunIcon = () => <span aria-hidden="true">☀️</span>
+const MoonIcon = () => <span aria-hidden="true">🌙</span>
 
 const LANGUAGES: { code: Language; label: string }[] = [
   { code: 'en', label: 'EN' },
@@ -10,6 +15,7 @@ const LANGUAGES: { code: Language; label: string }[] = [
 
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage()
+  const { theme, toggleTheme } = useTheme()
 
   return (
     <nav className={styles.navbar}>
@@ -36,6 +42,23 @@ export default function Navbar() {
             </button>
           ))}
         </div>
+        <button
+          onClick={toggleTheme}
+          className={styles.themeToggle}
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        >
+          <span className={styles.themeToggleTrack}>
+            <span className={styles.themeToggleIcon}>
+              {/* TODO: Replace with your light mode icon */}
+              <SunIcon />
+            </span>
+            <span className={styles.themeToggleIcon}>
+              {/* TODO: Replace with your dark mode icon */}
+              <MoonIcon />
+            </span>
+            <span className={`${styles.themeToggleThumb} ${theme === 'dark' ? styles.themeToggleThumbDark : ''}`} />
+          </span>
+        </button>
       </div>
     </nav>
   )

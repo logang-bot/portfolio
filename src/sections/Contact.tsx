@@ -1,4 +1,5 @@
 import { useLanguage } from '../context/LanguageContext'
+import { useFadeUp } from '../hooks/useFadeUp'
 import styles from './Contact.module.css'
 import shared from '../styles/shared.module.css'
 import mailIcon from '../assets/icons/mail.svg'
@@ -25,9 +26,10 @@ const links = [
 
 export default function Contact() {
   const { t } = useLanguage()
+  const ref = useFadeUp<HTMLElement>()
 
   return (
-    <section id="contact">
+    <section id="contact" ref={ref}>
       <p className={shared.sectionLabel}>{t.contact.label}</p>
       <div className={styles.content}>
         <h2>{t.contact.heading}</h2>

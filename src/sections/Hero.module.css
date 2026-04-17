@@ -1,27 +1,48 @@
 .hero {
-  min-height: calc(100svh - 60px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 16px;
+    min-height: calc(100svh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
 }
 
 .heroTag {
-  font-size: 14px;
-  color: var(--accent);
-  font-weight: 500;
-  margin: 0;
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 500;
+    margin: 0;
 }
 
 .subtitle {
-  font-size: 20px;
-  max-width: 520px;
-  line-height: 1.6;
+    font-size: 20px;
+    max-width: 520px;
+    line-height: 1.6;
+}
+
+.typewriter {
+    white-space: pre-wrap;
+    min-height: 2.3em;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 0.9em;
+    background: var(--accent);
+    margin-left: 2px;
+    vertical-align: baseline;
+    animation: blink 1.5s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }
 
 .cta {
-  display: flex;
-  gap: 12px;
-  margin-top: 8px;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
 }
