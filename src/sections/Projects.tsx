@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { useFadeUp } from '../hooks/useFadeUp'
 import GlowBackground from '../components/GlowBackground'
+import ProjectModal from '../components/ProjectModal'
 import { type Translations } from '../i18n/translations'
 import styles from './Projects.module.css'
 import shared from '../styles/shared.module.css'
@@ -9,9 +10,10 @@ import shared from '../styles/shared.module.css'
 type ProjectCategory = 'mobile' | 'web' | 'gaming'
 type FilterKey = keyof Translations['projects']['filters']
 
-interface Project {
+export interface Project {
   name: string
   description: string
+  longDescription?: string
   category: ProjectCategory
   screenshots: string[]
   tags: string[]
@@ -25,6 +27,8 @@ const projects: Project[] = [
     name: 'App Name',
     category: 'mobile',
     description: 'Short description of what the app does and the problem it solves.',
+    longDescription:
+      'Longer description of the app: the problem it solves, the stack used, interesting technical challenges, and the outcome.',
     screenshots: [],
     tags: ['Kotlin', 'Jetpack Compose', 'MVVM'],
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.yourapp',
@@ -34,6 +38,8 @@ const projects: Project[] = [
     name: 'Web Project',
     category: 'web',
     description: 'Short description of the web project.',
+    longDescription:
+      'Longer description of the web project: goals, architecture, and what makes it interesting.',
     screenshots: [],
     tags: ['React', 'TypeScript', 'Node.js'],
     githubUrl: 'https://github.com/yourusername/webproject',
@@ -43,6 +49,8 @@ const projects: Project[] = [
     name: 'Game Project',
     category: 'gaming',
     description: 'Short description of the game.',
+    longDescription:
+      'Longer description of the game: gameplay, engine features used, and development highlights.',
     screenshots: [],
     tags: ['Unreal Engine', 'C++', 'Blueprints'],
     githubUrl: 'https://github.com/yourusername/gameproject',
@@ -51,24 +59,22 @@ const projects: Project[] = [
 
 const FILTERS: FilterKey[] = ['all', 'mobile', 'web', 'gaming']
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
   const { t } = useLanguage()
   const isLandscape = project.category === 'web' || project.category === 'gaming'
   const aspectClass = isLandscape ? styles.landscape : styles.portrait
+  const cover = project.screenshots[0]
 
   return (
-    <article className={styles.card}>
+    <button type="button" className={styles.card} onClick={onClick}>
       <div className={`${styles.screenshots} ${aspectClass}`}>
-        {project.screenshots.length > 0 ? (
-          project.screenshots.map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt={`${project.name} screenshot ${i + 1}`}
-              className={`${styles.screenshot} ${aspectClass}`}
-              loading="lazy"
-            />
-          ))
+        {cover ? (
+          <img
+            src={cover}
+            alt={`${project.name} screenshot`}
+            className={`${styles.screenshot} ${aspectClass}`}
+            loading="lazy"
+          />
         ) : (
           <div className={`${styles.placeholder} ${aspectClass}`}>{t.projects.noScreenshots}</div>
         )}
@@ -81,25 +87,8 @@ function ProjectCard({ project }: { project: Project }) {
             <span key={tag} className={shared.tag}>{tag}</span>
           ))}
         </div>
-        <div className={styles.links}>
-          {project.playStoreUrl && (
-            <a href={project.playStoreUrl} target="_blank" rel="noopener noreferrer">
-              {t.projects.playStore}
-            </a>
-          )}
-          {project.liveDemoUrl && (
-            <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer">
-              {t.projects.liveDemo}
-            </a>
-          )}
-          {project.githubUrl && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-              {t.projects.github}
-            </a>
-          )}
-        </div>
       </div>
-    </article>
+    </button>
   )
 }
 
@@ -107,6 +96,7 @@ export default function Projects() {
   const { t } = useLanguage()
   const fadeRef = useFadeUp<HTMLElement>()
   const [activeFilter, setActiveFilter] = useState<FilterKey>('all')
+  const [selected, setSelected] = useState<Project | null>(null)
 
   const filtered = activeFilter === 'all'
     ? projects
@@ -131,10 +121,15 @@ export default function Projects() {
         </div>
         <div className={styles.grid}>
           {filtered.map((project) => (
-            <ProjectCard key={project.name} project={project} />
+            <ProjectCard
+              key={project.name}
+              project={project}
+              onClick={() => setSelected(project)}
+            />
           ))}
         </div>
       </div>
+      {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
     </section>
   )
 }

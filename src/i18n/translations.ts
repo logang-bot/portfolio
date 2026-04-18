@@ -12,6 +12,7 @@ export interface Translations {
     github: string
     liveDemo: string
     filters: { all: string; mobile: string; web: string; gaming: string }
+    modal: { close: string; previous: string; next: string }
   }
   skills: {
     label: string
@@ -63,6 +64,7 @@ export const translations: Record<Language, Translations> = {
       github: 'GitHub ↗',
       liveDemo: 'Live Demo ↗',
       filters: { all: 'All', mobile: 'Mobile', web: 'Web', gaming: 'Gaming' },
+      modal: { close: 'Close', previous: 'Previous', next: 'Next' },
     },
     skills: {
       label: 'Skills',
@@ -118,6 +120,7 @@ export const translations: Record<Language, Translations> = {
       github: 'GitHub ↗',
       liveDemo: 'Demo ↗',
       filters: { all: 'Todos', mobile: 'Mobile', web: 'Web', gaming: 'Gaming' },
+      modal: { close: 'Cerrar', previous: 'Anterior', next: 'Siguiente' },
     },
     skills: {
       label: 'Habilidades',
@@ -173,6 +176,7 @@ export const translations: Record<Language, Translations> = {
       github: 'GitHub ↗',
       liveDemo: 'Demo ↗',
       filters: { all: 'Todos', mobile: 'Mobile', web: 'Web', gaming: 'Gaming' },
+      modal: { close: 'Fechar', previous: 'Anterior', next: 'Próximo' },
     },
     skills: {
       label: 'Habilidades',

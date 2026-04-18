@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
 import { type Language } from "../i18n/translations";
@@ -14,10 +15,32 @@ const LANGUAGES: { code: Language; label: string }[] = [
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("mousedown", onClickOutside);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClickOutside);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav className={styles.navbar}>
-      <a href="#hero" className={styles.logo}>
+    <nav className={styles.navbar} ref={menuRef}>
+      <a href="#hero" className={styles.logo} onClick={closeMenu}>
         <img
           src="/avatar_small.png"
           alt="Alvaro Choque"
@@ -25,19 +48,34 @@ export default function Navbar() {
         />
         Alvaro Choque
       </a>
-      <div className={styles.right}>
+      <button
+        type="button"
+        className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ""}`}
+        onClick={() => setMenuOpen((v) => !v)}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+        aria-controls="navbar-menu"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+      <div
+        id="navbar-menu"
+        className={`${styles.right} ${menuOpen ? styles.rightOpen : ""}`}
+      >
         <ul className={styles.links}>
           <li>
-            <a href="#about">{t.nav.about}</a>
+            <a href="#about" onClick={closeMenu}>{t.nav.about}</a>
           </li>
           <li>
-            <a href="#projects">{t.nav.projects}</a>
+            <a href="#projects" onClick={closeMenu}>{t.nav.projects}</a>
           </li>
           <li>
-            <a href="#skills">{t.nav.skills}</a>
+            <a href="#skills" onClick={closeMenu}>{t.nav.skills}</a>
           </li>
           <li>
-            <a href="#contact">{t.nav.contact}</a>
+            <a href="#contact" onClick={closeMenu}>{t.nav.contact}</a>
           </li>
         </ul>
         <div className={styles.langSwitcher}>
