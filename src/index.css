@@ -34,6 +34,34 @@
         rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.2) 0 4px 6px -2px;
 }
 
+[data-theme="blade-runner"] {
+    --text: #a8b2c7;
+    --text-h: #f4e7d3;
+    --bg: #0a0e1a;
+    --border: #1a2332;
+    --code-bg: #111827;
+    --accent: #ff7a18;
+    --accent-bg: rgba(255, 122, 24, 0.1);
+    --accent-border: rgba(255, 122, 24, 0.35);
+    --shadow:
+        rgba(255, 122, 24, 0.18) 0 10px 30px -5px,
+        rgba(0, 0, 0, 0.5) 0 4px 10px -2px;
+}
+
+[data-theme="pulp-fiction"] {
+    --text: #3a2a1a;
+    --text-h: #1a0f08;
+    --bg: #f4d35e;
+    --border: #c89a3c;
+    --code-bg: #ead184;
+    --accent: #c1272d;
+    --accent-bg: rgba(193, 39, 45, 0.08);
+    --accent-border: rgba(193, 39, 45, 0.35);
+    --shadow:
+        rgba(193, 39, 45, 0.18) 0 10px 20px -5px,
+        rgba(0, 0, 0, 0.15) 0 4px 6px -2px;
+}
+
 *,
 *::before,
 *::after {
@@ -74,7 +102,7 @@ p {
 
 section {
     padding: 80px 48px;
-    max-width: 960px;
+    max-width: 1120px;
     margin: 0 auto;
     width: 100%;
 }

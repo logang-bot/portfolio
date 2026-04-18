@@ -1,36 +1,36 @@
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  max-width: 520px;
-  margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 520px;
+    margin-top: 16px;
 }
 
 .links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 15px;
-  color: var(--text-h);
-  text-decoration: none;
-  transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--text-h);
+    text-decoration: none;
+    transition: color 0.2s;
 }
 
 .link:hover {
-  color: var(--accent);
+    color: var(--accent);
 }
 
 .linkIcon {
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
 }
 
 :global([data-theme="dark"]) .linkIcon {
-  filter: invert(1);
+    filter: invert(1);
 }

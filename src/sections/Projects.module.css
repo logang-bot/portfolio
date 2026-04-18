@@ -1,148 +1,165 @@
 /* Section wrapper */
 .section {
-  position: relative;
+    position: relative;
 }
 
 /* Content sits above glow */
 .content {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 1;
 }
 
 /* Filters */
 .filters {
-  display: flex;
-  gap: 8px;
-  margin-top: 24px;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
+    flex-wrap: wrap;
 }
 
 .filterBtn {
-  padding: 6px 16px;
-  border-radius: 99px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+    padding: 6px 16px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition:
+        background 0.15s,
+        color 0.15s,
+        border-color 0.15s;
 }
 
 .filterBtn:hover {
-  border-color: var(--accent-border);
-  color: var(--text-h);
+    border-color: var(--accent-border);
+    color: var(--text-h);
 }
 
 .filterBtnActive {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
 }
 
 .filterBtnActive:hover {
-  color: #fff;
+    color: #fff;
+}
+
+:global([data-theme="pulp-fiction"]) .filterBtn:not(.filterBtnActive) {
+    background: var(--bg);
 }
 
 /* Staggered grid (masonry) */
 .grid {
-  columns: 280px 2;
-  column-gap: 24px;
-  margin-top: 24px;
+    columns: 280px 2;
+    column-gap: 24px;
+    margin-top: 24px;
 }
 
 .grid > * {
-  break-inside: avoid;
-  margin-bottom: 24px;
+    break-inside: avoid;
+    margin-bottom: 24px;
 }
 
 /* Card — liquid glass (button reset + clickable) */
 .card {
-  border-radius: 12px;
-  overflow: hidden;
-  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  padding: 0;
-  width: 100%;
-  display: block;
-  text-align: left;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    transition:
+        box-shadow 0.2s,
+        border-color 0.2s,
+        transform 0.2s;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 0;
+    width: 100%;
+    display: block;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
 }
 
 :global([data-theme="dark"]) .card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:global([data-theme="blade-runner"]) .card {
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(255, 122, 24, 0.92);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .card:hover {
-  box-shadow: var(--shadow);
-  border-color: var(--accent-border);
-  transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: var(--accent-border);
+    transform: translateY(-2px);
 }
 
 /* Screenshot cover */
 .screenshots {
-  display: block;
-  background: rgba(0, 0, 0, 0.03);
-  overflow: hidden;
+    display: block;
+    background: rgba(0, 0, 0, 0.03);
+    overflow: hidden;
 }
 
 :global([data-theme="dark"]) .screenshots {
-  background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.15);
 }
 
 /* Aspect ratio variants */
 .portrait {
-  aspect-ratio: 9/16;
+    aspect-ratio: 9/16;
 }
 
 .landscape {
-  aspect-ratio: 16/9;
+    aspect-ratio: 16/9;
 }
 
 .screenshot {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .placeholder {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text);
-  font-size: 13px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    font-size: 13px;
 }
 
 /* Info */
 .info {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .info h3 {
-  font-size: 17px;
-  font-weight: 600;
+    font-size: 17px;
+    font-weight: 600;
 }
 
 .info p {
-  font-size: 14px;
-  line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
 }

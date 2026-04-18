@@ -1,7 +1,11 @@
 .glow {
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
   pointer-events: none;
+  overflow: hidden;
   z-index: 0;
 }
 
@@ -76,3 +80,88 @@
 :global([data-theme="dark"]) .green1 { background: rgba(52, 211, 153, 0.15); }
 :global([data-theme="dark"]) .green2 { background: rgba(251, 191, 36, 0.1); }
 :global([data-theme="dark"]) .green3 { background: rgba(34, 211, 238, 0.12); }
+
+/* Pulp Fiction: bullet holes */
+.bulletHole {
+  position: absolute;
+  width: var(--hole-size);
+  height: var(--hole-size);
+  background: var(--hole-img) no-repeat center / contain;
+  transform: rotate(var(--hole-rot));
+  opacity: 0;
+}
+
+.visible .bulletHole {
+  animation: bulletImpact 1ms linear forwards;
+}
+
+@keyframes bulletImpact {
+  to { opacity: 0.9; }
+}
+
+/* Blade Runner: neon signs */
+.neonSign {
+  position: absolute;
+  transform: translate(-50%, -50%) translateY(24px) rotate(var(--neon-rot));
+  max-width: 140px;
+  padding: 16px 14px;
+  border: 2px solid var(--neon-color);
+  border-radius: 4px;
+  background: rgba(5, 8, 16, 0.55);
+  color: #fff;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+  text-shadow:
+    0 0 4px var(--neon-color),
+    0 0 10px var(--neon-color),
+    0 0 20px var(--neon-color),
+    0 0 40px var(--neon-color);
+  box-shadow:
+    0 0 6px var(--neon-color),
+    0 0 14px var(--neon-color),
+    0 0 28px var(--neon-color),
+    inset 0 0 8px rgba(0, 0, 0, 0.4),
+    inset 0 0 4px var(--neon-color);
+  opacity: 0;
+}
+
+/* Mounting arm ("mango") — neon tube extending from the sign toward
+   an imaginary wall outside the frame */
+.neonSign::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 26px;
+  height: 3px;
+  background: var(--neon-color);
+  border-radius: 2px;
+  box-shadow:
+    0 0 4px var(--neon-color),
+    0 0 10px var(--neon-color),
+    0 0 20px var(--neon-color);
+}
+
+.mountLeft::before {
+  right: 100%;
+}
+
+.mountRight::before {
+  left: 100%;
+}
+
+.visible .neonSign {
+  animation: neonRise 900ms cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes neonRise {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0) rotate(var(--neon-rot));
+  }
+}

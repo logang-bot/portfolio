@@ -1,7 +1,13 @@
 export type Language = 'en' | 'es' | 'pt'
 
 export interface Translations {
-  nav: { about: string; projects: string; skills: string; contact: string }
+  nav: {
+    about: string
+    projects: string
+    skills: string
+    contact: string
+    egg: { whisper: string }
+  }
   hero: { tag: string; greeting: string; name: string; subtitle: string; ctaWork: string; ctaContact: string }
   about: { label: string; heading: string; p1: string; p2: string; p3: string; resume: string }
   projects: {
@@ -38,6 +44,7 @@ export const translations: Record<Language, Translations> = {
       projects: 'Projects',
       skills: 'Skills',
       contact: 'Contact',
+      egg: { whisper: 'psst… over here' },
     },
     hero: {
       tag: 'Mobile & Web Developer',
@@ -94,6 +101,7 @@ export const translations: Record<Language, Translations> = {
       projects: 'Proyectos',
       skills: 'Habilidades',
       contact: 'Contacto',
+      egg: { whisper: 'psst… por aquí' },
     },
     hero: {
       tag: 'Desarrollador Mobile y Web',
@@ -150,6 +158,7 @@ export const translations: Record<Language, Translations> = {
       projects: 'Projetos',
       skills: 'Habilidades',
       contact: 'Contato',
+      egg: { whisper: 'psst… por aqui' },
     },
     hero: {
       tag: 'Desenvolvedor Mobile e Web',

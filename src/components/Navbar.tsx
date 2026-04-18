@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { useTheme } from "../context/ThemeContext";
+import { EGG_THEMES, useTheme, type EggTheme } from "../context/ThemeContext";
 import { type Language } from "../i18n/translations";
 import styles from "./Navbar.module.css";
 import SunIcon from "../assets/icons/sun-regular-full.svg";
@@ -12,11 +12,21 @@ const LANGUAGES: { code: Language; label: string }[] = [
   { code: "pt", label: "PT" },
 ];
 
+const EGG_LABELS: Record<EggTheme, string> = {
+  "blade-runner": "Blade Runner 2049",
+  "pulp-fiction": "Pulp Fiction",
+};
+
+const WHISPER_COOLDOWN_MS = 5 * 60 * 1000;
+
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, setEggTheme, exitEggTheme, isEggTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [eggMenuOpen, setEggMenuOpen] = useState(false);
+  const [whisperActive, setWhisperActive] = useState(true);
   const menuRef = useRef<HTMLDivElement>(null);
+  const avatarWrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -36,18 +46,100 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!eggMenuOpen) return;
+    const onClickOutside = (e: MouseEvent) => {
+      if (avatarWrapRef.current && !avatarWrapRef.current.contains(e.target as Node)) {
+        setEggMenuOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setEggMenuOpen(false);
+    };
+    document.addEventListener("mousedown", onClickOutside);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClickOutside);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [eggMenuOpen]);
+
+  useEffect(() => {
+    if (whisperActive) return;
+    const timer = window.setTimeout(
+      () => setWhisperActive(true),
+      WHISPER_COOLDOWN_MS,
+    );
+    return () => window.clearTimeout(timer);
+  }, [whisperActive]);
+
   const closeMenu = () => setMenuOpen(false);
+
+  const handleAvatarClick = () => {
+    if (whisperActive) setWhisperActive(false);
+    setEggMenuOpen((v) => !v);
+  };
+
+  const handleEggThemeClick = (t: EggTheme) => {
+    if (theme === t) {
+      exitEggTheme();
+    } else {
+      setEggTheme(t);
+    }
+    setEggMenuOpen(false);
+  };
+
+  const showWhisper = whisperActive && !isEggTheme && !eggMenuOpen;
 
   return (
     <nav className={styles.navbar} ref={menuRef}>
-      <a href="#hero" className={styles.logo} onClick={closeMenu}>
-        <img
-          src="/avatar_small.png"
-          alt="Alvaro Choque"
-          className={styles.avatar}
-        />
-        Alvaro Choque
-      </a>
+      <div className={styles.logo}>
+        <div className={styles.avatarWrap} ref={avatarWrapRef}>
+          <button
+            type="button"
+            onClick={handleAvatarClick}
+            className={styles.avatarBtn}
+            aria-label="Open hidden themes menu"
+            aria-expanded={eggMenuOpen}
+            aria-haspopup="menu"
+          >
+            <img
+              src="/avatar_small.png"
+              alt="Alvaro Choque"
+              className={styles.avatar}
+            />
+          </button>
+          {showWhisper && (
+            <span className={styles.whisper} aria-hidden="true">
+              <span className={styles.whisperArrow} />
+              <span className={styles.whisperText}>{t.nav.egg.whisper}</span>
+            </span>
+          )}
+          {eggMenuOpen && (
+            <div className={styles.eggMenu} role="menu">
+              {EGG_THEMES.map((eggTheme) => {
+                const active = theme === eggTheme;
+                return (
+                  <button
+                    key={eggTheme}
+                    type="button"
+                    role="menuitemradio"
+                    aria-checked={active}
+                    onClick={() => handleEggThemeClick(eggTheme)}
+                    className={`${styles.eggItem} ${active ? styles.eggItemActive : ""}`}
+                  >
+                    <span>{EGG_LABELS[eggTheme]}</span>
+                    {active && <span className={styles.eggCheck}>✓</span>}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+        <a href="#hero" className={styles.logoName} onClick={closeMenu}>
+          Alvaro Choque
+        </a>
+      </div>
       <button
         type="button"
         className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ""}`}
@@ -90,23 +182,25 @@ export default function Navbar() {
             </button>
           ))}
         </div>
-        <button
-          onClick={toggleTheme}
-          className={styles.themeToggle}
-          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-        >
-          <span className={styles.themeToggleTrack}>
-            <span className={styles.themeToggleIcon}>
-              <img src={SunIcon} alt="" />
+        {!isEggTheme && (
+          <button
+            onClick={toggleTheme}
+            className={styles.themeToggle}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            <span className={styles.themeToggleTrack}>
+              <span className={styles.themeToggleIcon}>
+                <img src={SunIcon} alt="" />
+              </span>
+              <span className={styles.themeToggleIcon}>
+                <img src={MoonIcon} alt="" />
+              </span>
+              <span
+                className={`${styles.themeToggleThumb} ${theme === "dark" ? styles.themeToggleThumbDark : ""}`}
+              />
             </span>
-            <span className={styles.themeToggleIcon}>
-              <img src={MoonIcon} alt="" />
-            </span>
-            <span
-              className={`${styles.themeToggleThumb} ${theme === "dark" ? styles.themeToggleThumbDark : ""}`}
-            />
-          </span>
-        </button>
+          </button>
+        )}
       </div>
     </nav>
   );

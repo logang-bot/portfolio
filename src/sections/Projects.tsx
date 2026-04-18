@@ -104,7 +104,7 @@ export default function Projects() {
 
   return (
     <section id="projects" ref={fadeRef} className={styles.section}>
-      <GlowBackground variant="purple" />
+      <GlowBackground key={activeFilter} variant="purple" />
       <div className={styles.content}>
         <p className={shared.sectionLabel}>{t.projects.label}</p>
         <h2>{t.projects.heading}</h2>

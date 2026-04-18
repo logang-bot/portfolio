@@ -1,58 +1,65 @@
 /* Section wrapper */
 .section {
-  position: relative;
+    position: relative;
 }
 
 /* Content sits above glow */
 .content {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 1;
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-  margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
 }
 
 .group {
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 12px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
 :global([data-theme="dark"]) .group {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:global([data-theme="blade-runner"]) .group {
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(255, 122, 24, 0.92);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .group h3 {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
 }
 
 .list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .item {
-  font-size: 14px;
-  color: var(--text);
+    font-size: 14px;
+    color: var(--text);
 }
 
 .learning {
-  border-style: dashed;
-  border-color: var(--accent-border);
-  background: var(--accent-bg);
+    border-style: dashed;
+    border-color: var(--accent-border);
+    background: var(--accent-bg);
 }
 
 .learning h3 {
-  color: var(--accent);
+    color: var(--accent);
 }

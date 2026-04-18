@@ -1,5 +1,9 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./BackgroundPattern.module.css";
+import { useTheme } from "../context/ThemeContext";
+
+import brBg1 from "../assets/images/blade-runner/br2049-background-1.jpg";
+import brBg2 from "../assets/images/blade-runner/br2049-background-2.jpg";
 
 import browser from "../assets/icons/browser.svg";
 import browserWindow from "../assets/icons/browser-window.svg";
@@ -48,8 +52,14 @@ function hashRand(r: number, c: number, salt: number, seed: number): number {
 
 type Placement = { row: number; col: number; icon: string };
 
+const BR_FADE_START = 0.85;
+const BR_FADE_END = 0.95;
+
 export default function BackgroundPattern() {
   const ref = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
+  const isBlade = theme === "blade-runner";
+  const [scrollT, setScrollT] = useState(0);
 
   const placements = useMemo<Placement[]>(() => {
     if (typeof window === "undefined") return [];
@@ -80,6 +90,7 @@ export default function BackgroundPattern() {
   }, []);
 
   useEffect(() => {
+    if (isBlade) return;
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;
@@ -94,7 +105,62 @@ export default function BackgroundPattern() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isBlade]);
+
+  const img1Ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isBlade) return;
+    let ticking = false;
+    const update = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const max =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        setScrollT(pct);
+        if (img1Ref.current) {
+          const y = window.scrollY * PARALLAX_FACTOR;
+          img1Ref.current.style.transform = `translateY(-${y}px)`;
+        }
+        ticking = false;
+      });
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [isBlade]);
+
+  if (isBlade) {
+    const img2Opacity =
+      scrollT <= BR_FADE_START
+        ? 0
+        : scrollT >= BR_FADE_END
+          ? 1
+          : (scrollT - BR_FADE_START) / (BR_FADE_END - BR_FADE_START);
+
+    return (
+      <div className={styles.brWrapper}>
+        <div
+          ref={img1Ref}
+          className={`${styles.brImage} ${styles.brImageParallax}`}
+          style={{ backgroundImage: `url(${brBg1})` }}
+        />
+        <div
+          className={styles.brImage}
+          style={{
+            backgroundImage: `url(${brBg2})`,
+            opacity: img2Opacity,
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.wrapper}>
