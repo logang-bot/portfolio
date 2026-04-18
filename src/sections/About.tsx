@@ -1,11 +1,11 @@
-import { useLanguage } from '../context/LanguageContext'
-import { useFadeUp } from '../hooks/useFadeUp'
-import styles from './About.module.css'
-import shared from '../styles/shared.module.css'
+import { useLanguage } from "../context/LanguageContext";
+import { useFadeUp } from "../hooks/useFadeUp";
+import styles from "./About.module.css";
+import shared from "../styles/shared.module.css";
 
 export default function About() {
-  const { t } = useLanguage()
-  const ref = useFadeUp<HTMLElement>()
+  const { t } = useLanguage();
+  const ref = useFadeUp<HTMLElement>();
 
   return (
     <section id="about" ref={ref}>
@@ -16,17 +16,17 @@ export default function About() {
           <p>{t.about.p1}</p>
           <p>{t.about.p2}</p>
           <p>{t.about.p3}</p>
-          <a href="/resume.pdf" className={`${shared.btn} ${shared.btnSecondary}`}>
+          <a
+            href="/resume.pdf"
+            download="CV_Eng_2026_Alvaro_Grover_Choque_Gomez.pdf"
+            className={`${shared.btn} ${shared.btnSecondary}`}
+          >
             {t.about.resume}
           </a>
         </div>
         {/* Replace src with your actual photo */}
-        <img
-          src="/avatar.png"
-          alt="Alvaro Choque"
-          className={styles.avatar}
-        />
+        <img src="/avatar.png" alt="Alvaro Choque" className={styles.avatar} />
       </div>
     </section>
-  )
+  );
 }
