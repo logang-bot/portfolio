@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './GlowBackground.module.css'
 import { useTheme } from '../context/ThemeContext'
+import { observeOnce } from '../hooks/observeOnce'
 import bulletHole from '../assets/images/bullet-hole.png'
 
 export type GlowVariant = 'purple' | 'green'
@@ -44,7 +45,7 @@ const NEON_TEXTS = [
 ]
 
 const NEON_COLORS = ['#ff36a0', '#00eaff', '#ff7a18', '#ffd166']
-const NEON_COUNT = 4
+const NEON_COUNT = 8
 
 function shuffle<T>(arr: T[]): T[] {
   const out = [...arr]
@@ -57,8 +58,8 @@ function shuffle<T>(arr: T[]): T[] {
 
 function generateHoles(): Hole[] {
   const holes: Hole[] = Array.from({ length: HOLE_COUNT }, () => ({
-    top: 5 + Math.random() * 80,
-    left: 5 + Math.random() * 80,
+    top: Math.random() * 100,
+    left: Math.random() * 100,
     size: 70 + Math.random() * 70,
     rotation: Math.random() * 360,
     delay: 0,
@@ -73,8 +74,8 @@ function generateNeons(): Neon[] {
   const texts = shuffle(NEON_TEXTS).slice(0, NEON_COUNT)
   return texts.map((text, i) => ({
     text,
-    top: 15 + Math.random() * 70,
-    left: 20 + Math.random() * 60,
+    top: Math.random() * 100,
+    left: Math.random() * 100,
     color: NEON_COLORS[Math.floor(Math.random() * NEON_COLORS.length)],
     fontSize: 20 + Math.random() * 14,
     rotation: (Math.random() - 0.5) * 6,
@@ -93,19 +94,7 @@ export default function GlowBackground({ variant }: Props) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.unobserve(el)
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
+    return observeOnce(el, () => setVisible(true))
   }, [])
 
   const isPulp = theme === 'pulp-fiction'
@@ -113,42 +102,46 @@ export default function GlowBackground({ variant }: Props) {
 
   return (
     <div ref={ref} className={`${styles.glow} ${visible ? styles.visible : ''}`}>
-      {isPulp &&
-        holes.map((h, i) => (
-          <span
-            key={i}
-            className={styles.bulletHole}
-            style={
-              {
-                top: `${h.top}%`,
-                left: `${h.left}%`,
-                '--hole-size': `${h.size}px`,
-                '--hole-rot': `${h.rotation}deg`,
-                '--hole-img': `url(${bulletHole})`,
-                animationDelay: `${h.delay}ms`,
-              } as React.CSSProperties
-            }
-          />
-        ))}
-      {isBlade &&
-        neons.map((n, i) => (
-          <span
-            key={i}
-            className={`${styles.neonSign} ${n.mount === 'left' ? styles.mountLeft : styles.mountRight}`}
-            style={
-              {
-                top: `${n.top}%`,
-                left: `${n.left}%`,
-                fontSize: `${n.fontSize}px`,
-                '--neon-color': n.color,
-                '--neon-rot': `${n.rotation}deg`,
-                animationDelay: `${n.delay}ms`,
-              } as React.CSSProperties
-            }
-          >
-            {n.text}
-          </span>
-        ))}
+      {(isPulp || isBlade) && (
+        <div className={styles.signArea}>
+          {isPulp &&
+            holes.map((h, i) => (
+              <span
+                key={i}
+                className={styles.bulletHole}
+                style={
+                  {
+                    top: `${h.top}%`,
+                    left: `${h.left}%`,
+                    '--hole-size': `${h.size}px`,
+                    '--hole-rot': `${h.rotation}deg`,
+                    '--hole-img': `url(${bulletHole})`,
+                    animationDelay: `${h.delay}ms`,
+                  } as React.CSSProperties
+                }
+              />
+            ))}
+          {isBlade &&
+            neons.map((n, i) => (
+              <span
+                key={i}
+                className={`${styles.neonSign} ${n.mount === 'left' ? styles.mountLeft : styles.mountRight}`}
+                style={
+                  {
+                    top: `${n.top}%`,
+                    left: `${n.left}%`,
+                    fontSize: `${n.fontSize}px`,
+                    '--neon-color': n.color,
+                    '--neon-rot': `${n.rotation}deg`,
+                    animationDelay: `${n.delay}ms`,
+                  } as React.CSSProperties
+                }
+              >
+                {n.text}
+              </span>
+            ))}
+        </div>
+      )}
       {!isPulp && !isBlade && (
         <>
           <div className={`${styles.blob} ${styles[`${variant}1`]}`} />

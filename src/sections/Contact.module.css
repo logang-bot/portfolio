@@ -1,36 +1,53 @@
+.section {
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(to top, #000 0%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
 .content {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    max-width: 520px;
-    margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 520px;
+  margin-top: 16px;
 }
 
 .links {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 15px;
-    color: var(--text-h);
-    text-decoration: none;
-    transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--text-h);
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
 .link:hover {
-    color: var(--accent);
+  color: var(--accent);
 }
 
 .linkIcon {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
-:global([data-theme="dark"]) .linkIcon {
-    filter: invert(1);
+:global([data-theme="dark"]) .linkIcon,
+:global([data-theme="blade-runner"]) .linkIcon {
+  filter: invert(1);
 }

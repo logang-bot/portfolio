@@ -209,6 +209,85 @@
   color: #fff;
 }
 
+/* Blade Runner — neon buttons */
+:global([data-theme="blade-runner"]) .closeBtn,
+:global([data-theme="blade-runner"]) .navBtn {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+  text-shadow:
+    0 0 6px var(--accent),
+    0 0 14px rgba(255, 122, 24, 0.5);
+  box-shadow:
+    0 0 10px rgba(255, 122, 24, 0.45),
+    0 0 22px rgba(255, 122, 24, 0.25),
+    inset 0 0 8px rgba(255, 122, 24, 0.2);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    text-shadow 0.2s,
+    border-color 0.2s;
+}
+
+:global([data-theme="blade-runner"]) .closeBtn:hover,
+:global([data-theme="blade-runner"]) .navBtn:hover:not(:disabled) {
+  background: rgba(255, 122, 24, 0.18);
+  color: #fff4e3;
+  text-shadow:
+    0 0 6px #fff,
+    0 0 16px var(--accent),
+    0 0 30px var(--accent);
+  box-shadow:
+    0 0 16px rgba(255, 122, 24, 0.8),
+    0 0 36px rgba(255, 122, 24, 0.5),
+    inset 0 0 12px rgba(255, 122, 24, 0.35);
+}
+
+:global([data-theme="blade-runner"]) .navBtn:disabled {
+  box-shadow: none;
+  text-shadow: none;
+}
+
+:global([data-theme="blade-runner"]) .dot {
+  background: rgba(255, 122, 24, 0.3);
+  box-shadow: 0 0 4px rgba(255, 122, 24, 0.4);
+}
+
+:global([data-theme="blade-runner"]) .dotActive {
+  background: var(--accent);
+  box-shadow:
+    0 0 8px var(--accent),
+    0 0 16px rgba(255, 122, 24, 0.6);
+}
+
+:global([data-theme="blade-runner"]) .links a {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+  text-shadow: 0 0 6px rgba(255, 122, 24, 0.55);
+  box-shadow:
+    0 0 8px rgba(255, 122, 24, 0.4),
+    inset 0 0 6px rgba(255, 122, 24, 0.15);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    text-shadow 0.2s;
+}
+
+:global([data-theme="blade-runner"]) .links a:hover {
+  background: rgba(255, 122, 24, 0.18);
+  color: #fff4e3;
+  text-shadow:
+    0 0 6px #fff,
+    0 0 16px var(--accent);
+  box-shadow:
+    0 0 14px rgba(255, 122, 24, 0.7),
+    0 0 30px rgba(255, 122, 24, 0.45),
+    inset 0 0 10px rgba(255, 122, 24, 0.3);
+}
+
 @media (max-width: 640px) {
   .overlay {
     padding: 12px;

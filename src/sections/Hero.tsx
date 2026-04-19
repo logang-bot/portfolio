@@ -26,7 +26,13 @@ export default function Hero() {
         </div>
       </div>
       <img
-        src={theme === 'dark' ? '/img_hero_illustration_dark.png' : '/img_hero_illustration_ligth.png'}
+        src={
+          theme === 'blade-runner'
+            ? '/img_bladerunner_illustration.png'
+            : theme === 'dark'
+              ? '/img_hero_illustration_dark.png'
+              : '/img_hero_illustration_ligth.png'
+        }
         alt=""
         aria-hidden="true"
         className={styles.illustration}

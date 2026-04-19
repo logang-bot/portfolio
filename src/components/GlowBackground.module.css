@@ -9,6 +9,42 @@
   z-index: 0;
 }
 
+/* Regular themes: let blobs bleed across section boundaries */
+:global([data-theme="light"]) .glow,
+:global([data-theme="dark"]) .glow {
+  overflow: visible;
+}
+
+/* Egg themes: extend vertically so the neon glow / bullet holes
+   have bleed room beyond the grid bounds. Bottom gets more room so
+   signs can spill into the section padding without reaching the
+   next section's title/tabs. Blade Runner skips the upward bleed
+   because neon signs use translate(-50%, -50%) and would leak
+   their top half into the section heading (Skills has no filter
+   row between h2 and the grid). */
+:global([data-theme="blade-runner"]) .glow {
+  top: 0;
+  bottom: -160px;
+}
+
+:global([data-theme="pulp-fiction"]) .glow {
+  top: -80px;
+  bottom: -160px;
+}
+
+/* Placement scope for neon signs / bullet holes.
+   Sits inside `.glow` (which defines the *visible* area) and is inset
+   enough that any sign placed at the extremes (0% or 100%) still has
+   room for its full glow halo without clipping against `.glow`. */
+.signArea {
+  position: absolute;
+  top: 100px;
+  bottom: 100px;
+  left: 140px;
+  right: 140px;
+  pointer-events: none;
+}
+
 .blob {
   position: absolute;
   border-radius: 50%;

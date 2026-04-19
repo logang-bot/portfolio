@@ -9,6 +9,11 @@
     z-index: 1;
 }
 
+/* Bounds the GlowBackground (neon signs / blobs / bullet holes) to the grid area */
+.gridWrap {
+    position: relative;
+}
+
 /* Filters */
 .filters {
     display: flex;
@@ -52,8 +57,14 @@
     background: var(--bg);
 }
 
+:global([data-theme="blade-runner"]) .filterBtn:not(.filterBtnActive) {
+    background: var(--bg);
+}
+
 /* Staggered grid (masonry) */
 .grid {
+    position: relative;
+    z-index: 1;
     columns: 280px 2;
     column-gap: 24px;
     margin-top: 24px;
@@ -66,16 +77,12 @@
 
 /* Card — liquid glass (button reset + clickable) */
 .card {
-    border-radius: 12px;
+    composes: glassCard from '../styles/shared.module.css';
     overflow: hidden;
     transition:
         box-shadow 0.2s,
         border-color 0.2s,
         transform 0.2s;
-    background: rgba(255, 255, 255, 0.45);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     padding: 0;
     width: 100%;
     display: block;
@@ -83,18 +90,6 @@
     font: inherit;
     color: inherit;
     cursor: pointer;
-}
-
-:global([data-theme="dark"]) .card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-:global([data-theme="blade-runner"]) .card {
-    background: rgba(0, 0, 0, 0.95);
-    border: 1px solid rgba(255, 122, 24, 0.92);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
 }
 
 .card:hover {

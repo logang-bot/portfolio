@@ -1,4 +1,5 @@
 import { useLanguage } from "../context/LanguageContext";
+import { useTheme } from "../context/ThemeContext";
 import { useFadeUp } from "../hooks/useFadeUp";
 import GlowBackground from "../components/GlowBackground";
 import { type Translations } from "../i18n/translations";
@@ -80,30 +81,36 @@ const skillGroups: { key: SkillCategoryKey; skills: string[] }[] = [
 
 export default function Skills() {
   const { t } = useLanguage();
+  const { isEggTheme } = useTheme();
   const fadeRef = useFadeUp<HTMLElement>();
+
+  const glow = <GlowBackground variant="green" />;
 
   return (
     <section id="skills" ref={fadeRef} className={styles.section}>
-      <GlowBackground variant="green" />
+      {!isEggTheme && glow}
       <div className={styles.content}>
         <p className={shared.sectionLabel}>{t.skills.label}</p>
         <h2>{t.skills.heading}</h2>
-        <div className={styles.grid}>
-          {skillGroups.map(({ key, skills }) => (
-            <div
-              key={String(key)}
-              className={`${styles.group} ${key === LEARNING_KEY ? styles.learning : ""}`}
-            >
-              <h3>{t.skills.categories[key]}</h3>
-              <div className={styles.list}>
-                {skills.map((skill) => (
-                  <span key={skill} className={styles.item}>
-                    {skill}
-                  </span>
-                ))}
+        <div className={styles.gridWrap}>
+          {isEggTheme && glow}
+          <div className={styles.grid}>
+            {skillGroups.map(({ key, skills }) => (
+              <div
+                key={String(key)}
+                className={`${styles.group} ${key === LEARNING_KEY ? styles.learning : ""}`}
+              >
+                <h3>{t.skills.categories[key]}</h3>
+                <div className={styles.list}>
+                  {skills.map((skill) => (
+                    <span key={skill} className={styles.item}>
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { observeOnce } from './observeOnce'
 
 export function useFadeUp<T extends HTMLElement = HTMLElement>() {
   const ref = useRef<T>(null)
@@ -6,21 +7,8 @@ export function useFadeUp<T extends HTMLElement = HTMLElement>() {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-
     el.classList.add('fade-up')
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('fade-up-visible')
-          observer.unobserve(el)
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
+    return observeOnce(el, () => el.classList.add('fade-up-visible'))
   }, [])
 
   return ref

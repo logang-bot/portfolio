@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { EGG_THEMES, useTheme, type EggTheme } from "../context/ThemeContext";
+import { useDismissOnOutside } from "../hooks/useDismissOnOutside";
 import { type Language } from "../i18n/translations";
 import styles from "./Navbar.module.css";
 import SunIcon from "../assets/icons/sun-regular-full.svg";
@@ -28,41 +29,10 @@ export default function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
   const avatarWrapRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onClickOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setMenuOpen(false);
-      }
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
-    };
-    document.addEventListener("mousedown", onClickOutside);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onClickOutside);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    if (!eggMenuOpen) return;
-    const onClickOutside = (e: MouseEvent) => {
-      if (avatarWrapRef.current && !avatarWrapRef.current.contains(e.target as Node)) {
-        setEggMenuOpen(false);
-      }
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setEggMenuOpen(false);
-    };
-    document.addEventListener("mousedown", onClickOutside);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onClickOutside);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [eggMenuOpen]);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const closeEggMenu = useCallback(() => setEggMenuOpen(false), []);
+  useDismissOnOutside(menuOpen, menuRef, closeMenu);
+  useDismissOnOutside(eggMenuOpen, avatarWrapRef, closeEggMenu);
 
   useEffect(() => {
     if (whisperActive) return;
@@ -72,8 +42,6 @@ export default function Navbar() {
     );
     return () => window.clearTimeout(timer);
   }, [whisperActive]);
-
-  const closeMenu = () => setMenuOpen(false);
 
   const handleAvatarClick = () => {
     if (whisperActive) setWhisperActive(false);

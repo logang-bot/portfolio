@@ -370,6 +370,89 @@
     transform: translateY(-7px) rotate(-45deg);
 }
 
+/* Blade Runner — neon buttons */
+:global([data-theme="blade-runner"]) .langSwitcher {
+    border-color: var(--accent);
+    box-shadow:
+        0 0 8px rgba(255, 122, 24, 0.35),
+        inset 0 0 6px rgba(255, 122, 24, 0.15);
+}
+
+:global([data-theme="blade-runner"]) .langBtn {
+    color: var(--accent);
+    text-shadow: 0 0 6px rgba(255, 122, 24, 0.6);
+    transition:
+        background 0.2s,
+        color 0.2s,
+        box-shadow 0.2s,
+        text-shadow 0.2s;
+}
+
+:global([data-theme="blade-runner"]) .langBtn:hover {
+    color: #fff4e3;
+    text-shadow:
+        0 0 6px #fff,
+        0 0 14px var(--accent);
+}
+
+:global([data-theme="blade-runner"]) .langBtnActive,
+:global([data-theme="blade-runner"]) .langBtnActive:hover {
+    background: rgba(255, 122, 24, 0.18);
+    color: #fff4e3;
+    text-shadow:
+        0 0 6px #fff,
+        0 0 14px var(--accent);
+    box-shadow:
+        0 0 10px rgba(255, 122, 24, 0.6),
+        inset 0 0 8px rgba(255, 122, 24, 0.3);
+}
+
+:global([data-theme="blade-runner"]) .hamburger {
+    border-color: var(--accent);
+    box-shadow:
+        0 0 8px rgba(255, 122, 24, 0.4),
+        inset 0 0 6px rgba(255, 122, 24, 0.15);
+}
+
+:global([data-theme="blade-runner"]) .hamburger span {
+    background: var(--accent);
+    box-shadow: 0 0 6px rgba(255, 122, 24, 0.7);
+}
+
+:global([data-theme="blade-runner"]) .eggMenu {
+    border-color: var(--accent);
+    box-shadow:
+        0 0 12px rgba(255, 122, 24, 0.45),
+        0 0 28px rgba(255, 122, 24, 0.25),
+        inset 0 0 8px rgba(255, 122, 24, 0.15);
+}
+
+:global([data-theme="blade-runner"]) .eggItem {
+    color: var(--accent);
+    text-shadow: 0 0 6px rgba(255, 122, 24, 0.5);
+}
+
+:global([data-theme="blade-runner"]) .eggItem:hover {
+    background: rgba(255, 122, 24, 0.15);
+    color: #fff4e3;
+    text-shadow:
+        0 0 6px #fff,
+        0 0 14px var(--accent);
+}
+
+:global([data-theme="blade-runner"]) .eggItemActive {
+    background: rgba(255, 122, 24, 0.18);
+    color: #fff4e3;
+    text-shadow:
+        0 0 6px #fff,
+        0 0 14px var(--accent);
+}
+
+:global([data-theme="blade-runner"]) .eggCheck {
+    color: var(--accent);
+    text-shadow: 0 0 6px var(--accent);
+}
+
 @media (max-width: 768px) {
     .navbar {
         padding: 0 24px;

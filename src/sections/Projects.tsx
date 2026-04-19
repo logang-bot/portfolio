@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
+import { useTheme } from '../context/ThemeContext'
 import { useFadeUp } from '../hooks/useFadeUp'
 import GlowBackground from '../components/GlowBackground'
 import ProjectModal from '../components/ProjectModal'
@@ -94,6 +95,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
 
 export default function Projects() {
   const { t } = useLanguage()
+  const { isEggTheme } = useTheme()
   const fadeRef = useFadeUp<HTMLElement>()
   const [activeFilter, setActiveFilter] = useState<FilterKey>('all')
   const [selected, setSelected] = useState<Project | null>(null)
@@ -102,9 +104,11 @@ export default function Projects() {
     ? projects
     : projects.filter((p) => p.category === activeFilter)
 
+  const glow = <GlowBackground key={activeFilter} variant="purple" />
+
   return (
     <section id="projects" ref={fadeRef} className={styles.section}>
-      <GlowBackground key={activeFilter} variant="purple" />
+      {!isEggTheme && glow}
       <div className={styles.content}>
         <p className={shared.sectionLabel}>{t.projects.label}</p>
         <h2>{t.projects.heading}</h2>
@@ -119,14 +123,17 @@ export default function Projects() {
             </button>
           ))}
         </div>
-        <div className={styles.grid}>
-          {filtered.map((project) => (
-            <ProjectCard
-              key={project.name}
-              project={project}
-              onClick={() => setSelected(project)}
-            />
-          ))}
+        <div className={styles.gridWrap}>
+          {isEggTheme && glow}
+          <div className={styles.grid}>
+            {filtered.map((project) => (
+              <ProjectCard
+                key={project.name}
+                project={project}
+                onClick={() => setSelected(project)}
+              />
+            ))}
+          </div>
         </div>
       </div>
       {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
