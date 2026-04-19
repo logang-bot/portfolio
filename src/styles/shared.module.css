@@ -79,6 +79,50 @@
     transform: translateY(-1px);
 }
 
+/* Pulp Fiction — comic/neo-noir poster buttons:
+   thick ink border + hard offset shadow that "presses in" on hover. */
+:global([data-theme="pulp-fiction"]) .btn {
+    border: 2.5px solid #1a0f08;
+    border-radius: 4px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 #1a0f08;
+    transition:
+        transform 0.12s ease-out,
+        box-shadow 0.12s ease-out,
+        background 0.2s,
+        color 0.2s;
+}
+
+:global([data-theme="pulp-fiction"]) .btnPrimary {
+    background: var(--accent);
+    color: #f4d35e;
+}
+
+:global([data-theme="pulp-fiction"]) .btnSecondary {
+    background: var(--bg);
+    color: #1a0f08;
+    box-shadow: 4px 4px 0 var(--accent);
+}
+
+:global([data-theme="pulp-fiction"]) .btn:hover {
+    opacity: 1;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #1a0f08;
+}
+
+:global([data-theme="pulp-fiction"]) .btnSecondary:hover {
+    background: var(--accent);
+    color: #f4d35e;
+    box-shadow: 2px 2px 0 #1a0f08;
+}
+
+:global([data-theme="pulp-fiction"]) .btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 #1a0f08;
+}
+
 .tag {
     font-size: 12px;
     padding: 3px 10px;

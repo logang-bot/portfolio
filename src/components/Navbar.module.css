@@ -48,12 +48,20 @@
     color: #f4d35e;
 }
 
+/* Pulp Fiction — comic/poster nav buttons:
+   ink-line border + hard yellow drop shadow against the red navbar. */
 :global([data-theme="pulp-fiction"]) .langSwitcher {
-    border-color: rgba(244, 211, 94, 0.45);
+    border: 2.5px solid #1a0f08;
+    border-radius: 4px;
+    box-shadow: 3px 3px 0 #f4d35e;
+    padding: 3px;
 }
 
 :global([data-theme="pulp-fiction"]) .langBtn {
-    color: rgba(244, 211, 94, 0.85);
+    color: rgba(244, 211, 94, 0.9);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    border-radius: 2px;
 }
 
 :global([data-theme="pulp-fiction"]) .langBtn:hover {
@@ -63,15 +71,58 @@
 :global([data-theme="pulp-fiction"]) .langBtnActive,
 :global([data-theme="pulp-fiction"]) .langBtnActive:hover {
     background: #f4d35e;
-    color: #c1272d;
+    color: #1a0f08;
 }
 
 :global([data-theme="pulp-fiction"]) .hamburger {
-    border-color: rgba(244, 211, 94, 0.45);
+    border: 2.5px solid #1a0f08;
+    border-radius: 4px;
+    box-shadow: 3px 3px 0 #f4d35e;
+    transition:
+        transform 0.12s ease-out,
+        box-shadow 0.12s ease-out;
 }
 
 :global([data-theme="pulp-fiction"]) .hamburger span {
     background: #f4d35e;
+}
+
+:global([data-theme="pulp-fiction"]) .hamburger:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #f4d35e;
+}
+
+:global([data-theme="pulp-fiction"]) .hamburger:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 #f4d35e;
+}
+
+:global([data-theme="pulp-fiction"]) .eggMenu {
+    border: 2.5px solid #1a0f08;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0 #1a0f08;
+}
+
+:global([data-theme="pulp-fiction"]) .eggItem {
+    color: #1a0f08;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+:global([data-theme="pulp-fiction"]) .eggItem:hover {
+    background: var(--accent);
+    color: #f4d35e;
+}
+
+:global([data-theme="pulp-fiction"]) .eggItemActive {
+    background: var(--accent);
+    color: #f4d35e;
+}
+
+:global([data-theme="pulp-fiction"]) .eggCheck {
+    color: #f4d35e;
 }
 
 .logo {
