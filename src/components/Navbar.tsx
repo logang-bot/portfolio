@@ -72,8 +72,10 @@ export default function Navbar() {
             aria-haspopup="menu"
           >
             <img
-              src="/avatar_small.png"
+              src="/avatar.webp"
               alt="Alvaro Choque"
+              width={32}
+              height={32}
               className={styles.avatar}
             />
           </button>

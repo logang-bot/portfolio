@@ -24,8 +24,13 @@ export default function About() {
             {t.about.resume}
           </a>
         </div>
-        {/* Replace src with your actual photo */}
-        <img src="/avatar.png" alt="Alvaro Choque" className={styles.avatar} />
+        <img
+          src="/avatar.webp"
+          alt="Alvaro Choque"
+          loading="lazy"
+          decoding="async"
+          className={styles.avatar}
+        />
       </div>
     </section>
   );

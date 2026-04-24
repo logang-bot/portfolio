@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
 import { useFadeUp } from '../hooks/useFadeUp'
 import GlowBackground from '../components/GlowBackground'
-import ProjectModal from '../components/ProjectModal'
+
+const ProjectModal = lazy(() => import('../components/ProjectModal'))
 import { type Translations } from '../i18n/translations'
 import styles from './Projects.module.css'
 import shared from '../styles/shared.module.css'
@@ -136,7 +137,11 @@ export default function Projects() {
           </div>
         </div>
       </div>
-      {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
+      {selected && (
+        <Suspense fallback={null}>
+          <ProjectModal project={selected} onClose={() => setSelected(null)} />
+        </Suspense>
+      )}
     </section>
   )
 }

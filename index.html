@@ -2,9 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>Alvaro Choque — Mobile & Web Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Alvaro Choque, an Android developer specializing in Kotlin and Jetpack Compose, with experience in React and cross-platform web work."
+    />
+
+    <meta name="theme-color" content="#e9fac8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1117" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Alvaro Choque — Mobile & Web Developer" />
+    <meta
+      property="og:description"
+      content="Portfolio of Alvaro Choque, an Android developer specializing in Kotlin and Jetpack Compose, with experience in React and cross-platform web work."
+    />
+    <meta property="og:image" content="/avatar.webp" />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="preload"
+      as="image"
+      href="/img_hero_illustration_light.webp"
+      media="(prefers-color-scheme: light)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/img_hero_illustration_dark.webp"
+      media="(prefers-color-scheme: dark)"
+      fetchpriority="high"
+    />
+
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          var valid = ['light', 'dark', 'blade-runner', 'pulp-fiction'];
+          if (!t || valid.indexOf(t) === -1) {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

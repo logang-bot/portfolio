@@ -2,9 +2,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./BackgroundPattern.module.css";
 import { useTheme } from "../context/ThemeContext";
 
-import brBg1 from "../assets/images/blade-runner/br2049-background-1.jpg";
-import brBg2 from "../assets/images/blade-runner/br2049-background-2.jpg";
-import pfBg1 from "../assets/images/pulp-fiction/pf_background-1.png";
+import brBg1 from "../assets/images/blade-runner/br2049-background-1.webp";
+import brBg2 from "../assets/images/blade-runner/br2049-background-2.webp";
+import pfBg1 from "../assets/images/pulp-fiction/pf_background-1.webp";
 import pfBg2 from "../assets/images/pulp-fiction/pf_background-2.png";
 
 import browser from "../assets/icons/browser.svg";
