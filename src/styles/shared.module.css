@@ -7,6 +7,10 @@
     margin-bottom: 12px;
 }
 
+:global([data-theme="pulp-fiction"]) .sectionLabel {
+    font-weight: 700;
+}
+
 .btn {
     display: inline-flex;
     align-items: center;

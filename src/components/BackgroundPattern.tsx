@@ -4,6 +4,8 @@ import { useTheme } from "../context/ThemeContext";
 
 import brBg1 from "../assets/images/blade-runner/br2049-background-1.jpg";
 import brBg2 from "../assets/images/blade-runner/br2049-background-2.jpg";
+import pfBg1 from "../assets/images/pulp-fiction/pf_background-1.png";
+import pfBg2 from "../assets/images/pulp-fiction/pf_background-2.png";
 
 import browser from "../assets/icons/browser.svg";
 import browserWindow from "../assets/icons/browser-window.svg";
@@ -54,11 +56,14 @@ type Placement = { row: number; col: number; icon: string };
 
 const BR_FADE_START = 0.85;
 const BR_FADE_END = 0.95;
+const PF_FADE_START = 0.85;
+const PF_FADE_END = 0.95;
 
 export default function BackgroundPattern() {
   const ref = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
   const isBlade = theme === "blade-runner";
+  const isPulp = theme === "pulp-fiction";
   const [scrollT, setScrollT] = useState(0);
 
   const placements = useMemo<Placement[]>(() => {
@@ -90,7 +95,7 @@ export default function BackgroundPattern() {
   }, []);
 
   useEffect(() => {
-    if (isBlade) return;
+    if (isBlade || isPulp) return;
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;
@@ -105,7 +110,7 @@ export default function BackgroundPattern() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isBlade]);
+  }, [isBlade, isPulp]);
 
   const img1Ref = useRef<HTMLDivElement>(null);
 
@@ -116,9 +121,9 @@ export default function BackgroundPattern() {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const max =
-          document.documentElement.scrollHeight - window.innerHeight;
-        const pct = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pct =
+          max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
         setScrollT(pct);
         if (img1Ref.current) {
           const y = window.scrollY * PARALLAX_FACTOR;
@@ -135,6 +140,35 @@ export default function BackgroundPattern() {
       window.removeEventListener("resize", update);
     };
   }, [isBlade]);
+
+  const pfImgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isPulp) return;
+    let ticking = false;
+    const update = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pct =
+          max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        setScrollT(pct);
+        if (pfImgRef.current) {
+          const y = window.scrollY * PARALLAX_FACTOR;
+          pfImgRef.current.style.transform = `translateY(-${y}px)`;
+        }
+        ticking = false;
+      });
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [isPulp]);
 
   if (isBlade) {
     const img2Opacity =
@@ -155,6 +189,32 @@ export default function BackgroundPattern() {
           className={styles.brImage}
           style={{
             backgroundImage: `url(${brBg2})`,
+            opacity: img2Opacity,
+          }}
+        />
+      </div>
+    );
+  }
+
+  if (isPulp) {
+    const img2Opacity =
+      scrollT <= PF_FADE_START
+        ? 0
+        : scrollT >= PF_FADE_END
+          ? 1
+          : (scrollT - PF_FADE_START) / (PF_FADE_END - PF_FADE_START);
+
+    return (
+      <div className={styles.pfWrapper}>
+        <div
+          ref={pfImgRef}
+          className={`${styles.pfImage} ${styles.pfImageParallax}`}
+          style={{ backgroundImage: `url(${pfBg1})` }}
+        />
+        <div
+          className={styles.pfImage}
+          style={{
+            backgroundImage: `url(${pfBg2})`,
             opacity: img2Opacity,
           }}
         />

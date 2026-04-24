@@ -48,6 +48,16 @@
 }
 
 :global([data-theme="dark"]) .linkIcon,
-:global([data-theme="blade-runner"]) .linkIcon {
+:global([data-theme="blade-runner"]) .linkIcon,
+:global([data-theme="pulp-fiction"]) .linkIcon {
   filter: invert(1);
+}
+
+:global([data-theme="pulp-fiction"]) .section {
+  --text: #9ca3af;
+  --text-h: #f9fafb;
+}
+
+:global([data-theme="pulp-fiction"]) .content p {
+  color: var(--text);
 }

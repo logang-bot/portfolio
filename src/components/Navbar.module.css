@@ -33,7 +33,21 @@
 }
 
 :global([data-theme="pulp-fiction"]) .avatar {
-    border-color: #f4d35e;
+    border: 2.5px solid #1a0f08;
+    box-shadow: 3px 3px 0 #f4d35e;
+    transition:
+        transform 0.12s ease-out,
+        box-shadow 0.12s ease-out;
+}
+
+:global([data-theme="pulp-fiction"]) .avatarBtn:hover .avatar {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #f4d35e;
+}
+
+:global([data-theme="pulp-fiction"]) .avatarBtn:active .avatar {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 #f4d35e;
 }
 
 :global([data-theme="pulp-fiction"]) .avatarBtn:focus-visible {
@@ -422,6 +436,21 @@
 }
 
 /* Blade Runner — neon buttons */
+:global([data-theme="blade-runner"]) .avatar {
+    box-shadow:
+        0 0 8px rgba(255, 122, 24, 0.6),
+        0 0 18px rgba(255, 122, 24, 0.35);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+:global([data-theme="blade-runner"]) .avatarBtn:hover .avatar {
+    box-shadow:
+        0 0 12px rgba(255, 122, 24, 0.9),
+        0 0 28px rgba(255, 122, 24, 0.5);
+}
+
 :global([data-theme="blade-runner"]) .langSwitcher {
     border-color: var(--accent);
     box-shadow:

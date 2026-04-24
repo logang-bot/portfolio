@@ -24,6 +24,11 @@
     border: 1px solid var(--accent);
 }
 
+:global([data-theme="pulp-fiction"]) .text h2,
+:global([data-theme="pulp-fiction"]) .text p {
+    font-weight: 700;
+}
+
 @media (max-width: 768px) {
     .content {
         grid-template-columns: 1fr;

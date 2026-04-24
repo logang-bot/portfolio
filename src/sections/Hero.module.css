@@ -18,7 +18,7 @@
     flex: 0 1 480px;
     max-width: 480px;
     width: 100%;
-    aspect-ratio: 338 / 571;
+    aspect-ratio: 399 / 600;
     object-fit: contain;
     user-select: none;
     pointer-events: none;
@@ -29,6 +29,12 @@
     color: var(--accent);
     font-weight: 500;
     margin: 0;
+}
+
+:global([data-theme="pulp-fiction"]) .heroTag,
+:global([data-theme="pulp-fiction"]) .typewriter,
+:global([data-theme="pulp-fiction"]) .subtitle {
+    font-weight: 700;
 }
 
 .subtitle {

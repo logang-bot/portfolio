@@ -54,3 +54,7 @@
 .learning h3 {
     color: var(--accent);
 }
+
+:global([data-theme="pulp-fiction"]) .learning {
+    background: rgba(244, 211, 94, 0.55);
+}

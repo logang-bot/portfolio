@@ -66,3 +66,35 @@
     height: 220vh;
     will-change: transform;
 }
+
+/* Pulp Fiction: two background images crossfade on scroll */
+.pfWrapper {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.pfImage {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.pfImageParallax {
+    bottom: auto;
+    height: 220vh;
+    will-change: transform;
+}
+
+.pfImageParallax::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    pointer-events: none;
+}
