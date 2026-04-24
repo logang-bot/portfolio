@@ -56,8 +56,8 @@ type Placement = { row: number; col: number; icon: string };
 
 const BR_FADE_START = 0.85;
 const BR_FADE_END = 0.95;
-const PF_FADE_START = 0.85;
-const PF_FADE_END = 0.95;
+const PF_SLIDE_START = 0.9;
+const PF_SLIDE_END = 1;
 
 export default function BackgroundPattern() {
   const ref = useRef<HTMLDivElement>(null);
@@ -142,6 +142,7 @@ export default function BackgroundPattern() {
   }, [isBlade]);
 
   const pfImgRef = useRef<HTMLDivElement>(null);
+  const pfImg2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isPulp) return;
@@ -153,10 +154,19 @@ export default function BackgroundPattern() {
         const max = document.documentElement.scrollHeight - window.innerHeight;
         const pct =
           max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-        setScrollT(pct);
+        const parallaxY = window.scrollY * PARALLAX_FACTOR;
         if (pfImgRef.current) {
-          const y = window.scrollY * PARALLAX_FACTOR;
-          pfImgRef.current.style.transform = `translateY(-${y}px)`;
+          pfImgRef.current.style.transform = `translateY(-${parallaxY}px)`;
+        }
+        if (pfImg2Ref.current) {
+          const slideProgress =
+            pct <= PF_SLIDE_START
+              ? 0
+              : pct >= PF_SLIDE_END
+                ? 1
+                : (pct - PF_SLIDE_START) / (PF_SLIDE_END - PF_SLIDE_START);
+          const translateY = (1 - slideProgress) * window.innerHeight;
+          pfImg2Ref.current.style.transform = `translateY(${translateY}px)`;
         }
         ticking = false;
       });
@@ -197,26 +207,17 @@ export default function BackgroundPattern() {
   }
 
   if (isPulp) {
-    const img2Opacity =
-      scrollT <= PF_FADE_START
-        ? 0
-        : scrollT >= PF_FADE_END
-          ? 1
-          : (scrollT - PF_FADE_START) / (PF_FADE_END - PF_FADE_START);
-
     return (
       <div className={styles.pfWrapper}>
         <div
           ref={pfImgRef}
-          className={`${styles.pfImage} ${styles.pfImageParallax}`}
+          className={`${styles.pfImage} ${styles.pfImageParallax} ${styles.pfImageBlur}`}
           style={{ backgroundImage: `url(${pfBg1})` }}
         />
         <div
-          className={styles.pfImage}
-          style={{
-            backgroundImage: `url(${pfBg2})`,
-            opacity: img2Opacity,
-          }}
+          ref={pfImg2Ref}
+          className={`${styles.pfImage} ${styles.pfImageContain}`}
+          style={{ backgroundImage: `url(${pfBg2})` }}
         />
       </div>
     );

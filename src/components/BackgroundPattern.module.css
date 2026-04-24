@@ -67,7 +67,7 @@
     will-change: transform;
 }
 
-/* Pulp Fiction: two background images crossfade on scroll */
+/* Pulp Fiction: bg1 parallaxes with a blur overlay, bg2 slides up on scroll */
 .pfWrapper {
     position: fixed;
     inset: 0;
@@ -89,7 +89,13 @@
     will-change: transform;
 }
 
-.pfImageParallax::after {
+.pfImageContain {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+.pfImageBlur::after {
     content: "";
     position: absolute;
     inset: 0;
