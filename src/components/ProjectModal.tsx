@@ -14,16 +14,11 @@ interface Props {
 
 export default function ProjectModal({ project, onClose }: Props) {
   const { t } = useLanguage()
-  const [open, setOpen] = useState(false)
+  const [closing, setClosing] = useState(false)
   const [index, setIndex] = useState(0)
 
-  useEffect(() => {
-    const raf = requestAnimationFrame(() => setOpen(true))
-    return () => cancelAnimationFrame(raf)
-  }, [])
-
   const close = useCallback(() => {
-    setOpen(false)
+    setClosing(true)
     setTimeout(onClose, ANIM_MS)
   }, [onClose])
 
@@ -52,12 +47,12 @@ export default function ProjectModal({ project, onClose }: Props) {
 
   return createPortal(
     <div
-      className={`${styles.overlay} ${open ? styles.overlayOpen : ''}`}
+      className={`${styles.overlay} ${closing ? styles.overlayClosing : ''}`}
       onClick={close}
       role="presentation"
     >
       <div
-        className={`${styles.panel} ${open ? styles.panelOpen : ''}`}
+        className={`${styles.panel} ${closing ? styles.panelClosing : ''}`}
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"

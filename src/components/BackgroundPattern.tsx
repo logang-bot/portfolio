@@ -135,9 +135,12 @@ export default function BackgroundPattern() {
     update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
+    const observer = new ResizeObserver(update);
+    observer.observe(document.documentElement);
     return () => {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
+      observer.disconnect();
     };
   }, [isBlade]);
 

@@ -70,11 +70,13 @@
 
 body {
     margin: 0;
-    overflow-x: hidden;
+    padding-top: 60px;
 }
 
 html {
     scroll-behavior: smooth;
+    overflow-x: clip;
+    scroll-padding-top: 60px;
 }
 
 h1,
