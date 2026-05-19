@@ -25,7 +25,7 @@
 .filterBtn {
     padding: 6px 16px;
     border-radius: 99px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-strong);
     background: transparent;
     color: var(--text);
     font-size: 13px;
@@ -98,40 +98,69 @@
     transform: translateY(-2px);
 }
 
-/* Screenshot cover */
+/* Screenshot preview — staggered thumbnails centered in the card */
 .screenshots {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
     background: rgba(0, 0, 0, 0.03);
-    overflow: hidden;
 }
 
 :global([data-theme="dark"]) .screenshots {
     background: rgba(0, 0, 0, 0.15);
 }
 
-/* Aspect ratio variants */
-.portrait {
-    aspect-ratio: 9/16;
-}
-
-.landscape {
-    aspect-ratio: 16/9;
-}
-
-.screenshot {
+.thumbGrid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
     width: 100%;
-    height: 100%;
+}
+
+.thumb {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 92px;
+    aspect-ratio: 9 / 19.5;
     object-fit: cover;
-    display: block;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* Stagger the row so the UI behind the card stays visible */
+.thumb:nth-child(1) {
+    transform: translateY(16px);
+}
+
+.thumb:nth-child(2) {
+    transform: translateY(-12px);
+}
+
+.thumb:nth-child(3) {
+    transform: translateY(16px);
 }
 
 .placeholder {
     width: 100%;
+    min-height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text);
     font-size: 13px;
+}
+
+/* Empty filter result */
+.comingSoon {
+    margin-top: 24px;
+    padding: 64px 0;
+    text-align: center;
+    color: var(--text);
+    font-size: 15px;
 }
 
 /* Info */

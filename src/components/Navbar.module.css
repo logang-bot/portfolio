@@ -408,7 +408,7 @@
     height: 36px;
     padding: 0 7px;
     background: none;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-strong);
     border-radius: 8px;
     cursor: pointer;
 }

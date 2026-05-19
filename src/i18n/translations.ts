@@ -15,8 +15,10 @@ export interface Translations {
     heading: string
     noScreenshots: string
     playStore: string
+    playStoreSoon: string
     github: string
     liveDemo: string
+    comingSoon: string
     filters: { all: string; mobile: string; web: string; gaming: string }
     modal: { close: string; previous: string; next: string }
   }
@@ -68,8 +70,10 @@ export const translations: Record<Language, Translations> = {
       heading: "Things I've built",
       noScreenshots: 'No screenshots yet',
       playStore: 'Play Store ↗',
+      playStoreSoon: 'Play Store — coming soon',
       github: 'GitHub ↗',
       liveDemo: 'Live Demo ↗',
+      comingSoon: 'Coming soon…',
       filters: { all: 'All', mobile: 'Mobile', web: 'Web', gaming: 'Gaming' },
       modal: { close: 'Close', previous: 'Previous', next: 'Next' },
     },
@@ -125,8 +129,10 @@ export const translations: Record<Language, Translations> = {
       heading: 'Lo que he construido',
       noScreenshots: 'Sin capturas aún',
       playStore: 'Play Store ↗',
+      playStoreSoon: 'Play Store — próximamente',
       github: 'GitHub ↗',
       liveDemo: 'Demo ↗',
+      comingSoon: 'Próximamente…',
       filters: { all: 'Todos', mobile: 'Mobile', web: 'Web', gaming: 'Gaming' },
       modal: { close: 'Cerrar', previous: 'Anterior', next: 'Siguiente' },
     },
@@ -182,8 +188,10 @@ export const translations: Record<Language, Translations> = {
       heading: 'O que já construí',
       noScreenshots: 'Sem capturas ainda',
       playStore: 'Play Store ↗',
+      playStoreSoon: 'Play Store — em breve',
       github: 'GitHub ↗',
       liveDemo: 'Demo ↗',
+      comingSoon: 'Em breve…',
       filters: { all: 'Todos', mobile: 'Mobile', web: 'Web', gaming: 'Gaming' },
       modal: { close: 'Fechar', previous: 'Anterior', next: 'Próximo' },
     },

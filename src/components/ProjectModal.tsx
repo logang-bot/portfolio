@@ -41,6 +41,14 @@ export default function ProjectModal({ project, onClose }: Props) {
     }
   }, [])
 
+  // Preload every screenshot so navigating the carousel never flashes blank
+  useEffect(() => {
+    project.screenshots.forEach((src) => {
+      const img = new Image()
+      img.src = src
+    })
+  }, [project.screenshots])
+
   const images = project.screenshots
   const hasImages = images.length > 0
   const description = project.longDescription ?? project.description
@@ -85,7 +93,9 @@ export default function ProjectModal({ project, onClose }: Props) {
                     disabled={index === 0}
                     aria-label={t.projects.modal.previous}
                   >
-                    ‹
+                    <svg className={styles.chevron} viewBox="0 0 24 24" aria-hidden="true">
+                      <polyline points="15 5 8 12 15 19" />
+                    </svg>
                   </button>
                   <button
                     type="button"
@@ -94,7 +104,9 @@ export default function ProjectModal({ project, onClose }: Props) {
                     disabled={index === images.length - 1}
                     aria-label={t.projects.modal.next}
                   >
-                    ›
+                    <svg className={styles.chevron} viewBox="0 0 24 24" aria-hidden="true">
+                      <polyline points="9 5 16 12 9 19" />
+                    </svg>
                   </button>
                   <div className={styles.dots}>
                     {images.map((_, i) => (
@@ -130,6 +142,9 @@ export default function ProjectModal({ project, onClose }: Props) {
               <a href={project.playStoreUrl} target="_blank" rel="noopener noreferrer">
                 {t.projects.playStore}
               </a>
+            )}
+            {!project.playStoreUrl && project.playStoreComingSoon && (
+              <span className={styles.linkDisabled}>{t.projects.playStoreSoon}</span>
             )}
             {project.liveDemoUrl && (
               <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer">

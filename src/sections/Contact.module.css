@@ -9,7 +9,10 @@
   width: 100vw;
   top: 0;
   bottom: 0;
-  background: linear-gradient(to top, #000 0%, transparent 100%);
+  /* Translucent scrim: darkens the bottom enough to keep the Contact
+     text legible, but stays see-through so the Blade Runner reveal
+     image (brBg2) underneath remains visible. */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
   pointer-events: none;
   z-index: -1;
 }

@@ -22,6 +22,10 @@
     object-fit: contain;
     user-select: none;
     pointer-events: none;
+    /* Fade the bottom edge so the illustration blends into the page
+       instead of ending in a hard cut. */
+    -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
 }
 
 .heroTag {

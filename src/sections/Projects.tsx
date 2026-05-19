@@ -20,42 +20,44 @@ export interface Project {
   screenshots: string[]
   tags: string[]
   playStoreUrl?: string
+  playStoreComingSoon?: boolean
   githubUrl?: string
   liveDemoUrl?: string
 }
 
+const partyPuzlShots = Array.from(
+  { length: 11 },
+  (_, i) => `/projects/partypuzl/${String(i + 1).padStart(2, '0')}.webp`,
+)
+
+const phoebeStoreShots = Array.from(
+  { length: 10 },
+  (_, i) => `/projects/phoebestore/${String(i + 1).padStart(2, '0')}.webp`,
+)
+
 const projects: Project[] = [
   {
-    name: 'App Name',
+    name: 'PartyPuzl',
     category: 'mobile',
-    description: 'Short description of what the app does and the problem it solves.',
+    description:
+      'A native Android party game that brings friends together with truth-or-dare rounds, dare challenges, trivia, and quick mini-games.',
     longDescription:
-      'Longer description of the app: the problem it solves, the stack used, interesting technical challenges, and the outcome.',
-    screenshots: [],
+      'PartyPuzl is a native Android party game built to liven up hangouts and gatherings with friends. It combines several game modes in a single app — truth-or-dare rounds, sticky dare challenges, general-knowledge trivia, and a set of quick mini-games — so the group always has something new to play. Developed with Kotlin and Jetpack Compose and structured around the MVVM architecture pattern, the project emphasizes a clean, modular, and maintainable codebase.',
+    screenshots: partyPuzlShots,
     tags: ['Kotlin', 'Jetpack Compose', 'MVVM'],
-    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.yourapp',
-    githubUrl: 'https://github.com/yourusername/yourapp',
+    playStoreComingSoon: true,
+    githubUrl: 'https://github.com/logang-bot/party-puzz',
   },
   {
-    name: 'Web Project',
-    category: 'web',
-    description: 'Short description of the web project.',
+    name: 'Phoebe Store',
+    category: 'mobile',
+    description:
+      'A native Android app for managing stores end to end — products, inventory, and sales in one place.',
     longDescription:
-      'Longer description of the web project: goals, architecture, and what makes it interesting.',
-    screenshots: [],
-    tags: ['React', 'TypeScript', 'Node.js'],
-    githubUrl: 'https://github.com/yourusername/webproject',
-    liveDemoUrl: 'https://yourproject.vercel.app',
-  },
-  {
-    name: 'Game Project',
-    category: 'gaming',
-    description: 'Short description of the game.',
-    longDescription:
-      'Longer description of the game: gameplay, engine features used, and development highlights.',
-    screenshots: [],
-    tags: ['Unreal Engine', 'C++', 'Blueprints'],
-    githubUrl: 'https://github.com/yourusername/gameproject',
+      'Phoebe Store is a native Android application for managing small retail stores, covering product catalogs, inventory levels, and sales tracking within a single, streamlined interface. Originally developed for personal use, it is built with Kotlin and Jetpack Compose and follows Clean Architecture principles to keep business logic decoupled and the codebase easy to test and extend. It relies on Supabase for authentication and data persistence, providing a reliable cloud backend without the overhead of a custom server.',
+    screenshots: phoebeStoreShots,
+    tags: ['Kotlin', 'Jetpack Compose', 'Clean Architecture', 'Supabase'],
+    githubUrl: 'https://github.com/logang-bot/phoebe-store',
   },
 ]
 
@@ -63,22 +65,25 @@ const FILTERS: FilterKey[] = ['all', 'mobile', 'web', 'gaming']
 
 function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
   const { t } = useLanguage()
-  const isLandscape = project.category === 'web' || project.category === 'gaming'
-  const aspectClass = isLandscape ? styles.landscape : styles.portrait
-  const cover = project.screenshots[0]
+  const thumbs = project.screenshots.slice(0, 3)
 
   return (
     <button type="button" className={styles.card} onClick={onClick}>
-      <div className={`${styles.screenshots} ${aspectClass}`}>
-        {cover ? (
-          <img
-            src={cover}
-            alt={`${project.name} screenshot`}
-            className={`${styles.screenshot} ${aspectClass}`}
-            loading="lazy"
-          />
+      <div className={styles.screenshots}>
+        {thumbs.length > 0 ? (
+          <div className={styles.thumbGrid}>
+            {thumbs.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt={`${project.name} screenshot ${i + 1}`}
+                className={styles.thumb}
+                loading="lazy"
+              />
+            ))}
+          </div>
         ) : (
-          <div className={`${styles.placeholder} ${aspectClass}`}>{t.projects.noScreenshots}</div>
+          <div className={styles.placeholder}>{t.projects.noScreenshots}</div>
         )}
       </div>
       <div className={styles.info}>
@@ -126,15 +131,19 @@ export default function Projects() {
         </div>
         <div className={styles.gridWrap}>
           {isEggTheme && glow}
-          <div className={styles.grid}>
-            {filtered.map((project) => (
-              <ProjectCard
-                key={project.name}
-                project={project}
-                onClick={() => setSelected(project)}
-              />
-            ))}
-          </div>
+          {filtered.length > 0 ? (
+            <div className={styles.grid}>
+              {filtered.map((project) => (
+                <ProjectCard
+                  key={project.name}
+                  project={project}
+                  onClick={() => setSelected(project)}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className={styles.comingSoon}>{t.projects.comingSoon}</p>
+          )}
         </div>
       </div>
       {selected && (
