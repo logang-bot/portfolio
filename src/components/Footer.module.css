@@ -55,6 +55,12 @@
   filter: invert(1);
 }
 
+/* Blade Runner: continue the Contact section's scrim, which fades to
+   rgba(0, 0, 0, 0.7) at its bottom edge, so there's no visible seam. */
+:global([data-theme="blade-runner"]) .footer {
+  background: rgba(0, 0, 0, 0.7);
+}
+
 /* Pulp Fiction: the footer sits on the dark briefcase reveal image
    (same as Contact), so switch to light text. */
 :global([data-theme="pulp-fiction"]) .footer {

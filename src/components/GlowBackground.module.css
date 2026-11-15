@@ -15,18 +15,18 @@
   overflow: visible;
 }
 
-/* Egg themes: extend vertically so the neon glow / bullet holes
-   have bleed room beyond the grid bounds. Bottom gets more room so
-   signs can spill into the section padding without reaching the
-   next section's title/tabs. Blade Runner skips the upward bleed
-   because neon signs use translate(-50%, -50%) and would leak
-   their top half into the section heading (Skills has no filter
-   row between h2 and the grid). */
+/* Blade Runner: the glow box matches the content grid, and neon signs
+   live in the empty side margins (see .gutter). Nothing is clipped:
+   the margins hold no text, and the layout code only keeps signs
+   that fit completely. */
 :global([data-theme="blade-runner"]) .glow {
-  top: 0;
-  bottom: -160px;
+  left: 0;
+  right: 0;
+  overflow: visible;
 }
 
+/* Pulp Fiction: extend vertically so bullet holes have bleed room
+   beyond the grid bounds without reaching the next section's title. */
 :global([data-theme="pulp-fiction"]) .glow {
   top: -80px;
   bottom: -160px;
@@ -135,11 +135,34 @@
   to { opacity: 0.9; }
 }
 
-/* Blade Runner: neon signs */
+/* Blade Runner: side-margin columns that hold the neon signs.
+   Width = half the viewport minus half the content column, i.e. the
+   empty margin. They reach a little above the grid (beside the
+   section heading) and into the section's bottom padding. */
+.gutter {
+  position: absolute;
+  top: -100px;
+  bottom: -48px;
+  width: calc(50vw - 50%);
+  pointer-events: none;
+}
+
+.gutterLeft {
+  right: 100%;
+}
+
+.gutterRight {
+  left: 100%;
+}
+
+/* Blade Runner: neon signs (top/left set by the layout code) */
 .neonSign {
   position: absolute;
-  transform: translate(-50%, -50%) translateY(24px) rotate(var(--neon-rot));
+  transform: translateY(24px) rotate(var(--neon-rot));
   max-width: 140px;
+  /* Never split words: a long word widens the sign instead (min-width
+     wins over max-width). Font size is capped in JS so this stays small. */
+  min-width: min-content;
   padding: 16px 14px;
   border: 2px solid var(--neon-color);
   border-radius: 4px;
@@ -151,7 +174,7 @@
   line-height: 1.2;
   text-align: center;
   text-transform: uppercase;
-  overflow-wrap: anywhere;
+  text-wrap: balance;
   pointer-events: none;
   text-shadow:
     0 0 4px var(--neon-color),
@@ -198,6 +221,6 @@
 @keyframes neonRise {
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) translateY(0) rotate(var(--neon-rot));
+    transform: translateY(0) rotate(var(--neon-rot));
   }
 }

@@ -84,7 +84,7 @@ export default function Skills() {
   const { isEggTheme } = useTheme();
   const fadeRef = useFadeUp<HTMLElement>();
 
-  const glow = <GlowBackground variant="green" />;
+  const glow = <GlowBackground variant="green" slot={1} />;
 
   return (
     <section id="skills" ref={fadeRef} className={styles.section}>

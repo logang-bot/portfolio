@@ -117,7 +117,7 @@ export default function Projects() {
     ? projects
     : projects.filter((p) => p.category === activeFilter)
 
-  const glow = <GlowBackground key={activeFilter} variant="purple" />
+  const glow = <GlowBackground key={activeFilter} variant="purple" slot={0} />
 
   return (
     <section id="projects" ref={fadeRef} className={styles.section}>
