@@ -25,6 +25,12 @@
   margin-top: 16px;
 }
 
+.cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .links {
   display: flex;
   flex-direction: column;

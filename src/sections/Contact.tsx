@@ -1,28 +1,8 @@
 import { useLanguage } from '../context/LanguageContext'
 import { useFadeUp } from '../hooks/useFadeUp'
+import { EMAIL, RESUME, socialLinks, isExternal } from '../data/links'
 import styles from './Contact.module.css'
 import shared from '../styles/shared.module.css'
-import mailIcon from '../assets/icons/mail.svg'
-import linkedinIcon from '../assets/icons/linkedin.svg'
-import githubIcon from '../assets/icons/github.svg'
-
-const links = [
-  {
-    label: 'logangch8v@gmail.com',
-    href: 'mailto:logangch8v@gmail.com',
-    icon: mailIcon,
-  },
-  {
-    label: 'linkedin.com/in/agrovercgomez',
-    href: 'https://linkedin.com/in/agrovercgomez',
-    icon: linkedinIcon,
-  },
-  {
-    label: 'github.com/logang-bot',
-    href: 'https://github.com/logang-bot',
-    icon: githubIcon,
-  },
-]
 
 export default function Contact() {
   const { t } = useLanguage()
@@ -34,14 +14,26 @@ export default function Contact() {
       <div className={styles.content}>
         <h2>{t.contact.heading}</h2>
         <p>{t.contact.description}</p>
+        <div className={styles.cta}>
+          <a href={`mailto:${EMAIL}`} className={`${shared.btn} ${shared.btnPrimary}`}>
+            {t.contact.ctaEmail}
+          </a>
+          <a
+            href={RESUME.href}
+            download={RESUME.fileName}
+            className={`${shared.btn} ${shared.btnSecondary}`}
+          >
+            {t.about.resume}
+          </a>
+        </div>
         <div className={styles.links}>
-          {links.map(({ label, href, icon }) => (
+          {socialLinks.map(({ label, href, icon }) => (
             <a
               key={href}
               href={href}
               className={styles.link}
-              target={href.startsWith('http') ? '_blank' : undefined}
-              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              target={isExternal(href) ? '_blank' : undefined}
+              rel={isExternal(href) ? 'noopener noreferrer' : undefined}
             >
               <img
                 src={icon}

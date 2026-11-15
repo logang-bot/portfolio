@@ -63,6 +63,13 @@ const projects: Project[] = [
 
 const FILTERS: FilterKey[] = ['all', 'mobile', 'web', 'gaming']
 
+// Only offer filters that match at least one project, so empty categories
+// never show up. They reappear automatically once a project uses them.
+const visibleFilters = FILTERS.filter(
+  (key) => key === 'all' || projects.some((p) => p.category === key),
+)
+const showFilters = visibleFilters.length > 2
+
 function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
   const { t } = useLanguage()
   const thumbs = project.screenshots.slice(0, 3)
@@ -118,17 +125,19 @@ export default function Projects() {
       <div className={styles.content}>
         <p className={shared.sectionLabel}>{t.projects.label}</p>
         <h2>{t.projects.heading}</h2>
-        <div className={styles.filters}>
-          {FILTERS.map((key) => (
-            <button
-              key={key}
-              className={`${styles.filterBtn} ${activeFilter === key ? styles.filterBtnActive : ''}`}
-              onClick={() => setActiveFilter(key)}
-            >
-              {t.projects.filters[key]}
-            </button>
-          ))}
-        </div>
+        {showFilters && (
+          <div className={styles.filters}>
+            {visibleFilters.map((key) => (
+              <button
+                key={key}
+                className={`${styles.filterBtn} ${activeFilter === key ? styles.filterBtnActive : ''}`}
+                onClick={() => setActiveFilter(key)}
+              >
+                {t.projects.filters[key]}
+              </button>
+            ))}
+          </div>
+        )}
         <div className={styles.gridWrap}>
           {isEggTheme && glow}
           {filtered.length > 0 ? (

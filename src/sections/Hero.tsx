@@ -7,17 +7,23 @@ import shared from "../styles/shared.module.css";
 export default function Hero() {
   const { t, lang } = useLanguage();
   const { theme } = useTheme();
-  const { greetingLine, nameLine } = useTypewriter(lang, t.hero.name);
+  const { greetingLine, nameLine, accessibleText } = useTypewriter(
+    lang,
+    t.hero.name,
+  );
 
   return (
     <section id="hero" className={styles.hero}>
       <div className={styles.content}>
         <p className={styles.heroTag}>{t.hero.tag}</p>
         <h1 className={styles.typewriter}>
-          {greetingLine}
-          {nameLine ? <br /> : null}
-          {nameLine}
-          <span className={styles.cursor} />
+          <span className={shared.srOnly}>{accessibleText}</span>
+          <span aria-hidden="true">
+            {greetingLine}
+            {nameLine ? <br /> : null}
+            {nameLine}
+            <span className={styles.cursor} />
+          </span>
         </h1>
         <p className={styles.subtitle}>{t.hero.subtitle}</p>
         <div className={styles.cta}>

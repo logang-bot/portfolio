@@ -1,5 +1,6 @@
 import { useLanguage } from "../context/LanguageContext";
 import { useFadeUp } from "../hooks/useFadeUp";
+import { RESUME } from "../data/links";
 import styles from "./About.module.css";
 import shared from "../styles/shared.module.css";
 
@@ -17,8 +18,8 @@ export default function About() {
           <p>{t.about.p2}</p>
           <p>{t.about.p3}</p>
           <a
-            href="/resume.pdf"
-            download="CV_Eng_2026_Alvaro_Grover_Choque_Gomez.pdf"
+            href={RESUME.href}
+            download={RESUME.fileName}
             className={`${shared.btn} ${shared.btnSecondary}`}
           >
             {t.about.resume}

@@ -36,7 +36,8 @@ export interface Translations {
       learning: string
     }
   }
-  contact: { label: string; heading: string; description: string }
+  contact: { label: string; heading: string; description: string; ctaEmail: string }
+  footer: { rights: string; backToTop: string }
 }
 
 export const translations: Record<Language, Translations> = {
@@ -96,6 +97,11 @@ export const translations: Record<Language, Translations> = {
       heading: "Let's work together",
       description:
         "I'm open to new opportunities, freelance projects, and interesting collaborations. Feel free to reach out.",
+      ctaEmail: 'Send me an email',
+    },
+    footer: {
+      rights: 'All rights reserved.',
+      backToTop: 'Back to top',
     },
   },
 
@@ -155,6 +161,11 @@ export const translations: Record<Language, Translations> = {
       heading: 'Trabajemos juntos',
       description:
         'Estoy abierto a nuevas oportunidades, proyectos freelance y colaboraciones interesantes. No dudes en escribirme.',
+      ctaEmail: 'Envíame un correo',
+    },
+    footer: {
+      rights: 'Todos los derechos reservados.',
+      backToTop: 'Volver arriba',
     },
   },
 
@@ -214,6 +225,11 @@ export const translations: Record<Language, Translations> = {
       heading: 'Vamos trabalhar juntos',
       description:
         'Estou aberto a novas oportunidades, projetos freelance e colaborações interessantes. Sinta-se à vontade para entrar em contato.',
+      ctaEmail: 'Envie-me um e-mail',
+    },
+    footer: {
+      rights: 'Todos os direitos reservados.',
+      backToTop: 'Voltar ao topo',
     },
   },
 }

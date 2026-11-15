@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import type { Language } from "../i18n/translations";
 
 const greetings: Record<Language, { text: string; emoji: string }[]> = {
@@ -39,84 +39,122 @@ const DELETE_SPEED = 35;
 const PAUSE_AFTER_TYPE = 8_000;
 const PAUSE_AFTER_DELETE = 400;
 
-type Phase = "typing" | "paused" | "deleting" | "deleted";
+type Phase = "typing" | "deleting";
+
+interface TypewriterState {
+  key: string; // lang + name the state was built for
+  idx: number;
+  displayed: string;
+  phase: Phase;
+}
+
+function buildText(lang: Language, name: string, idx: number) {
+  const g = greetings[lang][idx];
+  return `${g.text} ${g.emoji}${connectors[lang]}\n${name}`;
+}
+
+// Random greeting index, different from `prev` when possible
+function pickIndex(lang: Language, prev: number) {
+  const len = greetings[lang].length;
+  let next: number;
+  do {
+    next = Math.floor(Math.random() * len);
+  } while (next === prev && len > 1);
+  return next;
+}
+
+// Start fully typed so the name is visible immediately; the
+// delete → retype cycle only begins after the first pause.
+function initialState(lang: Language, name: string): TypewriterState {
+  const idx = pickIndex(lang, -1);
+  return {
+    key: `${lang}|${name}`,
+    idx,
+    displayed: buildText(lang, name, idx),
+    phase: "typing",
+  };
+}
+
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
+
+function subscribeReducedMotion(cb: () => void) {
+  const mql = window.matchMedia(reducedMotionQuery);
+  mql.addEventListener("change", cb);
+  return () => mql.removeEventListener("change", cb);
+}
+
+const getReducedMotion = () => window.matchMedia(reducedMotionQuery).matches;
 
 export function useTypewriter(lang: Language, name: string) {
-  const [displayed, setDisplayed] = useState("");
-  const [phase, setPhase] = useState<Phase>("typing");
-  const indexRef = useRef(0);
-  const prevIndexRef = useRef(-1);
-
-  const getFullText = useCallback(
-    (idx: number) => {
-      const list = greetings[lang];
-      const g = list[idx % list.length];
-      return `${g.text} ${g.emoji}${connectors[lang]}\n${name}`;
-    },
-    [lang, name],
+  const reducedMotion = useSyncExternalStore(
+    subscribeReducedMotion,
+    getReducedMotion,
   );
+  const [state, setState] = useState(() => initialState(lang, name));
 
-  // Pick a random index different from the previous one
-  const pickIndex = useCallback(() => {
-    const list = greetings[lang];
-    let next: number;
-    do {
-      next = Math.floor(Math.random() * list.length);
-    } while (next === prevIndexRef.current && list.length > 1);
-    prevIndexRef.current = next;
-    return next;
-  }, [lang]);
+  // Language/name changed: reset during render (no blank frame, no effect)
+  const key = `${lang}|${name}`;
+  let current = state;
+  if (state.key !== key) {
+    current = initialState(lang, name);
+    setState(current);
+  }
 
-  // Reset on language change
-  useEffect(() => {
-    indexRef.current = pickIndex();
-    setDisplayed("");
-    setPhase("typing");
-  }, [lang, pickIndex]);
+  const { idx, displayed, phase } = current;
+  const fullText = buildText(lang, name, idx);
 
   useEffect(() => {
-    const fullText = getFullText(indexRef.current);
+    if (reducedMotion) return;
 
     let timer: ReturnType<typeof setTimeout>;
 
-    switch (phase) {
-      case "typing": {
-        if (displayed.length < fullText.length) {
-          timer = setTimeout(() => {
-            setDisplayed(fullText.slice(0, displayed.length + 1));
-          }, TYPE_SPEED);
-        } else {
-          timer = setTimeout(() => setPhase("deleting"), PAUSE_AFTER_TYPE);
-        }
-        break;
-      }
-      case "deleting": {
-        if (displayed.length > 0) {
-          timer = setTimeout(() => {
-            setDisplayed(displayed.slice(0, -1));
-          }, DELETE_SPEED);
-        } else {
-          setPhase("deleted");
-        }
-        break;
-      }
-      case "deleted": {
-        timer = setTimeout(() => {
-          indexRef.current = pickIndex();
-          setPhase("typing");
-        }, PAUSE_AFTER_DELETE);
-        break;
-      }
+    if (phase === "typing") {
+      timer =
+        displayed.length < fullText.length
+          ? setTimeout(
+              () =>
+                setState((s) => ({
+                  ...s,
+                  displayed: fullText.slice(0, s.displayed.length + 1),
+                })),
+              TYPE_SPEED,
+            )
+          : setTimeout(
+              () => setState((s) => ({ ...s, phase: "deleting" })),
+              PAUSE_AFTER_TYPE,
+            );
+    } else {
+      timer =
+        displayed.length > 0
+          ? setTimeout(
+              () =>
+                setState((s) => ({ ...s, displayed: s.displayed.slice(0, -1) })),
+              DELETE_SPEED,
+            )
+          : setTimeout(
+              () =>
+                setState((s) => ({
+                  ...s,
+                  idx: pickIndex(lang, s.idx),
+                  phase: "typing",
+                })),
+              PAUSE_AFTER_DELETE,
+            );
     }
 
     return () => clearTimeout(timer);
-  }, [displayed, phase, getFullText, pickIndex]);
+  }, [displayed, phase, fullText, lang, reducedMotion]);
+
+  const text = reducedMotion ? fullText : displayed;
 
   // Split the displayed text into greeting line and name line
-  const newlineIdx = displayed.indexOf("\n");
-  const greetingLine =
-    newlineIdx >= 0 ? displayed.slice(0, newlineIdx) : displayed;
-  const nameLine = newlineIdx >= 0 ? displayed.slice(newlineIdx + 1) : "";
+  const newlineIdx = text.indexOf("\n");
+  const greetingLine = newlineIdx >= 0 ? text.slice(0, newlineIdx) : text;
+  const nameLine = newlineIdx >= 0 ? text.slice(newlineIdx + 1) : "";
 
-  return { greetingLine, nameLine };
+  // Stable, complete text for assistive tech: no emoji, never changes
+  // while the animation cycles (e.g. "Hi, I'm Alvaro Choque").
+  const accessibleText = `${greetings[lang][0].text}${connectors[lang]} ${name}`;
+
+  return { greetingLine, nameLine, accessibleText };
 }

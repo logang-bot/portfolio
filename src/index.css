@@ -1,7 +1,7 @@
 :root {
-    --text: #6b7280;
+    --text: #4b5563;
     --text-h: #111827;
-    --bg: #e9fac8;
+    --bg: #faf8f5;
     --border: #e5e7eb;
     --border-strong: #9ca3af;
     --code-bg: #f9fafb;
@@ -10,6 +10,9 @@
     --accent-border: rgba(124, 58, 237, 0.3);
     --shadow:
         rgba(0, 0, 0, 0.08) 0 10px 15px -3px, rgba(0, 0, 0, 0.04) 0 4px 6px -2px;
+
+    --section-pad-y: 64px;
+    --section-pad-x: 48px;
 
     --sans: system-ui, "Segoe UI", Roboto, sans-serif;
 
@@ -107,15 +110,16 @@ p {
 }
 
 section {
-    padding: 80px 48px;
+    padding: var(--section-pad-y) var(--section-pad-x);
     max-width: 1120px;
     margin: 0 auto;
     width: 100%;
 }
 
 @media (max-width: 768px) {
-    section {
-        padding: 60px 24px;
+    :root {
+        --section-pad-y: 48px;
+        --section-pad-x: 24px;
     }
 }
 
