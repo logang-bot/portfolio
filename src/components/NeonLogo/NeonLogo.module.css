@@ -1,0 +1,23 @@
+/* The glow lives on the unmasked wrapper: CSS applies filter before mask,
+   so a drop-shadow on the masked shape itself would be cut away. */
+.glow {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter:
+        drop-shadow(0 0 4px var(--neon-color))
+        drop-shadow(0 0 12px var(--neon-color));
+}
+
+.shape {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--neon-color);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+}

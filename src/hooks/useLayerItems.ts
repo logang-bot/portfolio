@@ -1,14 +1,12 @@
 import { useMemo, useState } from 'react'
 import { useScrollFrame } from './useScrollFrame'
 import { hashRand, pickSpacedCells } from '../utils/gridPlacement'
-import { isInContentColumnFor } from '../utils/contentColumn'
 import { parallaxLayerHeight } from '../utils/scrollProgress'
 import type { LayerItem, LayerSpec } from '../components/BackgroundPattern/types'
 
 interface LayerViewport {
   width: number
   height: number
-  columnMax: number
 }
 
 export interface LayerItems {
@@ -25,18 +23,14 @@ export function useLayerItems(spec: LayerSpec): LayerItems {
 }
 
 function readViewport(speed: number): LayerViewport {
-  const root = document.documentElement
   return {
-    width: root.clientWidth,
+    width: document.documentElement.clientWidth,
     height: Math.ceil(parallaxLayerHeight(speed)),
-    columnMax: parseFloat(getComputedStyle(root).getPropertyValue('--content-max')),
   }
 }
 
 function keepIfSame(prev: LayerViewport, next: LayerViewport): LayerViewport {
-  const same =
-    prev.width === next.width && prev.height === next.height && prev.columnMax === next.columnMax
-  return same ? prev : next
+  return prev.width === next.width && prev.height === next.height ? prev : next
 }
 
 function buildItems(spec: LayerSpec, viewport: LayerViewport, seed: number): LayerItem[] {
@@ -46,7 +40,6 @@ function buildItems(spec: LayerSpec, viewport: LayerViewport, seed: number): Lay
     cell,
     x: cell.col * cellSize,
     y: cell.row * cellSize,
-    dim: isInContentColumnFor((cell.col + 0.5) * cellSize, viewport.width, viewport.columnMax),
     rand: (salt: number) => hashRand(cell, salt, seed),
   }))
 }

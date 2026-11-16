@@ -1,0 +1,87 @@
+.sign {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    rotate: var(--neon-rot);
+    max-width: 140px;
+    min-width: min-content;
+    padding: 16px;
+    border: 2px solid var(--neon-color);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--bg) 55%, transparent);
+    color: var(--text-h);
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+    text-wrap: balance;
+    text-shadow:
+        0 0 4px var(--neon-color),
+        0 0 10px var(--neon-color),
+        0 0 20px var(--neon-color),
+        0 0 40px var(--neon-color);
+    box-shadow:
+        0 0 6px var(--neon-color),
+        0 0 14px var(--neon-color),
+        0 0 28px var(--neon-color),
+        inset 0 0 8px color-mix(in srgb, var(--bg) 40%, transparent),
+        inset 0 0 4px var(--neon-color);
+    opacity: 0;
+}
+
+/* Mounting arm: a neon tube reaching toward the nearer screen edge */
+.sign::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    width: 24px;
+    height: 4px;
+    background: var(--neon-color);
+    border-radius: var(--radius-sm);
+    box-shadow:
+        0 0 4px var(--neon-color),
+        0 0 10px var(--neon-color),
+        0 0 20px var(--neon-color);
+}
+
+/* Signs hug the outer side of their cell, leaving room for the arm */
+.mountLeft {
+    left: 32px;
+}
+
+.mountLeft::before {
+    right: 100%;
+}
+
+.mountRight {
+    right: 32px;
+}
+
+.mountRight::before {
+    left: 100%;
+}
+
+.lit {
+    animation: powerOn var(--duration-slow) linear forwards;
+}
+
+@keyframes powerOn {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    35% { opacity: 0.3; }
+    55% { opacity: 1; }
+    70% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sign {
+        opacity: 1;
+    }
+
+    .lit {
+        animation: none;
+    }
+}

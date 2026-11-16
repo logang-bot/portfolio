@@ -1,40 +1,78 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, type CSSProperties } from 'react'
 import styles from './BladeRunnerBackground.module.css'
-import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import BackgroundFrame from './BackgroundFrame'
+import ParallaxLayer from './ParallaxLayer'
+import NeonLogo from '../NeonLogo'
+import NeonSign from '../NeonSign'
+import { useLanguage } from '../../context/LanguageContext'
 import { useScrollFrame } from '../../hooks/useScrollFrame'
-import { pageScrollProgress, parallaxTransform, rangeProgress } from '../../utils/scrollProgress'
-import brBg1 from '../../assets/images/blade-runner/br2049-background-1.webp'
-import brBg2 from '../../assets/images/blade-runner/br2049-background-2.webp'
+import { TECH_LOGOS } from '../../data/backgroundIcons'
+import { neonFontSize } from '../../utils/neonFontSize'
+import { shuffledIndices } from '../../utils/shuffledIndices'
+import { pageScrollProgress, rangeProgress } from '../../utils/scrollProgress'
+import hologram from '../../assets/images/blade-runner/br2049-background-2.webp'
+import type { LayerItem, LayerSpec } from './types'
 
-const PARALLAX_FACTOR = 0.15
-const BR_FADE_START = 0.85
-const BR_FADE_END = 0.95
+const LOGO_LAYER: LayerSpec = { speed: 0.15, cellSize: 140, fillRatio: 0.18 }
+const SIGN_LAYER: LayerSpec = { speed: 0.25, cellSize: 280, fillRatio: 0.35 }
+const FAR_STYLE = { '--layer-opacity': 'var(--bg-far-opacity)' } as CSSProperties
+const NEAR_STYLE = { '--layer-opacity': 'var(--bg-near-opacity)' } as CSSProperties
+const HOLOGRAM_FADE_START = 0.85
+const HOLOGRAM_FADE_END = 0.95
+const NEON_COLOR_COUNT = 4
 
 export default function BladeRunnerBackground() {
-  const reducedMotion = usePrefersReducedMotion()
-  const parallaxRef = useRef<HTMLDivElement>(null)
-  const [scrollProgress, setScrollProgress] = useState(0)
+  const { t } = useLanguage()
+  const [order] = useState(() => shuffledIndices(t.nav.egg.neonSigns.length))
+  const hologramRef = useRef<HTMLDivElement>(null)
+  const signs = order.map((i) => t.nav.egg.neonSigns[i])
 
   useScrollFrame(() => {
-    setScrollProgress(pageScrollProgress())
-    if (!parallaxRef.current) return
-    parallaxRef.current.style.transform = reducedMotion ? 'none' : parallaxTransform(PARALLAX_FACTOR)
+    if (!hologramRef.current) return
+    const fade = rangeProgress(pageScrollProgress(), HOLOGRAM_FADE_START, HOLOGRAM_FADE_END)
+    hologramRef.current.style.opacity = String(fade)
   })
 
   return (
-    <div className={styles.brWrapper}>
+    <BackgroundFrame>
       <div
-        ref={parallaxRef}
-        className={`${styles.brImage} ${styles.brImageParallax}`}
-        style={{ backgroundImage: `url(${brBg1})` }}
+        ref={hologramRef}
+        className={styles.hologram}
+        style={{ backgroundImage: `url(${hologram})` }}
       />
-      <div
-        className={styles.brImage}
-        style={{
-          backgroundImage: `url(${brBg2})`,
-          opacity: rangeProgress(scrollProgress, BR_FADE_START, BR_FADE_END),
-        }}
+      <ParallaxLayer spec={LOGO_LAYER} style={FAR_STYLE} renderItem={renderLogo} />
+      <ParallaxLayer
+        spec={SIGN_LAYER}
+        style={NEAR_STYLE}
+        renderItem={(item) => renderSign(item, signs)}
       />
-    </div>
+    </BackgroundFrame>
   )
+}
+
+function renderLogo(item: LayerItem) {
+  const logo = TECH_LOGOS[Math.floor(item.rand(1) * TECH_LOGOS.length)]
+  return (
+    <span className={styles.logoSlot}>
+      <NeonLogo src={logo} color={neonColor(item.rand(2))} />
+    </span>
+  )
+}
+
+function renderSign(item: LayerItem, signs: string[]) {
+  const text = signs[item.index % signs.length]
+  const centerX = item.x + SIGN_LAYER.cellSize / 2
+  return (
+    <NeonSign
+      text={text}
+      color={neonColor(item.rand(2))}
+      fontSize={neonFontSize(text, item.rand(4))}
+      tilt={(item.rand(3) - 0.5) * 6}
+      mount={centerX < document.documentElement.clientWidth / 2 ? 'left' : 'right'}
+    />
+  )
+}
+
+function neonColor(rand: number): string {
+  return `var(--neon-${1 + Math.floor(rand * NEON_COLOR_COUNT)})`
 }

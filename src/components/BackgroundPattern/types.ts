@@ -12,7 +12,6 @@ export interface LayerItem {
   cell: Cell
   x: number
   y: number
-  dim: boolean
   rand: (salt: number) => number
 }
 

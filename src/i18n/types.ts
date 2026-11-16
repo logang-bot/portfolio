@@ -14,7 +14,7 @@ export interface Translations {
     projects: string
     skills: string
     contact: string
-    egg: { whisper: string; exit: string; openMenu: string }
+    egg: { whisper: string; exit: string; openMenu: string; neonSigns: string[] }
     a11y: {
       openMenu: string
       closeMenu: string

@@ -20,7 +20,7 @@
     opacity: var(--layer-opacity, 1);
 }
 
-.dim {
+.cell[data-dim] {
     opacity: var(--bg-item-opacity-dim);
     filter: blur(var(--bg-item-blur-dim));
 }
