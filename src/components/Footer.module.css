@@ -26,51 +26,38 @@
 
 .iconLink {
   display: inline-flex;
+  color: var(--text-h);
   opacity: 0.7;
-  transition: opacity 0.2s;
+  transition: opacity var(--duration-fast);
 }
 
 .iconLink:hover {
   opacity: 1;
 }
 
-.icon {
-  width: 18px;
-  height: 18px;
-}
-
 .top {
   color: var(--text-h);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color var(--duration-fast);
 }
 
 .top:hover {
   color: var(--accent);
 }
 
-:global([data-theme="dark"]) .icon,
-:global([data-theme="blade-runner"]) .icon,
-:global([data-theme="pulp-fiction"]) .icon {
-  filter: invert(1);
-}
-
-/* Blade Runner: continue the Contact section's scrim, which fades to
-   rgba(0, 0, 0, 0.7) at its bottom edge, so there's no visible seam. */
 :global([data-theme="blade-runner"]) .footer {
   background: rgba(0, 0, 0, 0.7);
 }
 
-/* Pulp Fiction: the footer sits on the dark briefcase reveal image
-   (same as Contact), so switch to light text. */
 :global([data-theme="pulp-fiction"]) .footer {
-  --text: #9ca3af;
-  --text-h: #f9fafb;
+  --text: var(--ink-text-muted);
+  --text-h: var(--ink-text);
+  background: var(--ink);
+  border-top-color: var(--ink);
 }
 
-:global([data-theme="pulp-fiction"]) .copy,
-:global([data-theme="pulp-fiction"]) .top {
-  font-weight: 700;
+:global([data-theme="pulp-fiction"]) .top:hover {
+  color: var(--on-accent);
 }
 
 @media (max-width: 600px) {

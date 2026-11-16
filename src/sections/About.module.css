@@ -3,7 +3,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 48px;
     align-items: center;
-    margin-top: 16px;
 }
 
 .text {
@@ -13,20 +12,28 @@
     line-height: 1.7;
 }
 
+.highlights {
+    margin: 0;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.highlights li::marker {
+    color: var(--accent);
+}
+
 .avatar {
     width: 100%;
+    height: auto;
     aspect-ratio: 3/4;
     max-width: 300px;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     object-fit: cover;
     object-position: center top;
     justify-self: center;
     border: 1px solid var(--accent);
-}
-
-:global([data-theme="pulp-fiction"]) .text h2,
-:global([data-theme="pulp-fiction"]) .text p {
-    font-weight: 700;
 }
 
 @media (max-width: 768px) {

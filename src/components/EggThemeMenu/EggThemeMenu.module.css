@@ -1,0 +1,169 @@
+.wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 0;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.trigger:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 2px solid var(--accent);
+    transition: transform var(--duration-fast) ease;
+}
+
+.trigger:hover .avatar {
+    transform: scale(1.05);
+}
+
+.whisper {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 4px;
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    color: var(--text);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    animation:
+        whisperIn 400ms ease-out 1s forwards,
+        whisperOut 400ms ease-in 8s forwards;
+}
+
+.whisperText {
+    margin-top: 12px;
+    font-size: 14px;
+    font-style: italic;
+    letter-spacing: 0.3px;
+}
+
+.whisperArrow {
+    flex: 0 0 auto;
+}
+
+@keyframes whisperIn {
+    to {
+        opacity: 0.8;
+    }
+}
+
+@keyframes whisperOut {
+    from {
+        opacity: 0.8;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .whisper {
+        display: none;
+    }
+}
+
+.menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 200px;
+    padding: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 101;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-h);
+    font-size: 14px;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background var(--duration-fast),
+        color var(--duration-fast);
+}
+
+.item:hover,
+.itemActive {
+    background: var(--accent-bg);
+}
+
+.itemActive,
+.check {
+    color: var(--accent);
+}
+
+.exitItem {
+    margin-top: 4px;
+    border-top: 1px solid var(--border);
+    border-radius: 0;
+    color: var(--text);
+}
+
+:global([data-theme="blade-runner"]) .avatar,
+:global([data-theme="blade-runner"]) .menu {
+    border-color: var(--accent);
+}
+
+:global([data-theme="blade-runner"]) .item:hover,
+:global([data-theme="blade-runner"]) .itemActive {
+    color: var(--on-accent-hover);
+}
+
+:global([data-theme="pulp-fiction"]) .avatar {
+    border: 2.5px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .menu {
+    border: 2.5px solid var(--ink);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+}
+
+:global([data-theme="pulp-fiction"]) .item {
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+:global([data-theme="pulp-fiction"]) .item:hover,
+:global([data-theme="pulp-fiction"]) .itemActive,
+:global([data-theme="pulp-fiction"]) .check {
+    background: var(--accent-strong);
+    color: var(--on-accent);
+}

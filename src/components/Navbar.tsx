@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { EGG_THEMES, useTheme, type EggTheme } from "../context/ThemeContext";
+import { useTheme } from "../context/ThemeContext";
 import { useDismissOnOutside } from "../hooks/useDismissOnOutside";
 import { type Language } from "../i18n/translations";
+import Icon from "./Icon";
+import EggThemeMenu from "./EggThemeMenu";
+import { fillTemplate } from "../utils/fillTemplate";
 import styles from "./Navbar.module.css";
-import SunIcon from "../assets/icons/sun-regular-full.svg";
-import MoonIcon from "../assets/icons/moon-solid-full.svg";
 
 const LANGUAGES: { code: Language; label: string }[] = [
   { code: "en", label: "EN" },
@@ -13,108 +14,28 @@ const LANGUAGES: { code: Language; label: string }[] = [
   { code: "pt", label: "PT" },
 ];
 
-const EGG_LABELS: Record<EggTheme, string> = {
-  "blade-runner": "Blade Runner 2049",
-  "pulp-fiction": "Pulp Fiction",
-};
-
-const WHISPER_COOLDOWN_MS = 5 * 60 * 1000;
-
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
-  const { theme, toggleTheme, setEggTheme, exitEggTheme, isEggTheme } = useTheme();
+  const { theme, toggleTheme, isEggTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [eggMenuOpen, setEggMenuOpen] = useState(false);
-  const [whisperActive, setWhisperActive] = useState(true);
   const menuRef = useRef<HTMLDivElement>(null);
-  const avatarWrapRef = useRef<HTMLDivElement>(null);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
-  const closeEggMenu = useCallback(() => setEggMenuOpen(false), []);
   useDismissOnOutside(menuOpen, menuRef, closeMenu);
-  useDismissOnOutside(eggMenuOpen, avatarWrapRef, closeEggMenu);
-
-  useEffect(() => {
-    if (whisperActive) return;
-    const timer = window.setTimeout(
-      () => setWhisperActive(true),
-      WHISPER_COOLDOWN_MS,
-    );
-    return () => window.clearTimeout(timer);
-  }, [whisperActive]);
-
-  const handleAvatarClick = () => {
-    if (whisperActive) setWhisperActive(false);
-    setEggMenuOpen((v) => !v);
-  };
-
-  const handleEggThemeClick = (t: EggTheme) => {
-    if (theme === t) {
-      exitEggTheme();
-    } else {
-      setEggTheme(t);
-    }
-    setEggMenuOpen(false);
-  };
-
-  const showWhisper = whisperActive && !isEggTheme && !eggMenuOpen;
 
   return (
     <nav className={styles.navbar} ref={menuRef}>
       <div className={styles.logo}>
-        <div className={styles.avatarWrap} ref={avatarWrapRef}>
-          <button
-            type="button"
-            onClick={handleAvatarClick}
-            className={styles.avatarBtn}
-            aria-label="Open hidden themes menu"
-            aria-expanded={eggMenuOpen}
-            aria-haspopup="menu"
-          >
-            <img
-              src="/avatar.webp"
-              alt="Alvaro Choque"
-              width={32}
-              height={32}
-              className={styles.avatar}
-            />
-          </button>
-          {showWhisper && (
-            <span className={styles.whisper} aria-hidden="true">
-              <span className={styles.whisperArrow} />
-              <span className={styles.whisperText}>{t.nav.egg.whisper}</span>
-            </span>
-          )}
-          {eggMenuOpen && (
-            <div className={styles.eggMenu} role="menu">
-              {EGG_THEMES.map((eggTheme) => {
-                const active = theme === eggTheme;
-                return (
-                  <button
-                    key={eggTheme}
-                    type="button"
-                    role="menuitemradio"
-                    aria-checked={active}
-                    onClick={() => handleEggThemeClick(eggTheme)}
-                    className={`${styles.eggItem} ${active ? styles.eggItemActive : ""}`}
-                  >
-                    <span>{EGG_LABELS[eggTheme]}</span>
-                    {active && <span className={styles.eggCheck}>✓</span>}
-                  </button>
-                );
-              })}
-            </div>
-          )}
-        </div>
+        <EggThemeMenu />
         <a href="#hero" className={styles.logoName} onClick={closeMenu}>
-          Alvaro Choque
+          {t.hero.name}
         </a>
       </div>
       <button
         type="button"
         className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ""}`}
         onClick={() => setMenuOpen((v) => !v)}
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-label={menuOpen ? t.nav.a11y.closeMenu : t.nav.a11y.openMenu}
         aria-expanded={menuOpen}
         aria-controls="navbar-menu"
       >
@@ -146,7 +67,8 @@ export default function Navbar() {
               key={code}
               onClick={() => setLang(code)}
               className={`${styles.langBtn} ${lang === code ? styles.langBtnActive : ""}`}
-              aria-label={`Switch to ${label}`}
+              aria-label={fillTemplate(t.nav.a11y.switchLanguage, { lang: label })}
+              aria-pressed={lang === code}
             >
               {label}
             </button>
@@ -156,14 +78,14 @@ export default function Navbar() {
           <button
             onClick={toggleTheme}
             className={styles.themeToggle}
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            aria-label={theme === "dark" ? t.nav.a11y.toLight : t.nav.a11y.toDark}
           >
             <span className={styles.themeToggleTrack}>
               <span className={styles.themeToggleIcon}>
-                <img src={SunIcon} alt="" />
+                <Icon name="sun" size={12} />
               </span>
               <span className={styles.themeToggleIcon}>
-                <img src={MoonIcon} alt="" />
+                <Icon name="moon" size={12} />
               </span>
               <span
                 className={`${styles.themeToggleThumb} ${theme === "dark" ? styles.themeToggleThumbDark : ""}`}

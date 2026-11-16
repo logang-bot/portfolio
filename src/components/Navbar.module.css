@@ -8,143 +8,17 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 48px;
-    height: 60px;
-    background: rgba(250, 248, 245, 0.6);
-    border-bottom: 1px solid rgba(33, 37, 41, 0.2);
+    height: var(--nav-height);
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-}
-
-:global([data-theme="dark"]) .navbar {
-    background: rgba(15, 17, 23, 0.6);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-:global([data-theme="blade-runner"]) .navbar {
-    background: rgba(10, 14, 26, 0.7);
-    border-bottom: 1px solid rgba(255, 122, 24, 0.15);
-}
-
-:global([data-theme="pulp-fiction"]) .navbar {
-    background: rgba(193, 39, 45, 0.92);
-    border-bottom: 1px solid rgba(26, 15, 8, 0.35);
-}
-
-:global([data-theme="pulp-fiction"]) .logoName {
-    color: #f4d35e;
-}
-
-:global([data-theme="pulp-fiction"]) .avatar {
-    border: 2.5px solid #1a0f08;
-    box-shadow: 3px 3px 0 #f4d35e;
-    transition:
-        transform 0.12s ease-out,
-        box-shadow 0.12s ease-out;
-}
-
-:global([data-theme="pulp-fiction"]) .avatarBtn:hover .avatar {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 #f4d35e;
-}
-
-:global([data-theme="pulp-fiction"]) .avatarBtn:active .avatar {
-    transform: translate(3px, 3px);
-    box-shadow: 0 0 0 #f4d35e;
-}
-
-:global([data-theme="pulp-fiction"]) .avatarBtn:focus-visible {
-    outline-color: #f4d35e;
-}
-
-:global([data-theme="pulp-fiction"]) .links a {
-    color: rgba(244, 211, 94, 0.82);
-}
-
-:global([data-theme="pulp-fiction"]) .links a:hover {
-    color: #f4d35e;
-}
-
-/* Pulp Fiction — comic/poster nav buttons:
-   ink-line border + hard yellow drop shadow against the red navbar. */
-:global([data-theme="pulp-fiction"]) .langSwitcher {
-    border: 2.5px solid #1a0f08;
-    border-radius: 4px;
-    box-shadow: 3px 3px 0 #f4d35e;
-    padding: 3px;
-}
-
-:global([data-theme="pulp-fiction"]) .langBtn {
-    color: rgba(244, 211, 94, 0.9);
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    border-radius: 2px;
-}
-
-:global([data-theme="pulp-fiction"]) .langBtn:hover {
-    color: #f4d35e;
-}
-
-:global([data-theme="pulp-fiction"]) .langBtnActive,
-:global([data-theme="pulp-fiction"]) .langBtnActive:hover {
-    background: #f4d35e;
-    color: #1a0f08;
-}
-
-:global([data-theme="pulp-fiction"]) .hamburger {
-    border: 2.5px solid #1a0f08;
-    border-radius: 4px;
-    box-shadow: 3px 3px 0 #f4d35e;
-    transition:
-        transform 0.12s ease-out,
-        box-shadow 0.12s ease-out;
-}
-
-:global([data-theme="pulp-fiction"]) .hamburger span {
-    background: #f4d35e;
-}
-
-:global([data-theme="pulp-fiction"]) .hamburger:hover {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 #f4d35e;
-}
-
-:global([data-theme="pulp-fiction"]) .hamburger:active {
-    transform: translate(3px, 3px);
-    box-shadow: 0 0 0 #f4d35e;
-}
-
-:global([data-theme="pulp-fiction"]) .eggMenu {
-    border: 2.5px solid #1a0f08;
-    border-radius: 4px;
-    box-shadow: 4px 4px 0 #1a0f08;
-}
-
-:global([data-theme="pulp-fiction"]) .eggItem {
-    color: #1a0f08;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border-radius: 2px;
-}
-
-:global([data-theme="pulp-fiction"]) .eggItem:hover {
-    background: var(--accent);
-    color: #f4d35e;
-}
-
-:global([data-theme="pulp-fiction"]) .eggItemActive {
-    background: var(--accent);
-    color: #f4d35e;
-}
-
-:global([data-theme="pulp-fiction"]) .eggCheck {
-    color: #f4d35e;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-weight: 600;
     font-size: 16px;
 }
@@ -152,133 +26,6 @@
 .logoName {
     color: var(--text-h);
     text-decoration: none;
-}
-
-.avatarWrap {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.avatarBtn {
-    background: none;
-    border: none;
-    padding: 0;
-    line-height: 0;
-    cursor: pointer;
-    border-radius: 50%;
-}
-
-.avatarBtn:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-}
-
-.avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center top;
-    border: 2px solid var(--accent);
-    transition: transform 0.2s ease;
-}
-
-.avatarBtn:hover .avatar {
-    transform: scale(1.05);
-}
-
-.whisper {
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 0;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--text);
-    white-space: nowrap;
-    pointer-events: none;
-    opacity: 0;
-    animation: whisperPulse 5s ease-in-out infinite;
-}
-
-.whisperArrow {
-    width: 22px;
-    height: 22px;
-    flex: 0 0 auto;
-    margin-left: 10px;
-    background-color: currentColor;
-    -webkit-mask: url("../assets/icons/curved-arrow.svg") no-repeat center /
-        contain;
-    mask: url("../assets/icons/curved-arrow.svg") no-repeat center / contain;
-    transform: scaleX(-1) rotate(270deg);
-}
-
-.whisperText {
-    font-size: 14px;
-    font-style: italic;
-    letter-spacing: 0.3px;
-    margin-top: 10px;
-}
-
-@keyframes whisperPulse {
-    0%,
-    100% {
-        opacity: 0;
-    }
-    25%,
-    55% {
-        opacity: 0.8;
-    }
-}
-
-.eggMenu {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    min-width: 200px;
-    padding: 6px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    z-index: 101;
-}
-
-.eggItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 8px 12px;
-    background: transparent;
-    border: none;
-    border-radius: 6px;
-    color: var(--text-h);
-    font-size: 13px;
-    font-family: inherit;
-    text-align: left;
-    cursor: pointer;
-    transition:
-        background 0.15s,
-        color 0.15s;
-}
-
-.eggItem:hover {
-    background: var(--accent-bg);
-}
-
-.eggItemActive {
-    color: var(--accent);
-    background: var(--accent-bg);
-}
-
-.eggCheck {
-    font-size: 12px;
-    color: var(--accent);
 }
 
 .right {
@@ -299,7 +46,7 @@
     font-size: 14px;
     color: var(--text);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: color var(--duration-fast);
 }
 
 .links a:hover {
@@ -311,7 +58,7 @@
     align-items: center;
     gap: 2px;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: 2px;
 }
 
@@ -319,14 +66,14 @@
     background: transparent;
     border: none;
     padding: 4px 8px;
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     font-size: 12px;
     font-weight: 600;
     color: var(--text);
     cursor: pointer;
     transition:
-        background 0.15s,
-        color 0.15s;
+        background var(--duration-fast),
+        color var(--duration-fast);
     font-family: inherit;
 }
 
@@ -334,16 +81,12 @@
     color: var(--text-h);
 }
 
-.langBtnActive {
-    background: var(--accent);
-    color: #fff;
-}
-
+.langBtnActive,
 .langBtnActive:hover {
-    color: #fff;
+    background: var(--border);
+    color: var(--text-h);
 }
 
-/* Theme toggle switch */
 .themeToggle {
     background: none;
     border: none;
@@ -359,28 +102,16 @@
     justify-content: space-between;
     width: 52px;
     height: 28px;
-    border-radius: 99px;
+    border-radius: var(--radius-pill);
     background: var(--border);
-    padding: 0 6px;
-    transition: background 0.2s;
+    padding: 0 8px;
+    color: var(--text-h);
+    transition: background var(--duration-fast);
 }
 
 .themeToggleIcon {
     display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 1;
-    line-height: 1;
-}
-
-.themeToggleIcon img {
-    width: 12px;
-    height: 12px;
-    display: block;
-}
-
-:global([data-theme="dark"]) .themeToggleIcon:first-child img {
-    filter: invert(1);
 }
 
 .themeToggleThumb {
@@ -391,8 +122,8 @@
     height: 22px;
     border-radius: 50%;
     background: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--duration-fast) ease;
 }
 
 .themeToggleThumbDark {
@@ -403,13 +134,13 @@
     display: none;
     flex-direction: column;
     justify-content: center;
-    gap: 5px;
+    gap: 4px;
     width: 36px;
     height: 36px;
-    padding: 0 7px;
+    padding: 0 8px;
     background: none;
     border: 1px solid var(--border-strong);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     cursor: pointer;
 }
 
@@ -420,13 +151,13 @@
     background: var(--text-h);
     border-radius: 2px;
     transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
+        transform var(--duration-fast) ease,
+        opacity var(--duration-fast) ease;
     transform-origin: center;
 }
 
 .hamburgerOpen span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(6px) rotate(45deg);
 }
 
 .hamburgerOpen span:nth-child(2) {
@@ -434,105 +165,78 @@
 }
 
 .hamburgerOpen span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-6px) rotate(-45deg);
 }
 
-/* Blade Runner — neon buttons */
-:global([data-theme="blade-runner"]) .avatar {
-    box-shadow:
-        0 0 8px rgba(255, 122, 24, 0.6),
-        0 0 18px rgba(255, 122, 24, 0.35);
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-:global([data-theme="blade-runner"]) .avatarBtn:hover .avatar {
-    box-shadow:
-        0 0 12px rgba(255, 122, 24, 0.9),
-        0 0 28px rgba(255, 122, 24, 0.5);
-}
-
-:global([data-theme="blade-runner"]) .langSwitcher {
+:global([data-theme="blade-runner"]) .langSwitcher,
+:global([data-theme="blade-runner"]) .hamburger {
     border-color: var(--accent);
-    box-shadow:
-        0 0 8px rgba(255, 122, 24, 0.35),
-        inset 0 0 6px rgba(255, 122, 24, 0.15);
 }
 
 :global([data-theme="blade-runner"]) .langBtn {
     color: var(--accent);
-    text-shadow: 0 0 6px rgba(255, 122, 24, 0.6);
-    transition:
-        background 0.2s,
-        color 0.2s,
-        box-shadow 0.2s,
-        text-shadow 0.2s;
 }
 
 :global([data-theme="blade-runner"]) .langBtn:hover {
-    color: #fff4e3;
-    text-shadow:
-        0 0 6px #fff,
-        0 0 14px var(--accent);
+    color: var(--on-accent-hover);
 }
 
 :global([data-theme="blade-runner"]) .langBtnActive,
 :global([data-theme="blade-runner"]) .langBtnActive:hover {
-    background: rgba(255, 122, 24, 0.18);
-    color: #fff4e3;
-    text-shadow:
-        0 0 6px #fff,
-        0 0 14px var(--accent);
-    box-shadow:
-        0 0 10px rgba(255, 122, 24, 0.6),
-        inset 0 0 8px rgba(255, 122, 24, 0.3);
-}
-
-:global([data-theme="blade-runner"]) .hamburger {
-    border-color: var(--accent);
-    box-shadow:
-        0 0 8px rgba(255, 122, 24, 0.4),
-        inset 0 0 6px rgba(255, 122, 24, 0.15);
+    background: var(--accent-bg);
+    color: var(--text-h);
 }
 
 :global([data-theme="blade-runner"]) .hamburger span {
     background: var(--accent);
-    box-shadow: 0 0 6px rgba(255, 122, 24, 0.7);
 }
 
-:global([data-theme="blade-runner"]) .eggMenu {
-    border-color: var(--accent);
-    box-shadow:
-        0 0 12px rgba(255, 122, 24, 0.45),
-        0 0 28px rgba(255, 122, 24, 0.25),
-        inset 0 0 8px rgba(255, 122, 24, 0.15);
+:global([data-theme="pulp-fiction"]) .logoName,
+:global([data-theme="pulp-fiction"]) .links a,
+:global([data-theme="pulp-fiction"]) .links a:hover,
+:global([data-theme="pulp-fiction"]) .langBtn,
+:global([data-theme="pulp-fiction"]) .langBtn:hover {
+    color: var(--on-accent);
 }
 
-:global([data-theme="blade-runner"]) .eggItem {
-    color: var(--accent);
-    text-shadow: 0 0 6px rgba(255, 122, 24, 0.5);
+:global([data-theme="pulp-fiction"]) .langSwitcher,
+:global([data-theme="pulp-fiction"]) .hamburger {
+    border: 2.5px solid var(--ink);
+    border-radius: var(--radius-sm);
+    box-shadow: 3px 3px 0 var(--on-accent);
+    transition:
+        transform var(--duration-fast) ease-out,
+        box-shadow var(--duration-fast) ease-out;
 }
 
-:global([data-theme="blade-runner"]) .eggItem:hover {
-    background: rgba(255, 122, 24, 0.15);
-    color: #fff4e3;
-    text-shadow:
-        0 0 6px #fff,
-        0 0 14px var(--accent);
+:global([data-theme="pulp-fiction"]) .langSwitcher {
+    padding: 4px;
 }
 
-:global([data-theme="blade-runner"]) .eggItemActive {
-    background: rgba(255, 122, 24, 0.18);
-    color: #fff4e3;
-    text-shadow:
-        0 0 6px #fff,
-        0 0 14px var(--accent);
+:global([data-theme="pulp-fiction"]) .langBtn {
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    border-radius: 0;
 }
 
-:global([data-theme="blade-runner"]) .eggCheck {
-    color: var(--accent);
-    text-shadow: 0 0 6px var(--accent);
+:global([data-theme="pulp-fiction"]) .langBtnActive,
+:global([data-theme="pulp-fiction"]) .langBtnActive:hover {
+    background: var(--on-accent);
+    color: var(--ink);
+}
+
+:global([data-theme="pulp-fiction"]) .hamburger span {
+    background: var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .hamburger:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .hamburger:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
 }
 
 @media (max-width: 768px) {
@@ -551,33 +255,18 @@
         right: 0;
         flex-direction: column;
         align-items: stretch;
-        gap: 20px;
-        padding: 20px 24px;
-        background: rgba(250, 248, 245, 0.95);
-        border-bottom: 1px solid rgba(33, 37, 41, 0.2);
+        gap: 24px;
+        padding: 24px;
+        background: var(--nav-menu-bg);
+        border-bottom: 1px solid var(--nav-border);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         opacity: 0;
         transform: translateY(-8px);
         pointer-events: none;
         transition:
-            opacity 0.2s ease,
-            transform 0.2s ease;
-    }
-
-    :global([data-theme="dark"]) .right {
-        background: rgba(15, 17, 23, 0.95);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    :global([data-theme="blade-runner"]) .right {
-        background: rgba(10, 14, 26, 0.95);
-        border-bottom: 1px solid rgba(255, 122, 24, 0.2);
-    }
-
-    :global([data-theme="pulp-fiction"]) .right {
-        background: rgba(193, 39, 45, 0.97);
-        border-bottom: 1px solid rgba(26, 15, 8, 0.35);
+            opacity var(--duration-fast) ease,
+            transform var(--duration-fast) ease;
     }
 
     .rightOpen {

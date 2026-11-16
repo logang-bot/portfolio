@@ -1,0 +1,109 @@
+:root {
+    --text: #4b5563;
+    --text-h: #111827;
+    --bg: #faf8f5;
+    --border: #e5e7eb;
+    --border-strong: #9ca3af;
+    --code-bg: #f9fafb;
+    --accent: #7c3aed;
+    --accent-strong: #7c3aed;
+    --on-accent: #ffffff;
+    --accent-bg: rgba(124, 58, 237, 0.08);
+    --accent-border: rgba(124, 58, 237, 0.3);
+    --ink: #1a0f08;
+    --nav-bg: rgba(250, 248, 245, 0.6);
+    --nav-menu-bg: rgba(250, 248, 245, 0.95);
+    --nav-border: rgba(33, 37, 41, 0.2);
+
+    --shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.06), 0 1px 3px rgba(17, 24, 39, 0.08);
+    --shadow-md: 0 10px 15px -3px rgba(17, 24, 39, 0.08), 0 4px 6px -2px rgba(17, 24, 39, 0.04);
+    --shadow-lg: 0 24px 48px -12px rgba(17, 24, 39, 0.18), 0 8px 16px -4px rgba(17, 24, 39, 0.08);
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-pill: 999px;
+
+    --duration-fast: 200ms;
+    --duration-base: 300ms;
+    --duration-slow: 500ms;
+
+    --nav-height: 64px;
+    --section-pad-y: 64px;
+    --section-pad-x: 48px;
+
+    --sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+[data-theme="dark"] {
+    --text: #9ca3af;
+    --text-h: #f9fafb;
+    --bg: #0f1117;
+    --border: #1f2937;
+    --border-strong: #4b5563;
+    --code-bg: #161b27;
+    --accent: #a78bfa;
+    --accent-strong: #a78bfa;
+    --on-accent: #0f1117;
+    --accent-bg: rgba(167, 139, 250, 0.1);
+    --accent-border: rgba(167, 139, 250, 0.3);
+    --nav-bg: rgba(15, 17, 23, 0.6);
+    --nav-menu-bg: rgba(15, 17, 23, 0.95);
+    --nav-border: rgba(255, 255, 255, 0.06);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 24px 48px -12px rgba(0, 0, 0, 0.25), 0 8px 16px -4px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="blade-runner"] {
+    --text: #a8b2c7;
+    --text-h: #f4e7d3;
+    --bg: #0a0e1a;
+    --border: #1a2332;
+    --border-strong: rgba(255, 122, 24, 0.45);
+    --code-bg: #111827;
+    --accent: #ff7a18;
+    --accent-strong: #ff7a18;
+    --on-accent: #0a0e1a;
+    --on-accent-hover: #fff4e3;
+    --accent-bg: rgba(255, 122, 24, 0.1);
+    --accent-border: rgba(255, 122, 24, 0.35);
+    --nav-bg: rgba(10, 14, 26, 0.7);
+    --nav-menu-bg: rgba(10, 14, 26, 0.95);
+    --nav-border: rgba(255, 122, 24, 0.2);
+    --glow-sm: 0 0 8px rgba(255, 122, 24, 0.45), 0 0 22px rgba(255, 122, 24, 0.3);
+    --glow-lg: 0 0 14px rgba(255, 122, 24, 0.8), 0 0 36px rgba(255, 122, 24, 0.5);
+    --text-glow: 0 0 6px var(--accent), 0 0 14px rgba(255, 122, 24, 0.55);
+    --shadow-sm: var(--glow-sm);
+    --shadow-md: 0 10px 30px -5px rgba(255, 122, 24, 0.18), 0 4px 10px -2px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 24px 48px -12px rgba(255, 122, 24, 0.22), 0 8px 16px -4px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="pulp-fiction"] {
+    --text: #3a2a1a;
+    --text-h: #1a0f08;
+    --bg: #f4d35e;
+    --border: #c89a3c;
+    --border-strong: #1a0f08;
+    --code-bg: #ead184;
+    --accent: #c1272d;
+    --accent-strong: #9e1b20;
+    --on-accent: #f4d35e;
+    --accent-bg: rgba(193, 39, 45, 0.08);
+    --accent-border: rgba(193, 39, 45, 0.35);
+    --nav-bg: rgba(158, 27, 32, 0.95);
+    --nav-menu-bg: rgba(158, 27, 32, 0.97);
+    --nav-border: rgba(26, 15, 8, 0.35);
+    --ink-text: #f9fafb;
+    --ink-text-muted: #9ca3af;
+    --shadow-sm: 2px 2px 0 var(--ink);
+    --shadow-md: 4px 4px 0 var(--ink);
+    --shadow-lg: 8px 8px 0 var(--ink);
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-pad-y: 48px;
+        --section-pad-x: 24px;
+    }
+}

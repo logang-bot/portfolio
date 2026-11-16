@@ -15,7 +15,11 @@ export default function About() {
         <div className={styles.text}>
           <h2>{t.about.heading}</h2>
           <p>{t.about.p1}</p>
-          <p>{t.about.p2}</p>
+          <ul className={styles.highlights}>
+            {t.about.highlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
           <p>{t.about.p3}</p>
           <a
             href={RESUME.href}
@@ -28,6 +32,8 @@ export default function About() {
         <img
           src="/avatar.webp"
           alt="Alvaro Choque"
+          width={720}
+          height={960}
           loading="lazy"
           decoding="async"
           className={styles.avatar}

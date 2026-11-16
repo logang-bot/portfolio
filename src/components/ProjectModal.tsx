@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useLanguage } from '../context/LanguageContext'
+import Icon from './Icon'
+import { prefersReducedMotion } from '../hooks/usePrefersReducedMotion'
+import { fillTemplate } from '../utils/fillTemplate'
 import shared from '../styles/shared.module.css'
 import styles from './ProjectModal.module.css'
-import type { Project } from '../sections/Projects'
+import type { Project } from '../data/projects'
 
-const ANIM_MS = 250
+const ANIM_MS = 300
 
 interface Props {
   project: Project
@@ -18,6 +21,7 @@ export default function ProjectModal({ project, onClose }: Props) {
   const [index, setIndex] = useState(0)
 
   const close = useCallback(() => {
+    if (prefersReducedMotion()) return onClose()
     setClosing(true)
     setTimeout(onClose, ANIM_MS)
   }, [onClose])
@@ -51,7 +55,7 @@ export default function ProjectModal({ project, onClose }: Props) {
 
   const images = project.screenshots
   const hasImages = images.length > 0
-  const description = project.longDescription ?? project.description
+  const copy = t.projects.items[project.id]
 
   return createPortal(
     <div
@@ -72,7 +76,7 @@ export default function ProjectModal({ project, onClose }: Props) {
           onClick={close}
           aria-label={t.projects.modal.close}
         >
-          ×
+          <Icon name="close" size={20} />
         </button>
 
         <div className={styles.carousel}>
@@ -81,7 +85,7 @@ export default function ProjectModal({ project, onClose }: Props) {
               <img
                 key={index}
                 src={images[index]}
-                alt={`${project.name} screenshot ${index + 1}`}
+                alt={fillTemplate(t.projects.screenshotAlt, { name: project.name, n: index + 1 })}
                 className={styles.image}
               />
               {images.length > 1 && (
@@ -93,9 +97,7 @@ export default function ProjectModal({ project, onClose }: Props) {
                     disabled={index === 0}
                     aria-label={t.projects.modal.previous}
                   >
-                    <svg className={styles.chevron} viewBox="0 0 24 24" aria-hidden="true">
-                      <polyline points="15 5 8 12 15 19" />
-                    </svg>
+                    <Icon name="chevronLeft" size={20} />
                   </button>
                   <button
                     type="button"
@@ -104,9 +106,7 @@ export default function ProjectModal({ project, onClose }: Props) {
                     disabled={index === images.length - 1}
                     aria-label={t.projects.modal.next}
                   >
-                    <svg className={styles.chevron} viewBox="0 0 24 24" aria-hidden="true">
-                      <polyline points="9 5 16 12 9 19" />
-                    </svg>
+                    <Icon name="chevronRight" size={20} />
                   </button>
                   <div className={styles.dots}>
                     {images.map((_, i) => (
@@ -115,7 +115,7 @@ export default function ProjectModal({ project, onClose }: Props) {
                         type="button"
                         className={`${styles.dot} ${i === index ? styles.dotActive : ''}`}
                         onClick={() => setIndex(i)}
-                        aria-label={`${i + 1}`}
+                        aria-label={fillTemplate(t.projects.modal.screenshot, { n: i + 1 })}
                       />
                     ))}
                   </div>
@@ -136,7 +136,12 @@ export default function ProjectModal({ project, onClose }: Props) {
               </span>
             ))}
           </div>
-          <p className={styles.description}>{description}</p>
+          <p className={styles.description}>{copy.summary}</p>
+          <ul className={styles.highlights}>
+            {copy.highlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
           <div className={styles.links}>
             {project.playStoreUrl && (
               <a href={project.playStoreUrl} target="_blank" rel="noopener noreferrer">

@@ -4,10 +4,7 @@ import { useTheme } from "../context/ThemeContext";
 import { observeOnce } from "../hooks/observeOnce";
 import bulletHole from "../assets/images/bullet-hole.webp";
 
-export type GlowVariant = "purple" | "green";
-
 interface Props {
-  variant: GlowVariant;
   // Which slice of the shared neon deck this section uses, so two
   // sections on the page never show the same sign (Blade Runner only).
   slot?: number;
@@ -238,7 +235,7 @@ function NeonGutter({ side, neons }: { side: Side; neons: Neon[] }) {
   );
 }
 
-export default function GlowBackground({ variant, slot = 0 }: Props) {
+export default function GlowBackground({ slot = 0 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const { theme } = useTheme();
@@ -278,7 +275,7 @@ export default function GlowBackground({ variant, slot = 0 }: Props) {
                   "--hole-size": `${h.size}px`,
                   "--hole-rot": `${h.rotation}deg`,
                   "--hole-img": `url(${bulletHole})`,
-                  animationDelay: `${h.delay}ms`,
+                  transitionDelay: `${h.delay}ms`,
                 } as React.CSSProperties
               }
             />
@@ -286,11 +283,11 @@ export default function GlowBackground({ variant, slot = 0 }: Props) {
         </div>
       )}
       {!isPulp && !isBlade && (
-        <>
-          <div className={`${styles.blob} ${styles[`${variant}1`]}`} />
-          <div className={`${styles.blob} ${styles[`${variant}2`]}`} />
-          <div className={`${styles.blob} ${styles[`${variant}3`]}`} />
-        </>
+        <div className={`${styles.blobs} ${slot % 2 ? styles.mirrored : ""}`}>
+          <div className={`${styles.blob} ${styles.blob1}`} />
+          <div className={`${styles.blob} ${styles.blob2}`} />
+          <div className={`${styles.blob} ${styles.blob3}`} />
+        </div>
       )}
     </div>
   );

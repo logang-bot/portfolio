@@ -23,19 +23,19 @@
 }
 
 .filterBtn {
-    padding: 6px 16px;
-    border-radius: 99px;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
     border: 1px solid var(--border-strong);
     background: transparent;
     color: var(--text);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
     transition:
-        background 0.15s,
-        color 0.15s,
-        border-color 0.15s;
+        background var(--duration-fast),
+        color var(--duration-fast),
+        border-color var(--duration-fast);
 }
 
 .filterBtn:hover {
@@ -45,12 +45,17 @@
 
 .filterBtnActive {
     background: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
     border-color: var(--accent);
 }
 
 .filterBtnActive:hover {
-    color: #fff;
+    color: var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .filterBtnActive {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
 }
 
 :global([data-theme="pulp-fiction"]) .filterBtn:not(.filterBtnActive) {
@@ -67,7 +72,7 @@
     z-index: 1;
     columns: 280px 2;
     column-gap: 24px;
-    margin-top: 24px;
+    margin-top: 48px;
 }
 
 .grid > * {
@@ -80,9 +85,9 @@
     composes: glassCard from '../styles/shared.module.css';
     overflow: hidden;
     transition:
-        box-shadow 0.2s,
-        border-color 0.2s,
-        transform 0.2s;
+        box-shadow var(--duration-fast),
+        border-color var(--duration-fast),
+        transform var(--duration-fast);
     padding: 0;
     width: 100%;
     display: block;
@@ -93,7 +98,7 @@
 }
 
 .card:hover {
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-md);
     border-color: var(--accent-border);
     transform: translateY(-2px);
 }
@@ -123,12 +128,13 @@
     flex: 1 1 0;
     min-width: 0;
     max-width: 92px;
+    height: auto;
     aspect-ratio: 9 / 19.5;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     border: 1px solid var(--border);
     background: var(--bg);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Stagger the row so the UI behind the card stays visible */
@@ -151,7 +157,7 @@
     align-items: center;
     justify-content: center;
     color: var(--text);
-    font-size: 13px;
+    font-size: 14px;
 }
 
 /* Empty filter result */
@@ -160,30 +166,49 @@
     padding: 64px 0;
     text-align: center;
     color: var(--text);
-    font-size: 15px;
+    font-size: 16px;
 }
 
 /* Info */
 .info {
-    padding: 20px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
 .info h3 {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 600;
 }
 
 .info p {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.6;
 }
 
 .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
     margin-top: 4px;
+}
+
+.viewDetails {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+:global([data-theme="blade-runner"]) .thumb {
+    box-shadow: none;
+}
+
+:global([data-theme="pulp-fiction"]) .card:hover {
+    border-color: var(--ink);
+    box-shadow: var(--shadow-lg);
+}
+
+:global([data-theme="pulp-fiction"]) .viewDetails {
+    color: var(--accent-strong);
 }

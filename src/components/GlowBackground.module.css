@@ -51,7 +51,7 @@
   filter: blur(100px);
   opacity: 0;
   scale: 0.4;
-  transition: opacity 1.2s ease-out, scale 1.2s ease-out;
+  transition: opacity var(--duration-slow) ease-out, scale var(--duration-slow) ease-out;
 }
 
 .visible .blob {
@@ -59,63 +59,42 @@
   scale: 1;
 }
 
-/* Purple variant (Projects) */
-.purple1 {
+.blobs {
+  position: absolute;
+  inset: 0;
+}
+
+.mirrored {
+  transform: scaleX(-1);
+}
+
+.blob1 {
   width: 420px;
   height: 420px;
-  background: rgba(124, 58, 237, 0.5);
+  background: rgba(124, 58, 237, 0.45);
   top: 5%;
   left: -5%;
 }
 
-.purple2 {
+.blob2 {
   width: 350px;
   height: 350px;
-  background: rgba(59, 130, 246, 0.45);
+  background: rgba(167, 139, 250, 0.4);
   top: 40%;
   right: -8%;
 }
 
-.purple3 {
+.blob3 {
   width: 300px;
   height: 300px;
-  background: rgba(236, 72, 153, 0.4);
+  background: rgba(109, 40, 217, 0.3);
   bottom: 0;
   left: 30%;
 }
 
-:global([data-theme="dark"]) .purple1 { background: rgba(167, 139, 250, 0.2); }
-:global([data-theme="dark"]) .purple2 { background: rgba(96, 165, 250, 0.15); }
-:global([data-theme="dark"]) .purple3 { background: rgba(244, 114, 182, 0.12); }
-
-/* Green variant (Skills) */
-.green1 {
-  width: 400px;
-  height: 400px;
-  background: rgba(16, 185, 129, 0.45);
-  top: 0;
-  right: -5%;
-}
-
-.green2 {
-  width: 350px;
-  height: 350px;
-  background: rgba(245, 158, 11, 0.4);
-  top: 50%;
-  left: -8%;
-}
-
-.green3 {
-  width: 320px;
-  height: 320px;
-  background: rgba(6, 182, 212, 0.45);
-  bottom: -5%;
-  right: 25%;
-}
-
-:global([data-theme="dark"]) .green1 { background: rgba(52, 211, 153, 0.15); }
-:global([data-theme="dark"]) .green2 { background: rgba(251, 191, 36, 0.1); }
-:global([data-theme="dark"]) .green3 { background: rgba(34, 211, 238, 0.12); }
+:global([data-theme="dark"]) .blob1 { background: rgba(167, 139, 250, 0.2); }
+:global([data-theme="dark"]) .blob2 { background: rgba(124, 58, 237, 0.18); }
+:global([data-theme="dark"]) .blob3 { background: rgba(196, 181, 253, 0.1); }
 
 /* Pulp Fiction: bullet holes */
 .bulletHole {
@@ -125,14 +104,11 @@
   background: var(--hole-img) no-repeat center / contain;
   transform: rotate(var(--hole-rot));
   opacity: 0;
+  transition: opacity var(--duration-fast) linear;
 }
 
 .visible .bulletHole {
-  animation: bulletImpact 1ms linear forwards;
-}
-
-@keyframes bulletImpact {
-  to { opacity: 0.9; }
+  opacity: 0.9;
 }
 
 /* Blade Runner: side-margin columns that hold the neon signs.
@@ -163,9 +139,9 @@
   /* Never split words: a long word widens the sign instead (min-width
      wins over max-width). Font size is capped in JS so this stays small. */
   min-width: min-content;
-  padding: 16px 14px;
+  padding: 16px;
   border: 2px solid var(--neon-color);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   background: rgba(5, 8, 16, 0.55);
   color: #fff;
   font-weight: 700;
@@ -215,7 +191,14 @@
 }
 
 .visible .neonSign {
-  animation: neonRise 900ms cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  animation: neonRise var(--duration-slow) cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visible .neonSign {
+    opacity: 1;
+    transform: rotate(var(--neon-rot));
+  }
 }
 
 @keyframes neonRise {

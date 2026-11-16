@@ -9,10 +9,7 @@
   width: 100vw;
   top: 0;
   bottom: 0;
-  /* Translucent scrim: darkens the bottom enough to keep the Contact
-     text legible, but stays see-through so the Blade Runner reveal
-     image (brBg2) underneath remains visible. */
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  background: rgba(0, 0, 0, 0.7);
   pointer-events: none;
   z-index: -1;
 }
@@ -20,31 +17,32 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
   max-width: 520px;
-  margin-top: 16px;
 }
 
 .cta {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  margin-top: 16px;
 }
 
 .links {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-top: 16px;
 }
 
 .link {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-h);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color var(--duration-fast);
 }
 
 .link:hover {
@@ -52,21 +50,36 @@
 }
 
 .linkIcon {
-  width: 20px;
-  height: 20px;
+  flex-shrink: 0;
 }
 
-:global([data-theme="dark"]) .linkIcon,
-:global([data-theme="blade-runner"]) .linkIcon,
-:global([data-theme="pulp-fiction"]) .linkIcon {
-  filter: invert(1);
-}
-
-:global([data-theme="pulp-fiction"]) .section {
-  --text: #9ca3af;
-  --text-h: #f9fafb;
+:global([data-theme="pulp-fiction"]) .content {
+  --text: var(--ink-text-muted);
+  --text-h: var(--ink-text);
+  padding: 32px;
+  background: var(--ink);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  box-shadow: 8px 8px 0 var(--accent-strong);
 }
 
 :global([data-theme="pulp-fiction"]) .content p {
   color: var(--text);
+}
+
+:global([data-theme="pulp-fiction"]) .content .primaryCta {
+  box-shadow: 4px 4px 0 var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .content .primaryCta:hover {
+  box-shadow: 2px 2px 0 var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .content .secondaryCta {
+  color: var(--on-accent);
+  border-color: var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .link:hover {
+  color: var(--on-accent);
 }

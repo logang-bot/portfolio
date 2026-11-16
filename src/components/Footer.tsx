@@ -1,5 +1,6 @@
 import { useLanguage } from '../context/LanguageContext'
 import { socialLinks, isExternal } from '../data/links'
+import Icon from './Icon'
 import styles from './Footer.module.css'
 
 const year = new Date().getFullYear()
@@ -24,15 +25,7 @@ export default function Footer() {
               target={isExternal(href) ? '_blank' : undefined}
               rel={isExternal(href) ? 'noopener noreferrer' : undefined}
             >
-              <img
-                src={icon}
-                alt=""
-                width={18}
-                height={18}
-                loading="lazy"
-                decoding="async"
-                className={styles.icon}
-              />
+              <Icon name={icon} size={18} />
             </a>
           ))}
         </div>

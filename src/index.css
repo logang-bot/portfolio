@@ -1,21 +1,6 @@
+@import "./styles/tokens.css";
+
 :root {
-    --text: #4b5563;
-    --text-h: #111827;
-    --bg: #faf8f5;
-    --border: #e5e7eb;
-    --border-strong: #9ca3af;
-    --code-bg: #f9fafb;
-    --accent: #7c3aed;
-    --accent-bg: rgba(124, 58, 237, 0.08);
-    --accent-border: rgba(124, 58, 237, 0.3);
-    --shadow:
-        rgba(0, 0, 0, 0.08) 0 10px 15px -3px, rgba(0, 0, 0, 0.04) 0 4px 6px -2px;
-
-    --section-pad-y: 64px;
-    --section-pad-x: 48px;
-
-    --sans: system-ui, "Segoe UI", Roboto, sans-serif;
-
     font: 16px/1.5 var(--sans);
     color: var(--text);
     background: var(--bg);
@@ -23,50 +8,6 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-[data-theme="dark"] {
-    --text: #9ca3af;
-    --text-h: #f9fafb;
-    --bg: #0f1117;
-    --border: #1f2937;
-    --border-strong: #4b5563;
-    --code-bg: #161b27;
-    --accent: #a78bfa;
-    --accent-bg: rgba(167, 139, 250, 0.1);
-    --accent-border: rgba(167, 139, 250, 0.3);
-    --shadow:
-        rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.2) 0 4px 6px -2px;
-}
-
-[data-theme="blade-runner"] {
-    --text: #a8b2c7;
-    --text-h: #f4e7d3;
-    --bg: #0a0e1a;
-    --border: #1a2332;
-    --border-strong: rgba(255, 122, 24, 0.45);
-    --code-bg: #111827;
-    --accent: #ff7a18;
-    --accent-bg: rgba(255, 122, 24, 0.1);
-    --accent-border: rgba(255, 122, 24, 0.35);
-    --shadow:
-        rgba(255, 122, 24, 0.18) 0 10px 30px -5px,
-        rgba(0, 0, 0, 0.5) 0 4px 10px -2px;
-}
-
-[data-theme="pulp-fiction"] {
-    --text: #3a2a1a;
-    --text-h: #1a0f08;
-    --bg: #f4d35e;
-    --border: #c89a3c;
-    --border-strong: #1a0f08;
-    --code-bg: #ead184;
-    --accent: #c1272d;
-    --accent-bg: rgba(193, 39, 45, 0.08);
-    --accent-border: rgba(193, 39, 45, 0.35);
-    --shadow:
-        rgba(193, 39, 45, 0.18) 0 10px 20px -5px,
-        rgba(0, 0, 0, 0.15) 0 4px 6px -2px;
 }
 
 *,
@@ -77,13 +18,13 @@
 
 body {
     margin: 0;
-    padding-top: 60px;
+    padding-top: var(--nav-height);
 }
 
 html {
     scroll-behavior: smooth;
     overflow-x: clip;
-    scroll-padding-top: 60px;
+    scroll-padding-top: var(--nav-height);
 }
 
 h1,
@@ -105,6 +46,17 @@ h2 {
     letter-spacing: -0.5px;
 }
 
+[data-theme="pulp-fiction"] h1,
+[data-theme="pulp-fiction"] h2,
+[data-theme="pulp-fiction"] h3 {
+    font-weight: 900;
+}
+
+[data-theme="pulp-fiction"] p,
+[data-theme="pulp-fiction"] li {
+    font-weight: 500;
+}
+
 p {
     margin: 0;
 }
@@ -116,23 +68,33 @@ section {
     width: 100%;
 }
 
-@media (max-width: 768px) {
-    :root {
-        --section-pad-y: 48px;
-        --section-pad-x: 24px;
-    }
-}
-
-/* Fade-up animation for sections */
 .fade-up {
     opacity: 0;
-    transform: translateY(32px);
+    transform: translateY(16px);
     transition:
-        opacity 0.6s ease-out,
-        transform 0.6s ease-out;
+        opacity 400ms ease-out,
+        transform 400ms ease-out;
 }
 
 .fade-up-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .fade-up {
+        opacity: 1;
+        transform: none;
+    }
 }

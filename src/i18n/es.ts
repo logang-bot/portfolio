@@ -1,0 +1,103 @@
+import type { Translations } from './types'
+
+export const es: Translations = {
+  nav: {
+    about: 'Sobre mí',
+    projects: 'Proyectos',
+    skills: 'Habilidades',
+    contact: 'Contacto',
+    egg: {
+      whisper: 'psst… por aquí',
+      exit: 'Volver al tema normal',
+      openMenu: 'Abrir menú de temas ocultos',
+    },
+    a11y: {
+      openMenu: 'Abrir menú',
+      closeMenu: 'Cerrar menú',
+      switchLanguage: 'Cambiar a {lang}',
+      toLight: 'Cambiar a modo claro',
+      toDark: 'Cambiar a modo oscuro',
+    },
+  },
+  hero: {
+    headline: 'Ingeniero de software que crea apps nativas para Android e iOS',
+    name: 'Alvaro Choque',
+    subtitle:
+      'Desarrollo apps Android e iOS con Kotlin, Jetpack Compose, Swift y .NET MAUI. Uso agentes de IA en cada paso, y las pruebas automáticas y una arquitectura clara mantienen el trabajo fiable.',
+    ctaWork: 'Ver mi trabajo',
+    ctaContact: 'Contáctame',
+  },
+  about: {
+    label: 'Sobre mí',
+    heading: 'Un poco sobre mí',
+    p1: 'Soy ingeniero de software con más de 3 años de experiencia profesional creando apps nativas para Android e iOS.',
+    highlights: [
+      'Android e iOS nativo: Kotlin, Jetpack Compose, Swift, SwiftUI',
+      'MVVM y Clean Architecture en mi trabajo diario',
+      'Proyectos multiplataforma con .NET MAUI y Xamarin',
+      'Trabajo freelance web y backend con Node.js, React y Docker',
+    ],
+    p3: 'Me gradué con máxima distinción académica en Ingeniería de Sistemas de la Universidad Autónoma Tomás Frías.',
+    resume: 'Descargar currículum',
+  },
+  projects: {
+    label: 'Proyectos',
+    heading: 'Lo que he construido',
+    noScreenshots: 'Sin capturas aún',
+    viewDetails: 'Ver detalles →',
+    screenshotAlt: 'Captura {n} de {name}',
+    items: {
+      partyPuzl: {
+        description:
+          'Un juego de fiesta nativo para Android para grupos de amigos: verdad o reto, retos, trivia y minijuegos rápidos.',
+        summary: 'Un juego de fiesta nativo para Android para grupos de amigos.',
+        highlights: [
+          'Cuatro modos en una sola app: verdad o reto, retos, trivia y minijuegos rápidos',
+          'Hecho con Kotlin y Jetpack Compose, usando MVVM',
+          'Lanzamiento en Play Store próximamente',
+        ],
+      },
+      phoebeStore: {
+        description:
+          'Una app nativa para Android para administrar una tienda pequeña: productos, inventario y ventas en un solo lugar.',
+        summary: 'Una app para Android para administrar una tienda pequeña.',
+        highlights: [
+          'Productos, inventario y ventas en un solo lugar',
+          'Creada para mi propio uso',
+          'Kotlin, Jetpack Compose y Clean Architecture, con Supabase para el inicio de sesión y los datos, sin servidor propio que mantener',
+        ],
+      },
+    },
+    playStore: 'Play Store ↗',
+    playStoreSoon: 'Play Store — próximamente',
+    github: 'GitHub ↗',
+    liveDemo: 'Demo ↗',
+    comingSoon: 'Próximamente…',
+    filters: { all: 'Todos', mobile: 'Mobile', web: 'Web', gaming: 'Gaming' },
+    modal: { close: 'Cerrar', previous: 'Anterior', next: 'Siguiente', screenshot: 'Captura {n}' },
+  },
+  skills: {
+    label: 'Habilidades',
+    heading: 'Con qué trabajo',
+    categories: {
+      languages: 'Lenguajes',
+      android: 'Android',
+      ios: 'iOS',
+      architecture: 'Arquitectura',
+      crossPlatform: 'Multiplataforma',
+      backendWeb: 'Backend y Web',
+      tools: 'Herramientas',
+    },
+  },
+  contact: {
+    label: 'Contacto',
+    heading: 'Trabajemos juntos',
+    description:
+      'Estoy abierto a nuevas oportunidades, proyectos freelance y colaboraciones interesantes. No dudes en escribirme.',
+    ctaEmail: 'Envíame un correo',
+  },
+  footer: {
+    rights: 'Todos los derechos reservados.',
+    backToTop: 'Volver arriba',
+  },
+}

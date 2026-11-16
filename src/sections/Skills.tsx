@@ -8,8 +8,6 @@ import shared from "../styles/shared.module.css";
 
 type SkillCategoryKey = keyof Translations["skills"]["categories"];
 
-const LEARNING_KEY = "learning";
-
 const skillGroups: { key: SkillCategoryKey; skills: string[] }[] = [
   {
     key: "languages",
@@ -61,21 +59,7 @@ const skillGroups: { key: SkillCategoryKey; skills: string[] }[] = [
   },
   {
     key: "tools",
-    skills: [
-      "Git",
-      "GitHub",
-      "Android Studio",
-      "Xcode",
-      "Jira",
-      "Postman",
-      "Azure DevOps",
-      "CI/CD",
-      "Unit Testing",
-    ],
-  },
-  {
-    key: "learning",
-    skills: ["Python", "Django", "Vue.js", "Go", "Unreal Engine", "Monogame"],
+    skills: ["Android Studio", "Xcode", "Azure DevOps", "CI/CD", "Unit Testing"],
   },
 ];
 
@@ -84,7 +68,7 @@ export default function Skills() {
   const { isEggTheme } = useTheme();
   const fadeRef = useFadeUp<HTMLElement>();
 
-  const glow = <GlowBackground variant="green" slot={1} />;
+  const glow = <GlowBackground slot={1} />;
 
   return (
     <section id="skills" ref={fadeRef} className={styles.section}>
@@ -96,10 +80,7 @@ export default function Skills() {
           {isEggTheme && glow}
           <div className={styles.grid}>
             {skillGroups.map(({ key, skills }) => (
-              <div
-                key={String(key)}
-                className={`${styles.group} ${key === LEARNING_KEY ? styles.learning : ""}`}
-              >
+              <div key={String(key)} className={styles.group}>
                 <h3>{t.skills.categories[key]}</h3>
                 <div className={styles.list}>
                   {skills.map((skill) => (

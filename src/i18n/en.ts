@@ -1,0 +1,103 @@
+import type { Translations } from './types'
+
+export const en: Translations = {
+  nav: {
+    about: 'About',
+    projects: 'Projects',
+    skills: 'Skills',
+    contact: 'Contact',
+    egg: {
+      whisper: 'psst… over here',
+      exit: 'Back to normal theme',
+      openMenu: 'Open hidden themes menu',
+    },
+    a11y: {
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu',
+      switchLanguage: 'Switch to {lang}',
+      toLight: 'Switch to light mode',
+      toDark: 'Switch to dark mode',
+    },
+  },
+  hero: {
+    headline: 'Software engineer building native Android and iOS apps',
+    name: 'Alvaro Choque',
+    subtitle:
+      'I build Android and iOS apps with Kotlin, Jetpack Compose, Swift and .NET MAUI. I use AI coding agents at every step, with automated tests and a clear code structure keeping the work reliable.',
+    ctaWork: 'View my work',
+    ctaContact: 'Get in touch',
+  },
+  about: {
+    label: 'About',
+    heading: 'A bit about me',
+    p1: "I'm a software engineer with 3+ years of professional experience building native Android and iOS apps.",
+    highlights: [
+      'Native Android and iOS: Kotlin, Jetpack Compose, Swift, SwiftUI',
+      'MVVM and Clean Architecture in my daily work',
+      'Cross-platform projects with .NET MAUI and Xamarin',
+      'Freelance web and backend work with Node.js, React and Docker',
+    ],
+    p3: 'I graduated in Systems Engineering from Universidad Autónoma Tomás Frías with the highest academic honors.',
+    resume: 'Download resume',
+  },
+  projects: {
+    label: 'Projects',
+    heading: "Things I've built",
+    noScreenshots: 'No screenshots yet',
+    viewDetails: 'View details →',
+    screenshotAlt: '{name} screenshot {n}',
+    items: {
+      partyPuzl: {
+        description:
+          'A native Android party game for groups of friends: truth or dare, dare challenges, trivia and quick mini-games.',
+        summary: 'A native Android party game for groups of friends.',
+        highlights: [
+          'Four modes in one app: truth or dare, dare challenges, trivia and quick mini-games',
+          'Built with Kotlin and Jetpack Compose, using MVVM',
+          'Play Store release coming soon',
+        ],
+      },
+      phoebeStore: {
+        description:
+          'A native Android app for running a small shop: products, stock and sales in one place.',
+        summary: 'An Android app for running a small shop.',
+        highlights: [
+          'Products, stock and sales in one place',
+          'Built for my own use',
+          'Kotlin, Jetpack Compose and Clean Architecture, with Supabase for sign-in and data, so there is no server to maintain',
+        ],
+      },
+    },
+    playStore: 'Play Store ↗',
+    playStoreSoon: 'Play Store — coming soon',
+    github: 'GitHub ↗',
+    liveDemo: 'Live Demo ↗',
+    comingSoon: 'Coming soon…',
+    filters: { all: 'All', mobile: 'Mobile', web: 'Web', gaming: 'Gaming' },
+    modal: { close: 'Close', previous: 'Previous', next: 'Next', screenshot: 'Screenshot {n}' },
+  },
+  skills: {
+    label: 'Skills',
+    heading: 'What I work with',
+    categories: {
+      languages: 'Languages',
+      android: 'Android',
+      ios: 'iOS',
+      architecture: 'Architecture',
+      crossPlatform: 'Cross-platform',
+      backendWeb: 'Backend & Web',
+      tools: 'Tools',
+    },
+  },
+  contact: {
+    label: 'Contact',
+    heading: "Let's work together",
+    description:
+      "I'm open to new opportunities, freelance projects, and interesting collaborations. Feel free to reach out.",
+    ctaEmail: 'Send me an email',
+  },
+  footer: {
+    rights: 'All rights reserved.',
+    backToTop: 'Back to top',
+  },
+}

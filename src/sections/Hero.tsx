@@ -1,30 +1,31 @@
 import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
 import { useTypewriter } from "../hooks/useTypewriter";
+import { greetingConnectors, greetings } from "../data/greetings";
 import styles from "./Hero.module.css";
 import shared from "../styles/shared.module.css";
 
 export default function Hero() {
   const { t, lang } = useLanguage();
   const { theme } = useTheme();
-  const { greetingLine, nameLine, accessibleText } = useTypewriter(
-    lang,
-    t.hero.name,
-  );
+  const greeting = useTypewriter(lang);
+  const introSuffix = `${greetingConnectors[lang]} ${t.hero.name}`;
 
   return (
     <section id="hero" className={styles.hero}>
       <div className={styles.content}>
-        <p className={styles.heroTag}>{t.hero.tag}</p>
-        <h1 className={styles.typewriter}>
-          <span className={shared.srOnly}>{accessibleText}</span>
-          <span aria-hidden="true">
-            {greetingLine}
-            {nameLine ? <br /> : null}
-            {nameLine}
-            <span className={styles.cursor} />
+        <p className={styles.intro}>
+          <span className={shared.srOnly}>
+            {greetings[lang][0].text}
+            {introSuffix}
           </span>
-        </h1>
+          <span aria-hidden="true">
+            {greeting}
+            <span className={styles.cursor} />
+            {introSuffix}
+          </span>
+        </p>
+        <h1 className={styles.headline}>{t.hero.headline}</h1>
         <p className={styles.subtitle}>{t.hero.subtitle}</p>
         <div className={styles.cta}>
           <a href="#projects" className={`${shared.btn} ${shared.btnPrimary}`}>

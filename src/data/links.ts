@@ -1,6 +1,4 @@
-import mailIcon from '../assets/icons/mail.svg'
-import linkedinIcon from '../assets/icons/linkedin.svg'
-import githubIcon from '../assets/icons/github.svg'
+import type { IconName } from './iconPaths'
 
 export const EMAIL = 'logangch8v@gmail.com'
 
@@ -13,7 +11,7 @@ export interface SocialLink {
   label: string
   name: string
   href: string
-  icon: string
+  icon: IconName
 }
 
 export const socialLinks: SocialLink[] = [
@@ -21,19 +19,19 @@ export const socialLinks: SocialLink[] = [
     label: EMAIL,
     name: 'Email',
     href: `mailto:${EMAIL}`,
-    icon: mailIcon,
+    icon: 'mail',
   },
   {
     label: 'linkedin.com/in/agrovercgomez',
     name: 'LinkedIn',
     href: 'https://linkedin.com/in/agrovercgomez',
-    icon: linkedinIcon,
+    icon: 'linkedin',
   },
   {
     label: 'github.com/logang-bot',
     name: 'GitHub',
     href: 'https://github.com/logang-bot',
-    icon: githubIcon,
+    icon: 'github',
   },
 ]
 
