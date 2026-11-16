@@ -31,7 +31,7 @@ export function pickSpacedCells(spec: GridSpec, seed: number): Cell[] {
 
 function gridCells({ cellSize, width, height }: GridSpec): Cell[] {
   const cols = Math.floor(width / cellSize)
-  const rows = Math.floor(height / cellSize)
+  const rows = Math.ceil(height / cellSize)
   return Array.from({ length: rows * cols }, (_, i) => ({
     row: Math.floor(i / cols),
     col: i % cols,

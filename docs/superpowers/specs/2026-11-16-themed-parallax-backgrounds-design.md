@@ -39,7 +39,7 @@ The PF bullet holes are dropped. With the signs and holes gone, `GlowBackground`
 | Rule | How the design complies |
 |---|---|
 | COLOR-11 contrast 4.5:1 | Measured against the theme tokens. **BR** body text `#a8b2c7` on navy is 9.0:1. Cyan behind it may reach at most 0.28 opacity, and yellow at most 0.27. → Items whose box, plus its glow reach, overlaps the text area (the 1120px column minus its side padding) are capped at **opacity 0.2 + blur(2px)**. **PF**: red accent text `#9e1b20` on mustard is 5.4:1. Ink behind it may reach at most 0.11 opacity, and red at most 0.14. → PF items in the column are capped at **opacity 0.1**. Outside the column, items render at full theme strength (BR logos 0.6 and signs 0.75, PF logos 0.85 and props 0.7). On phones the whole screen counts as column, so everything is dimmed. |
-| COLOR-2 no ad-hoc colours | The neon colours (`#ff36a0 #00eaff #ff7a18 #ffd166`, hard-coded in TS today) move to `tokens.css` as `--neon-1..4` under `[data-theme="blade-runner"]`, with the orange replaced by violet `#b388ff` so orange stays the CTA's colour. New PF token: `--paper: #f9f1dc`. The dim opacities become per-theme tokens: `--bg-item-opacity`, `--bg-item-opacity-dim`. |
+| COLOR-2 no ad-hoc colours | The neon colours (`#ff36a0 #00eaff #ff7a18 #ffd166`, hard-coded in TS today) move to `tokens.css` as `--neon-1..4` under `[data-theme="blade-runner"]`, with the orange replaced by violet `#b388ff` so orange stays the CTA's colour. New PF token: `--paper: #f9f1dc`. The opacities become per-theme tokens: `--bg-far-opacity`, `--bg-near-opacity`, `--bg-item-opacity-dim`, `--bg-item-blur-dim`. |
 | TYPO-4 type scale | Sign font size is currently a random 16–34px. It changes to a pick from the scale `16 18 20 24`, still capped by the longest-word fit. |
 | TYPO-8 weight ≥400 | Signs stay at 700 |
 | ICON-2 one pack | Props come from Lucide, the pack already in use. The tech logos stay decorative brand marks (already noted in DESIGN.md) |
@@ -57,13 +57,13 @@ After building, `/design-audit` (the web-design plugin) runs on every changed fi
 The project follows its own conventions: component folders contain `index.tsx`, `Name.tsx` and `types.ts`; data lives in `src/data`; visual values live in `tokens.css`. Code limits: 250 lines per file, 10-line function bodies, 3 parameters (more get grouped into a type), and no explanatory comments inside function bodies.
 
 ### New / moved files
-- `src/utils/gridPlacement.ts`: the grid code moved out of `BackgroundPattern.tsx` (`hashRand`, `gridCells`, `pickSpacedCells`, `hasPlacedNeighbor`). It's generalised with a `GridSpec { cellSize; fillRatio; height }` type, so each layer can use its own cell size and density.
+- `src/utils/gridPlacement.ts`: the grid code moved out of `BackgroundPattern.tsx` (`hashRand`, `gridCells`, `pickSpacedCells`, `hasPlacedNeighbor`). It's generalised with a `GridSpec { cellSize; fillRatio; width; height }` type, so each layer can use its own cell size and density.
 - `src/utils/scrollProgress.ts`: add `parallaxLayerHeight(speed)` = `innerHeight + maxScroll × speed`, replacing the fixed `300vh`, so the faster 25% layers never run out of content.
 - `src/utils/contentColumn.ts`: `readColumnMetrics()`, `textAreaSpan(metrics)` (column minus `--section-pad-x`), `expandSpan(span, margin)` and `overlapsSpan(a, b)`.
 - `src/data/backgroundIcons.ts`: the tech-logo SVG imports (moved from `BackgroundPattern.tsx`) plus the `PF_PROPS: IconName[]` list.
 - `src/data/iconPaths.ts`: add Lucide shapes for `hamburger, cupSoda, cigarette, keyRound, briefcase, banknote, watch, cassetteTape, glasses, car` (plus `motorbike` if Lucide has it). Copy the exact path data from the `lucide-static` SVGs on unpkg; it stays a data file with no new dependency.
 - `src/components/BackgroundPattern/`
-  - `index.tsx`, `types.ts` (`ParallaxLayerProps`, `Placement`)
+  - `index.tsx`, `types.ts` (`LayerSpec` with optional `glowMargin`, `LayerItem`, `ParallaxLayerProps`, `BackgroundFrameProps`)
   - `BackgroundPattern.tsx`: the theme switch only
   - `ParallaxLayer.tsx`: applies `translateY(-scrollY × speed)` through the existing `useScrollFrame`, sets its height from `parallaxLayerHeight`, places items absolutely, and after each render sets `data-dim` on every cell whose item box, padded by the layer's `glowMargin`, overlaps the text area
   - `RegularBackground.tsx` + `.module.css`: today's `IconPatternBackground`, unchanged in look
@@ -75,7 +75,7 @@ The project follows its own conventions: component folders contain `index.tsx`, 
 - `src/components/PropSticker/`: a cream sticker that wraps the existing `<Icon>` in red
 
 ### Edited files
-- `src/styles/tokens.css`: `--content-max: 1120px` (also used by `section` in `index.css:74`); BR `--neon-1..4`; PF `--paper`; per-theme `--bg-item-opacity`, `--bg-item-opacity-dim`
+- `src/styles/tokens.css`: `--content-max: 1120px` (also used by `section` in `index.css:74`); BR `--neon-1..4`; PF `--paper`; per-theme `--bg-far-opacity`, `--bg-near-opacity`, `--bg-item-opacity-dim`, `--bg-item-blur-dim`
 - `src/i18n/types.ts`, `en.ts`, `es.ts`, `pt.ts`: `egg.neonSigns: string[]` (moved from `GlowBackground`'s `NEON_TEXTS`, with the edits above)
 - `src/components/GlowBackground.tsx` / `.module.css`: remove the neon sign, gutter, bullet hole and egg-theme rules, keeping only the blobs (the file shrinks from 294 lines to about 60)
 - `src/sections/Projects.tsx`, `Skills.tsx`: render `GlowBackground` only when `!isEggTheme` and drop the second `isEggTheme && glow` mount inside `gridWrap`
@@ -110,6 +110,8 @@ These came out of the browser checks and the design audit (UX and visual reviewe
 - **Glow strength:** signs out-glowed the primary button. The 40px text-shadow and 28px box-shadow layers were dropped, and the near-layer opacity was lowered.
 - **Sign placement:** signs hug the outer side of their cell. In the last column, right-mounted signs hug the screen edge.
 - **Dimmed signs don't flicker,** and the italic style was removed because Inter's italic file isn't loaded.
+- **Grid rows round up,** so the last partial row is filled and the faster layers reach the bottom of the screen at full scroll.
+- **Sign lists of different lengths per language** can't break the layout: extra entries are appended and missing ones wrap around.
 - **PF logos:** brand marks only. The generic outline device icons stay in the light, dark and BR themes.
 - **Not done (needs a decision or new assets):** a 2x export of the briefcase and hologram images, and possibly new wording for "Need a developer? I can fix that" and "Now hiring humans".
 
