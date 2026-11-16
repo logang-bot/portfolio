@@ -1,0 +1,19 @@
+.sticker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+}
+
+.icon {
+    color: var(--accent);
+}

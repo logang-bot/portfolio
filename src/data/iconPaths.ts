@@ -9,6 +9,17 @@ export type IconName =
   | 'close'
   | 'check'
   | 'cornerLeftUp'
+  | 'hamburger'
+  | 'cupSoda'
+  | 'cigarette'
+  | 'keyRound'
+  | 'briefcase'
+  | 'banknote'
+  | 'watch'
+  | 'cassetteTape'
+  | 'glasses'
+  | 'car'
+  | 'motorbike'
 
 export type IconShape =
   | { kind: 'path'; d: string }
@@ -42,4 +53,69 @@ export const iconShapes: Record<IconName, IconShape[]> = {
   close: [{ kind: 'path', d: 'M18 6 6 18M6 6l12 12' }],
   check: [{ kind: 'path', d: 'M20 6 9 17l-5-5' }],
   cornerLeftUp: [{ kind: 'path', d: 'M14 9 9 4 4 9' }, { kind: 'path', d: 'M20 20h-7a4 4 0 0 1-4-4V4' }],
+  hamburger: [
+    { kind: 'path', d: 'M12 16H4a2 2 0 1 1 0-4h16a2 2 0 1 1 0 4h-4.25' },
+    { kind: 'path', d: 'M5 12a2 2 0 0 1-2-2 9 7 0 0 1 18 0 2 2 0 0 1-2 2' },
+    { kind: 'path', d: 'M5 16a2 2 0 0 0-2 2 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 2 2 0 0 0-2-2q0 0 0 0' },
+    { kind: 'path', d: 'm6.67 12 6.13 4.6a2 2 0 0 0 2.8-.4l3.15-4.2' },
+  ],
+  cupSoda: [
+    { kind: 'path', d: 'm6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8' },
+    { kind: 'path', d: 'M5 8h14' },
+    { kind: 'path', d: 'M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0' },
+    { kind: 'path', d: 'm12 8 1-6h2' },
+  ],
+  cigarette: [
+    { kind: 'path', d: 'M17 12H3a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14' },
+    { kind: 'path', d: 'M18 8c0-2.5-2-2.5-2-5' },
+    { kind: 'path', d: 'M21 16a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1' },
+    { kind: 'path', d: 'M22 8c0-2.5-2-2.5-2-5' },
+    { kind: 'path', d: 'M7 12v4' },
+  ],
+  keyRound: [
+    { kind: 'path', d: 'M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z' },
+    { kind: 'circle', cx: 16.5, cy: 7.5, r: .5 },
+  ],
+  briefcase: [
+    { kind: 'path', d: 'M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16' },
+    { kind: 'rect', x: 2, y: 6, width: 20, height: 14, rx: 2 },
+  ],
+  banknote: [
+    { kind: 'rect', x: 2, y: 6, width: 20, height: 12, rx: 2 },
+    { kind: 'circle', cx: 12, cy: 12, r: 2 },
+    { kind: 'path', d: 'M6 12h.01M18 12h.01' },
+  ],
+  watch: [
+    { kind: 'path', d: 'M12 10v2.2l1.6 1' },
+    { kind: 'path', d: 'm16.13 7.66-.81-4.05a2 2 0 0 0-2-1.61h-2.68a2 2 0 0 0-2 1.61l-.78 4.05' },
+    { kind: 'path', d: 'm7.88 16.36.8 4a2 2 0 0 0 2 1.61h2.72a2 2 0 0 0 2-1.61l.81-4.05' },
+    { kind: 'circle', cx: 12, cy: 12, r: 6 },
+  ],
+  cassetteTape: [
+    { kind: 'rect', x: 2, y: 4, width: 20, height: 16, rx: 2 },
+    { kind: 'circle', cx: 8, cy: 10, r: 2 },
+    { kind: 'path', d: 'M8 12h8' },
+    { kind: 'circle', cx: 16, cy: 10, r: 2 },
+    { kind: 'path', d: 'm6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3' },
+  ],
+  glasses: [
+    { kind: 'circle', cx: 6, cy: 15, r: 4 },
+    { kind: 'circle', cx: 18, cy: 15, r: 4 },
+    { kind: 'path', d: 'M14 15a2 2 0 0 0-2-2 2 2 0 0 0-2 2' },
+    { kind: 'path', d: 'M2.5 13 5 7c.7-1.3 1.4-2 3-2' },
+    { kind: 'path', d: 'M21.5 13 19 7c-.7-1.3-1.5-2-3-2' },
+  ],
+  car: [
+    { kind: 'path', d: 'M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2' },
+    { kind: 'circle', cx: 7, cy: 17, r: 2 },
+    { kind: 'path', d: 'M9 17h6' },
+    { kind: 'circle', cx: 17, cy: 17, r: 2 },
+  ],
+  motorbike: [
+    { kind: 'path', d: 'm18 14-1-3' },
+    { kind: 'path', d: 'm3 9 6 2a2 2 0 0 1 2-2h2a2 2 0 0 1 1.99 1.81' },
+    { kind: 'path', d: 'M8 17h3a1 1 0 0 0 1-1 6 6 0 0 1 6-6 1 1 0 0 0 1-1v-.75A5 5 0 0 0 17 5' },
+    { kind: 'circle', cx: 19, cy: 17, r: 3 },
+    { kind: 'circle', cx: 5, cy: 17, r: 3 },
+  ],
 }

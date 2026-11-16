@@ -1,3 +1,4 @@
+import type { IconName } from './iconPaths'
 import browser from '../assets/icons/browser.svg'
 import browserWindow from '../assets/icons/browser-window.svg'
 import coffee from '../assets/icons/coffee.svg'
@@ -32,4 +33,18 @@ export const TECH_LOGOS: string[] = [
   javascript,
   react,
   xamarin,
+]
+
+export const PF_PROPS: IconName[] = [
+  'hamburger',
+  'cupSoda',
+  'cigarette',
+  'keyRound',
+  'briefcase',
+  'banknote',
+  'watch',
+  'cassetteTape',
+  'glasses',
+  'car',
+  'motorbike',
 ]

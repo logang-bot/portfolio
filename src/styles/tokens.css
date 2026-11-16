@@ -94,6 +94,11 @@
 }
 
 [data-theme="pulp-fiction"] {
+    --paper: #f9f1dc;
+    --bg-far-opacity: 0.85;
+    --bg-near-opacity: 0.85;
+    --bg-item-opacity-dim: 0.1;
+    --bg-item-blur-dim: 0px;
     --text: #3a2a1a;
     --text-h: #1a0f08;
     --bg: #f4d35e;
