@@ -47,8 +47,8 @@ export default function Hero() {
         }
         alt=""
         aria-hidden="true"
-        width={399}
-        height={600}
+        width={768}
+        height={1376}
         fetchPriority="high"
         decoding="sync"
         className={styles.illustration}
