@@ -73,11 +73,9 @@ export default function Projects() {
     ? projects
     : projects.filter((p) => p.category === activeFilter)
 
-  const glow = <GlowBackground key={activeFilter} slot={0} />
-
   return (
     <section id="projects" ref={fadeRef} className={styles.section}>
-      {!isEggTheme && glow}
+      {!isEggTheme && <GlowBackground key={activeFilter} slot={0} />}
       <div className={styles.content}>
         <p className={shared.sectionLabel}>{t.projects.label}</p>
         <h2>{t.projects.heading}</h2>
@@ -95,7 +93,6 @@ export default function Projects() {
           </div>
         )}
         <div className={styles.gridWrap}>
-          {isEggTheme && glow}
           {filtered.length > 0 ? (
             <div className={styles.grid}>
               {filtered.map((project) => (

@@ -68,16 +68,13 @@ export default function Skills() {
   const { isEggTheme } = useTheme();
   const fadeRef = useFadeUp<HTMLElement>();
 
-  const glow = <GlowBackground slot={1} />;
-
   return (
     <section id="skills" ref={fadeRef} className={styles.section}>
-      {!isEggTheme && glow}
+      {!isEggTheme && <GlowBackground slot={1} />}
       <div className={styles.content}>
         <p className={shared.sectionLabel}>{t.skills.label}</p>
         <h2>{t.skills.heading}</h2>
         <div className={styles.gridWrap}>
-          {isEggTheme && glow}
           <div className={styles.grid}>
             {skillGroups.map(({ key, skills }) => (
               <div key={String(key)} className={styles.group}>

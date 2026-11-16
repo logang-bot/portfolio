@@ -9,7 +9,6 @@
     z-index: 1;
 }
 
-/* Bounds the GlowBackground (neon signs / blobs / bullet holes) to the grid area */
 .gridWrap {
     position: relative;
 }
