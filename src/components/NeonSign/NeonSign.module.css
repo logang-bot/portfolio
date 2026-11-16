@@ -11,7 +11,6 @@
     background: color-mix(in srgb, var(--bg) 55%, transparent);
     color: var(--text-h);
     font-weight: 700;
-    font-style: italic;
     letter-spacing: 0.08em;
     line-height: 1.2;
     text-align: center;
@@ -20,12 +19,10 @@
     text-shadow:
         0 0 4px var(--neon-color),
         0 0 10px var(--neon-color),
-        0 0 20px var(--neon-color),
-        0 0 40px var(--neon-color);
+        0 0 20px var(--neon-color);
     box-shadow:
         0 0 6px var(--neon-color),
         0 0 14px var(--neon-color),
-        0 0 28px var(--neon-color),
         inset 0 0 8px color-mix(in srgb, var(--bg) 40%, transparent),
         inset 0 0 4px var(--neon-color);
     opacity: 0;
@@ -56,7 +53,7 @@
 }
 
 .mountRight {
-    right: 32px;
+    right: calc(32px - var(--edge-gap, 0px));
 }
 
 .mountRight::before {
@@ -74,6 +71,12 @@
     55% { opacity: 1; }
     70% { opacity: 0.5; }
     100% { opacity: 1; }
+}
+
+/* Behind the text a sign stays steady: no flicker next to the copy */
+:global([data-dim]) > .sign {
+    opacity: 1;
+    animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

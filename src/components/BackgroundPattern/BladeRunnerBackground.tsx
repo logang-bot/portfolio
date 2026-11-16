@@ -8,13 +8,14 @@ import { useLanguage } from '../../context/LanguageContext'
 import { useScrollFrame } from '../../hooks/useScrollFrame'
 import { TECH_LOGOS } from '../../data/backgroundIcons'
 import { neonFontSize } from '../../utils/neonFontSize'
+import { rightEdgeGap } from '../../utils/signPlacement'
 import { shuffledIndices } from '../../utils/shuffledIndices'
 import { pageScrollProgress, rangeProgress } from '../../utils/scrollProgress'
 import hologram from '../../assets/images/blade-runner/br2049-background-2.webp'
 import type { LayerItem, LayerSpec } from './types'
 
-const LOGO_LAYER: LayerSpec = { speed: 0.15, cellSize: 140, fillRatio: 0.18 }
-const SIGN_LAYER: LayerSpec = { speed: 0.25, cellSize: 280, fillRatio: 0.35 }
+const LOGO_LAYER: LayerSpec = { speed: 0.15, cellSize: 140, fillRatio: 0.18, glowMargin: 16 }
+const SIGN_LAYER: LayerSpec = { speed: 0.25, cellSize: 280, fillRatio: 0.35, glowMargin: 24 }
 const FAR_STYLE = { '--layer-opacity': 'var(--bg-far-opacity)' } as CSSProperties
 const NEAR_STYLE = { '--layer-opacity': 'var(--bg-near-opacity)' } as CSSProperties
 const HOLOGRAM_FADE_START = 0.85
@@ -61,14 +62,16 @@ function renderLogo(item: LayerItem) {
 
 function renderSign(item: LayerItem, signs: string[]) {
   const text = signs[item.index % signs.length]
-  const centerX = item.x + SIGN_LAYER.cellSize / 2
+  const viewportWidth = document.documentElement.clientWidth
+  const isLeft = item.x + SIGN_LAYER.cellSize / 2 < viewportWidth / 2
   return (
     <NeonSign
       text={text}
       color={neonColor(item.rand(2))}
       fontSize={neonFontSize(text, item.rand(4))}
       tilt={(item.rand(3) - 0.5) * 6}
-      mount={centerX < document.documentElement.clientWidth / 2 ? 'left' : 'right'}
+      mount={isLeft ? 'left' : 'right'}
+      edgeGap={isLeft ? 0 : rightEdgeGap({ x: item.x, cellSize: SIGN_LAYER.cellSize, viewportWidth })}
     />
   )
 }

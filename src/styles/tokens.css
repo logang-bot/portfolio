@@ -64,10 +64,10 @@
 [data-theme="blade-runner"] {
     --neon-1: #ff36a0;
     --neon-2: #00eaff;
-    --neon-3: #ff7a18;
+    --neon-3: #b388ff;
     --neon-4: #ffd166;
     --bg-far-opacity: 0.6;
-    --bg-near-opacity: 0.9;
+    --bg-near-opacity: 0.75;
     --bg-item-opacity-dim: 0.2;
     --bg-item-blur-dim: 2px;
     --text: #a8b2c7;
@@ -96,7 +96,7 @@
 [data-theme="pulp-fiction"] {
     --paper: #f9f1dc;
     --bg-far-opacity: 0.85;
-    --bg-near-opacity: 0.85;
+    --bg-near-opacity: 0.7;
     --bg-item-opacity-dim: 0.1;
     --bg-item-blur-dim: 0px;
     --text: #3a2a1a;

@@ -6,13 +6,13 @@ import PrintLogo from '../PrintLogo'
 import PropSticker from '../PropSticker'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { useScrollFrame } from '../../hooks/useScrollFrame'
-import { PF_PROPS, TECH_LOGOS } from '../../data/backgroundIcons'
+import { BRAND_LOGOS, PF_PROPS } from '../../data/backgroundIcons'
 import { pageScrollProgress, rangeProgress } from '../../utils/scrollProgress'
 import briefcaseImage from '../../assets/images/pulp-fiction/pf_background-2.webp'
 import type { LayerItem, LayerSpec } from './types'
 
-const LOGO_LAYER: LayerSpec = { speed: 0.15, cellSize: 140, fillRatio: 0.18 }
-const PROP_LAYER: LayerSpec = { speed: 0.25, cellSize: 220, fillRatio: 0.25 }
+const LOGO_LAYER: LayerSpec = { speed: 0.15, cellSize: 140, fillRatio: 0.18, glowMargin: 8 }
+const PROP_LAYER: LayerSpec = { speed: 0.25, cellSize: 220, fillRatio: 0.25, glowMargin: 8 }
 const FAR_STYLE = { '--layer-opacity': 'var(--bg-far-opacity)' } as CSSProperties
 const NEAR_STYLE = { '--layer-opacity': 'var(--bg-near-opacity)' } as CSSProperties
 const BRIEFCASE_SLIDE_START = 0.9
@@ -48,7 +48,7 @@ function briefcaseOffset(slide: number, reducedMotion: boolean): number {
 }
 
 function renderLogo(item: LayerItem) {
-  const logo = TECH_LOGOS[Math.floor(item.rand(1) * TECH_LOGOS.length)]
+  const logo = BRAND_LOGOS[Math.floor(item.rand(1) * BRAND_LOGOS.length)]
   return (
     <span className={styles.logoSlot}>
       <PrintLogo src={logo} tilt={tilt(item)} />

@@ -28,3 +28,7 @@ export function textAreaSpan({ viewportWidth, columnMax, paddingX }: ColumnMetri
 export function overlapsSpan(a: Span, b: Span): boolean {
   return a.left < b.right && a.right > b.left
 }
+
+export function expandSpan(span: Span, margin: number): Span {
+  return { left: span.left - margin, right: span.right + margin }
+}

@@ -5,6 +5,7 @@ export interface LayerSpec {
   speed: number
   cellSize: number
   fillRatio: number
+  glowMargin?: number
 }
 
 export interface LayerItem {

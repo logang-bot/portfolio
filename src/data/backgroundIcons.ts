@@ -35,6 +35,18 @@ export const TECH_LOGOS: string[] = [
   xamarin,
 ]
 
+export const BRAND_LOGOS: string[] = [
+  cSharp,
+  kotlin,
+  linux,
+  node,
+  swift,
+  typescript,
+  javascript,
+  react,
+  xamarin,
+]
+
 export const PF_PROPS: IconName[] = [
   'hamburger',
   'cupSoda',

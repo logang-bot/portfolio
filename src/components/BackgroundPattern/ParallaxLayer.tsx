@@ -3,7 +3,13 @@ import styles from './ParallaxLayer.module.css'
 import { useLayerItems } from '../../hooks/useLayerItems'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { useScrollFrame } from '../../hooks/useScrollFrame'
-import { overlapsSpan, readColumnMetrics, textAreaSpan, type Span } from '../../utils/contentColumn'
+import {
+  expandSpan,
+  overlapsSpan,
+  readColumnMetrics,
+  textAreaSpan,
+  type Span,
+} from '../../utils/contentColumn'
 import { parallaxTransform } from '../../utils/scrollProgress'
 import type { LayerItem, ParallaxLayerProps } from './types'
 
@@ -17,7 +23,7 @@ export default function ParallaxLayer({ spec, renderItem, className, style }: Pa
     layerRef.current.style.transform = reducedMotion ? 'none' : parallaxTransform(spec.speed)
   })
 
-  useLayoutEffect(() => markCellsBehindText(layerRef.current))
+  useLayoutEffect(() => markCellsBehindText(layerRef.current, spec.glowMargin ?? 0))
 
   return (
     <div
@@ -42,13 +48,13 @@ function cellKey({ cell }: LayerItem): string {
   return `${cell.row},${cell.col}`
 }
 
-function markCellsBehindText(layer: HTMLElement | null): void {
+function markCellsBehindText(layer: HTMLElement | null, glowMargin: number): void {
   if (!layer) return
-  const textArea = textAreaSpan(readColumnMetrics())
-  for (const cell of layer.children) markCell(cell, textArea)
+  const glowReach = expandSpan(textAreaSpan(readColumnMetrics()), glowMargin)
+  for (const cell of layer.children) markCell(cell, glowReach)
 }
 
-function markCell(cell: Element, textArea: Span): void {
+function markCell(cell: Element, glowReach: Span): void {
   const item = cell.firstElementChild?.getBoundingClientRect()
-  cell.toggleAttribute('data-dim', item !== undefined && overlapsSpan(item, textArea))
+  cell.toggleAttribute('data-dim', item !== undefined && overlapsSpan(item, glowReach))
 }

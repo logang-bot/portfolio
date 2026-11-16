@@ -6,4 +6,5 @@ export interface NeonSignProps {
   fontSize: number
   tilt: number
   mount: NeonMount
+  edgeGap?: number
 }
