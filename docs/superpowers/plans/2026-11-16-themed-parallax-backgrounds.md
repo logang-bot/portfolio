@@ -126,17 +126,16 @@ assert.ok([16, 18, 20, 24].includes(neonFontSize('Replicant repair', 0.6)))
 - [ ] **Step 4:** Browser, PF: mustard with faint dots; solid ink logos with an offset red copy; cream outlined prop stickers that read clearly as a different kind of item; props drift faster than logos; items behind the text column are very faint; the briefcase slides up at the end.
 - [ ] **Step 5:** Commit: `Give the Pulp Fiction theme a print-sticker parallax`.
 
-### Task 4: Remove section decorations, unused assets, update DESIGN.md
+### Task 4: Remove section decorations and unused assets
 
 **Files:**
-- Modify: `src/components/GlowBackground.tsx` + `.module.css` (keep only the blobs: `Props { slot?: number }`, `observeOnce` reveal, `.mirrored` when `slot % 2`), `src/sections/Projects.tsx:67-98`, `src/sections/Skills.tsx`, `src/sections/Projects.module.css`, `src/sections/Skills.module.css`, `DESIGN.md`
+- Modify: `src/components/GlowBackground.tsx` + `.module.css` (keep only the blobs: `Props { slot?: number }`, `observeOnce` reveal, `.mirrored` when `slot % 2`), `src/sections/Projects.tsx:67-98`, `src/sections/Skills.tsx`, `src/sections/Projects.module.css`, `src/sections/Skills.module.css`
 - Delete: `src/assets/images/bullet-hole.webp`, `src/assets/images/blade-runner/br2049-background-1.webp`, `src/assets/images/pulp-fiction/pf_background-1.webp`
 
 - [ ] **Step 1:** Strip `GlowBackground` (neon, gutter, holes, egg-theme `.glow` rules). In Projects and Skills render `{!isEggTheme && <GlowBackground … />}` once, at the section level (Projects keeps `key={activeFilter}`), and drop the comment about bounding the glow in `gridWrap`.
 - [ ] **Step 2:** Delete the three images. Run `grep -rn "bullet-hole\|br2049-background-1\|pf_background-1\|NEON_TEXTS" src` → no output.
-- [ ] **Step 3:** In `DESIGN.md`: Images row → BR "Navy base, neon logo and sign parallax, hologram finale"; PF "Mustard halftone, print-sticker logo and prop parallax, briefcase finale". Notes: the content-column dim rule with its caps, the new tokens (`--content-max`, `--neon-1..4`, `--paper`, `--bg-*-opacity`, `--bg-item-blur-dim`), and that neon signs power on once (500ms).
-- [ ] **Step 4:** `npm run build && npm run lint` → pass; browser: Projects and Skills show blobs in light/dark and nothing extra in BR/PF.
-- [ ] **Step 5:** Commit: `Drop section neon signs and bullet holes; document themed backgrounds`.
+- [ ] **Step 3:** `npm run build && npm run lint` → pass; browser: Projects and Skills show blobs in light/dark and nothing extra in BR/PF.
+- [ ] **Step 4:** Commit: `Drop section neon signs and bullet holes`.
 
 ### Task 5: Verify and design audit
 
@@ -145,3 +144,16 @@ assert.ok([16, 18, 20, 24].includes(neonFontSize('Replicant repair', 0.6)))
 - [ ] **Step 3:** Contrast with the DevTools picker: body text over the brightest dimmed sign (BR) and over the strongest dimmed sticker (PF) ≥4.5:1; red accent text in PF ≥4.5:1.
 - [ ] **Step 4:** Run `/web-design:design-audit` on the changed files; fix each finding or report it to the user with the reason it stays.
 - [ ] **Step 5:** Fixes (if any) → `npm run build && npm run lint` → commit: `Apply design audit fixes to themed backgrounds`.
+
+### Task 6: Update the docs
+
+Runs last, so the docs describe what actually shipped, including any audit fixes from Task 5.
+
+**Files:**
+- Modify: `DESIGN.md`, `docs/superpowers/specs/2026-11-16-themed-parallax-backgrounds-design.md`
+
+- [ ] **Step 1:** `DESIGN.md` theme table, Images row: BR "Navy base, neon logo and sign parallax, hologram finale"; PF "Mustard halftone, print-sticker logo and prop parallax, briefcase finale". Shadows row (PF): add "prop stickers".
+- [ ] **Step 2:** `DESIGN.md` Notes: add the content-column dim rule and its caps (BR 0.2 + 2px blur, PF 0.1); list the new tokens (`--content-max`, `--neon-1..4`, `--paper`, `--bg-far-opacity`, `--bg-near-opacity`, `--bg-item-opacity-dim`, `--bg-item-blur-dim`); say neon signs power on once in 500ms (no endless flicker); say PF props come from Lucide (same pack) and the tech logos stay decorative brand marks. Remove mentions of bullet holes and the blurred poster.
+- [ ] **Step 3:** Spec: if anything changed during the build (values, layer specs, sign copy, audit fixes), update the matching line so the spec matches the code. If nothing changed, leave it.
+- [ ] **Step 4:** `grep -n "bullet\|blurred poster\|side margins" DESIGN.md` → no stale lines.
+- [ ] **Step 5:** Commit: `Document themed parallax backgrounds`.
