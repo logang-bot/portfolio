@@ -26,7 +26,7 @@ The PF bullet holes are dropped. With the signs and holes gone, `GlowBackground`
 
 ## Calls I made (correct any of these)
 
-1. **Props look:** red Lucide line art centred on a cream "paper" sticker (`--paper`), with a 2px ink border, `--radius-sm` (4px), the theme's hard `--shadow-md` and a ±8° tilt. They form a closer layer at **25%** speed. Logos are solid and props are outlined, which is what tells them apart.
+1. **Props look:** red Lucide line art centred on a cream "paper" sticker (`--paper`), with a 2px ink border, `--radius-sm` (4px), the theme's hard `--shadow-sm` and a ±8° tilt. They form a closer layer at **25%** speed. Logos are solid and props are outlined, which is what tells them apart.
 2. **Sign speed:** BR signs are also a closer layer at **25%** speed, which gives both themes the same depth.
 3. **No endless flicker.** Endless flicker breaks UX-4 (animations must be purposeful and 200–500ms). Instead, each sign does a one-time **power-on flicker** (`--duration-slow`, 500ms) the first time it enters the viewport. Under reduced motion there's no flicker and no parallax.
 4. **Sign text:** "Projects here" is dropped because it pointed at a section. "Need a developer? I can fix that" stays, since it works as a city ad. New lines (yours to edit): "Replicant repair · open 24h", "Now hiring humans", "Native apps, built to last". Per the repo's texts rule, the sign text moves into i18n with Spanish and Portuguese versions, so the signs follow the language switch.
@@ -38,8 +38,8 @@ The PF bullet holes are dropped. With the signs and holes gone, `GlowBackground`
 
 | Rule | How the design complies |
 |---|---|
-| COLOR-11 contrast 4.5:1 | Measured against the theme tokens. **BR** body text `#a8b2c7` on navy is 9.0:1. Cyan behind it may reach at most 0.28 opacity, and yellow at most 0.27. → Items whose centre falls inside the content column (1120px + 48px padding) are capped at **opacity 0.2 + blur(2px)**. **PF**: red accent text `#9e1b20` on mustard is 5.4:1. Ink behind it may reach at most 0.11 opacity, and red at most 0.14. → PF items in the column are capped at **opacity 0.1**. Outside the column, items render at full theme strength (BR logos 0.6 and signs 0.9, PF 0.85). On phones the whole screen counts as column, so everything is dimmed. |
-| COLOR-2 no ad-hoc colours | The neon colours (`#ff36a0 #00eaff #ff7a18 #ffd166`, hard-coded in TS today) move to `tokens.css` as `--neon-1..4` under `[data-theme="blade-runner"]`. New PF token: `--paper: #f9f1dc`. The dim opacities become per-theme tokens: `--bg-item-opacity`, `--bg-item-opacity-dim`. |
+| COLOR-11 contrast 4.5:1 | Measured against the theme tokens. **BR** body text `#a8b2c7` on navy is 9.0:1. Cyan behind it may reach at most 0.28 opacity, and yellow at most 0.27. → Items whose box, plus its glow reach, overlaps the text area (the 1120px column minus its side padding) are capped at **opacity 0.2 + blur(2px)**. **PF**: red accent text `#9e1b20` on mustard is 5.4:1. Ink behind it may reach at most 0.11 opacity, and red at most 0.14. → PF items in the column are capped at **opacity 0.1**. Outside the column, items render at full theme strength (BR logos 0.6 and signs 0.75, PF logos 0.85 and props 0.7). On phones the whole screen counts as column, so everything is dimmed. |
+| COLOR-2 no ad-hoc colours | The neon colours (`#ff36a0 #00eaff #ff7a18 #ffd166`, hard-coded in TS today) move to `tokens.css` as `--neon-1..4` under `[data-theme="blade-runner"]`, with the orange replaced by violet `#b388ff` so orange stays the CTA's colour. New PF token: `--paper: #f9f1dc`. The dim opacities become per-theme tokens: `--bg-item-opacity`, `--bg-item-opacity-dim`. |
 | TYPO-4 type scale | Sign font size is currently a random 16–34px. It changes to a pick from the scale `16 18 20 24`, still capped by the longest-word fit. |
 | TYPO-8 weight ≥400 | Signs stay at 700 |
 | ICON-2 one pack | Props come from Lucide, the pack already in use. The tech logos stay decorative brand marks (already noted in DESIGN.md) |
@@ -59,13 +59,13 @@ The project follows its own conventions: component folders contain `index.tsx`, 
 ### New / moved files
 - `src/utils/gridPlacement.ts`: the grid code moved out of `BackgroundPattern.tsx` (`hashRand`, `gridCells`, `pickSpacedCells`, `hasPlacedNeighbor`). It's generalised with a `GridSpec { cellSize; fillRatio; height }` type, so each layer can use its own cell size and density.
 - `src/utils/scrollProgress.ts`: add `parallaxLayerHeight(speed)` = `innerHeight + maxScroll × speed`, replacing the fixed `300vh`, so the faster 25% layers never run out of content.
-- `src/utils/contentColumn.ts`: `isInContentColumn(x)`, which checks x against the viewport centre ± half of `--content-max`.
+- `src/utils/contentColumn.ts`: `readColumnMetrics()`, `textAreaSpan(metrics)` (column minus `--section-pad-x`), `expandSpan(span, margin)` and `overlapsSpan(a, b)`.
 - `src/data/backgroundIcons.ts`: the tech-logo SVG imports (moved from `BackgroundPattern.tsx`) plus the `PF_PROPS: IconName[]` list.
 - `src/data/iconPaths.ts`: add Lucide shapes for `hamburger, cupSoda, cigarette, keyRound, briefcase, banknote, watch, cassetteTape, glasses, car` (plus `motorbike` if Lucide has it). Copy the exact path data from the `lucide-static` SVGs on unpkg; it stays a data file with no new dependency.
 - `src/components/BackgroundPattern/`
   - `index.tsx`, `types.ts` (`ParallaxLayerProps`, `Placement`)
   - `BackgroundPattern.tsx`: the theme switch only
-  - `ParallaxLayer.tsx`: applies `translateY(-scrollY × speed)` through the existing `useScrollFrame`, sets its height from `parallaxLayerHeight`, places items absolutely, and marks each one `dim` from `isInContentColumn` (recomputed on resize)
+  - `ParallaxLayer.tsx`: applies `translateY(-scrollY × speed)` through the existing `useScrollFrame`, sets its height from `parallaxLayerHeight`, places items absolutely, and after each render sets `data-dim` on every cell whose item box, padded by the layer's `glowMargin`, overlaps the text area
   - `RegularBackground.tsx` + `.module.css`: today's `IconPatternBackground`, unchanged in look
   - `BladeRunnerBackground.tsx` + `.module.css`: navy, the hologram crossfade (existing `rangeProgress` logic), a logo layer (0.15) and a sign layer (0.25, larger cells, low fill)
   - `PulpFictionBackground.tsx` + `.module.css`: mustard with a halftone made from `radial-gradient` dots, a logo layer (0.15), a prop layer (0.25) and the briefcase (existing `briefcaseOffset` logic)
@@ -101,3 +101,15 @@ The project follows its own conventions: component folders contain `index.tsx`, 
   - Changing the language changes the sign text.
 - Spot-check contrast with the DevTools picker over the brightest dimmed sign and the strongest PF sticker that sits behind body text (target ≥4.5:1).
 - Run `/design-audit` on the changed files and fix or report every finding.
+
+## Changed during the build
+
+These came out of the browser checks and the design audit (UX and visual reviewers). The text above already reflects them.
+
+- **Dim rule:** the first version tested the cell centre against the column. Long signs spilled out of their cell and sat bright over body text, and glow halos reached the text even when the box didn't. Each item's real box is now measured, padded by its glow reach (BR logos 16px, signs 24px, PF 8px).
+- **Glow strength:** signs out-glowed the primary button. The 40px text-shadow and 28px box-shadow layers were dropped, and the near-layer opacity was lowered.
+- **Sign placement:** signs hug the outer side of their cell. In the last column, right-mounted signs hug the screen edge.
+- **Dimmed signs don't flicker,** and the italic style was removed because Inter's italic file isn't loaded.
+- **PF logos:** brand marks only. The generic outline device icons stay in the light, dark and BR themes.
+- **Not done (needs a decision or new assets):** a 2x export of the briefcase and hologram images, and possibly new wording for "Need a developer? I can fix that" and "Now hiring humans".
+

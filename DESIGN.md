@@ -11,8 +11,8 @@ reuse the same tokens, layout and type, and change only the ingredients below:
 | Ingredient | Blade Runner 2049 (custom — neon noir) | Pulp Fiction (custom — comic poster) |
 |---|---|---|
 | Colour | Deep navy background, warm cream text, neon-orange accent | Mustard-yellow background, ink-brown text, deep red accent |
-| Images | Dark cinematic city backgrounds, neon signs in the side margins | Blurred poster background, briefcase reveal, bullet holes |
-| Shadows | Orange glow on the primary button and neon signs only | Hard ink offset shadows, no blur |
+| Images | Navy base, neon logo and sign parallax, hologram finale | Mustard halftone, print-sticker logo and prop parallax, briefcase finale |
+| Shadows | Orange glow on the primary button; neon glows on background logos and signs only | Hard ink offset shadows, no blur (cards, buttons, prop stickers) |
 | Border-radius | Same as base | Small (4px) or none |
 | Type | Uppercase buttons, weight 600 | Headings 900, body 500, uppercase buttons 800 |
 
@@ -49,6 +49,24 @@ relax: SHADOW-03
 - Icons: Lucide outline paths in `src/data/iconPaths.ts`, rendered by `<Icon>` with
   `currentColor`. The background-pattern tech logos are decorative brand marks and stay as they
   are.
+- Themed backgrounds (`src/components/BackgroundPattern/`): one `ParallaxLayer` places items on a
+  seeded random grid and scrolls at its own speed. Far layer (logos) 15%, near layer (BR signs, PF
+  props) 25%. All decorative: `aria-hidden`, no pointer events.
+  - Blade Runner: tech logos as single-colour neon silhouettes, neon text signs (copy in
+    `nav.egg.neonSigns`, translated), and the hologram photo fading in at the end of the page.
+  - Pulp Fiction: brand logos printed in ink over an off-register red copy, film props (Lucide,
+    the same pack) as red line art on cream stickers, and the briefcase sliding up at the end.
+    The generic outline device icons are left out here so logos stay solid and props outlined.
+- Background items never sit at full strength behind text. An item whose box, plus its glow
+  reach, overlaps the text area (the content column minus its side padding) is dimmed: BR to
+  0.2 opacity with a 2px blur, PF to 0.1. Worst-case contrast for body and accent text over a
+  dimmed item stays at or above 4.5:1. On phones the text area spans the screen, so everything
+  is dimmed. Away from text: BR logos 0.6, signs 0.75; PF 0.85 and 0.7.
+- Background tokens: `--content-max`, `--neon-1..4` (pink, cyan, violet, yellow; orange is
+  kept for the CTA), `--paper`, `--bg-far-opacity`, `--bg-near-opacity`,
+  `--bg-item-opacity-dim`, `--bg-item-blur-dim`.
+- Neon signs power on once (500ms flicker) when first scrolled into view, never in a loop, and
+  not at all when dimmed or under reduced motion.
 - Headline states the role ("Software engineer building native Android and iOS apps"). Only the
   greeting line animates.
 - Hero illustrations are faceless on purpose.
