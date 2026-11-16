@@ -1,0 +1,6 @@
+{
+  "enabledPlugins": {
+    "general-code-style@logang-bot": true,
+    "web-design@logang-bot": true
+  }
+}
