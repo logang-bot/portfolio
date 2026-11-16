@@ -30,14 +30,14 @@ export const en: Translations = {
   about: {
     label: 'About',
     heading: 'A bit about me',
-    p1: "I'm a software engineer with 3+ years of professional experience building native Android and iOS apps.",
+    p1: "I'm a software engineer with 4+ years of professional experience, currently a Staff Engineer at Jalasoft building native and cross-platform apps for Android and iOS.",
     highlights: [
-      'Native Android and iOS: Kotlin, Jetpack Compose, Swift, SwiftUI',
-      'MVVM and Clean Architecture in my daily work',
-      'Cross-platform projects with .NET MAUI and Xamarin',
-      'Freelance web and backend work with Node.js, React and Docker',
+      'Led refactors of legacy modules over 1,800 lines into Clean Architecture and MVVM',
+      'Built .NET bindings for native SDKs (Lottie, Transcoder, Flurry Analytics) and a video compression tool for Android with FFmpeg',
+      'Fixed critical device-permission bugs on Android and iOS using thread-safe concurrency',
+      'Build AI coding tools: open-source Claude Code plugins that enforce clean code standards, and an Appium setup that finds and fixes mobile UI/UX issues on its own',
     ],
-    p3: 'I graduated in Systems Engineering from Universidad Autónoma Tomás Frías with the highest academic honors.',
+    p3: 'I graduated in Systems Engineering from Universidad Autónoma Tomás Frías with the highest academic honors, and hold a Graduate Diploma in Software Architecture from Universidad Autónoma de Chile.',
     resume: 'Download resume',
   },
   projects: {

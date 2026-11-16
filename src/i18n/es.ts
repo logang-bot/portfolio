@@ -30,14 +30,14 @@ export const es: Translations = {
   about: {
     label: 'Sobre mí',
     heading: 'Un poco sobre mí',
-    p1: 'Soy ingeniero de software con más de 3 años de experiencia profesional creando apps nativas para Android e iOS.',
+    p1: 'Soy ingeniero de software con más de 4 años de experiencia profesional; actualmente soy Staff Engineer en Jalasoft, donde desarrollo apps nativas y multiplataforma para Android e iOS.',
     highlights: [
-      'Android e iOS nativo: Kotlin, Jetpack Compose, Swift, SwiftUI',
-      'MVVM y Clean Architecture en mi trabajo diario',
-      'Proyectos multiplataforma con .NET MAUI y Xamarin',
-      'Trabajo freelance web y backend con Node.js, React y Docker',
+      'Lideré refactorizaciones de módulos legados de más de 1.800 líneas hacia Clean Architecture y MVVM',
+      'Creé bindings de .NET para SDKs nativos (Lottie, Transcoder, Flurry Analytics) y una herramienta de compresión de video para Android con FFmpeg',
+      'Corregí errores críticos de permisos del dispositivo en Android e iOS con concurrencia segura entre hilos',
+      'Construyo herramientas de desarrollo con IA: plugins open source de Claude Code que aplican estándares de código limpio, y una configuración con Appium que detecta y corrige problemas de UI/UX móvil por sí sola',
     ],
-    p3: 'Me gradué con máxima distinción académica en Ingeniería de Sistemas de la Universidad Autónoma Tomás Frías.',
+    p3: 'Me gradué con máxima distinción académica en Ingeniería de Sistemas de la Universidad Autónoma Tomás Frías y tengo un Diplomado en Arquitectura de Software de la Universidad Autónoma de Chile.',
     resume: 'Descargar currículum',
   },
   projects: {

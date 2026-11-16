@@ -1,5 +1,13 @@
 @import "./styles/tokens.css";
 
+@font-face {
+    font-family: "Inter";
+    src: url("./assets/fonts/InterVariable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     font: 16px/1.5 var(--sans);
     color: var(--text);
