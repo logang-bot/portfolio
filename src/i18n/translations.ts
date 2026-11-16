@@ -50,11 +50,11 @@ export const translations: Record<Language, Translations> = {
       egg: { whisper: 'psst… over here' },
     },
     hero: {
-      tag: 'Mobile & Web Developer',
+      tag: 'Software Engineer',
       greeting: "Hi, I'm",
       name: 'Alvaro Choque',
       subtitle:
-        'I build native Android and iOS apps and web applications with 3+ years of professional experience. Focused on clean architecture, great UX, and continuous learning.',
+        'I build mobile apps with Kotlin, Jetpack Compose, Swift and .NET MAUI. I work agent-first: AI agents are part of every step of my workflow, kept on track by TDD and clean architecture.',
       ctaWork: 'View my work',
       ctaContact: 'Get in touch',
     },
@@ -114,11 +114,11 @@ export const translations: Record<Language, Translations> = {
       egg: { whisper: 'psst… por aquí' },
     },
     hero: {
-      tag: 'Desarrollador Mobile y Web',
+      tag: 'Ingeniero de Software',
       greeting: 'Hola, soy',
       name: 'Alvaro Choque',
       subtitle:
-        'Desarrollo aplicaciones nativas para Android e iOS y aplicaciones web con más de 3 años de experiencia profesional. Enfocado en arquitectura limpia, buenas experiencias de usuario y aprendizaje continuo.',
+        'Desarrollo apps móviles con Kotlin, Jetpack Compose, Swift y .NET MAUI. Trabajo con un enfoque agéntico: los agentes de IA forman parte de cada paso de mi flujo de trabajo, guiados por TDD y arquitectura limpia.',
       ctaWork: 'Ver mi trabajo',
       ctaContact: 'Contáctame',
     },
@@ -178,11 +178,11 @@ export const translations: Record<Language, Translations> = {
       egg: { whisper: 'psst… por aqui' },
     },
     hero: {
-      tag: 'Desenvolvedor Mobile e Web',
+      tag: 'Engenheiro de Software',
       greeting: 'Olá, eu sou',
       name: 'Alvaro Choque',
       subtitle:
-        'Desenvolvo aplicativos nativos para Android e iOS e aplicações web com mais de 3 anos de experiência profissional. Focado em arquitetura limpa, ótimas experiências de usuário e aprendizado contínuo.',
+        'Desenvolvo apps móveis com Kotlin, Jetpack Compose, Swift e .NET MAUI. Trabalho com um fluxo agêntico: agentes de IA participam de cada etapa do meu fluxo de trabalho, guiados por TDD e arquitetura limpa.',
       ctaWork: 'Ver meu trabalho',
       ctaContact: 'Entre em contato',
     },
