@@ -1,0 +1,28 @@
+.pattern {
+    background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+    background-size: var(--cell) var(--cell);
+}
+
+:global([data-theme="dark"]) .pattern {
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.icon {
+    position: absolute;
+    top: 22.5%;
+    left: 22.5%;
+    width: 55%;
+    height: 55%;
+    opacity: 0.08;
+    filter: grayscale(1) brightness(0);
+    user-select: none;
+}
+
+:global([data-theme="dark"]) .icon {
+    opacity: 0.04;
+    filter: grayscale(1) brightness(0) invert(1);
+}

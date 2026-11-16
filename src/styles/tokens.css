@@ -29,6 +29,12 @@
     --duration-slow: 500ms;
 
     --nav-height: 64px;
+    --content-max: 1120px;
+
+    --bg-far-opacity: 1;
+    --bg-near-opacity: 1;
+    --bg-item-opacity-dim: 1;
+    --bg-item-blur-dim: 0px;
     --section-pad-y: 64px;
     --section-pad-x: 48px;
 

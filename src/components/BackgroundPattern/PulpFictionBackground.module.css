@@ -1,0 +1,38 @@
+/* Pulp Fiction: bg1 parallaxes with a blur overlay, bg2 slides up on scroll */
+.pfWrapper {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.pfImage {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.pfImageParallax {
+    bottom: auto;
+    height: 220vh;
+    will-change: transform;
+}
+
+.pfImageContain {
+    transform: translateY(100vh);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+.pfImageBlur::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(244, 211, 94, 0.8);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    pointer-events: none;
+}

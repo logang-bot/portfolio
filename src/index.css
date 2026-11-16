@@ -71,7 +71,7 @@ p {
 
 section {
     padding: var(--section-pad-y) var(--section-pad-x);
-    max-width: 1120px;
+    max-width: var(--content-max);
     margin: 0 auto;
     width: 100%;
 }

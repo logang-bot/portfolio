@@ -10,6 +10,11 @@ export function rangeProgress(progress: number, start: number, end: number): num
   return (progress - start) / (end - start)
 }
 
+export function parallaxLayerHeight(speed: number): number {
+  const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
+  return window.innerHeight + maxScroll * speed
+}
+
 export function parallaxTransform(factor: number): string {
   return `translateY(-${window.scrollY * factor}px)`
 }

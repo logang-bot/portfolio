@@ -1,0 +1,22 @@
+/* Blade Runner: two fixed background images crossfade on scroll */
+.brWrapper {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.brImage {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.55);
+}
+
+.brImageParallax {
+    bottom: auto;
+    height: 220vh;
+    will-change: transform;
+}
+
