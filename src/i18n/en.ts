@@ -63,13 +63,13 @@ export const en: Translations = {
     items: {
       carlosV: {
         description:
-          'A native Android sales and inventory app for a real business, built to work offline.',
+          'A sales and inventory app for a real business, built with AI agents and shipped to the client\'s Telegram by an automated release pipeline.',
         summary: 'A sales and inventory app for a real business, with an automated release pipeline.',
         highlights: [
           'Customers, orders, payments, product catalogue and PDF reports',
           'Works offline: changes queue up and sync to Supabase in the background',
           'A GitHub Actions pipeline builds a signed APK and posts it, with release notes, to the client\'s Telegram channel',
-          'Built with AI agents following my own plugins',
+          'Built with AI coding agents, kept to my standards by my own plugins (see Claude Marketplace)',
         ],
       },
       partyPuzl: {
@@ -79,7 +79,6 @@ export const en: Translations = {
         highlights: [
           'Four modes in one app: truth or dare, dare challenges, trivia and quick mini-games',
           'Built with Kotlin and Jetpack Compose, using MVVM',
-          'Available on Google Play',
         ],
       },
       phoebeStore: {
@@ -94,7 +93,7 @@ export const en: Translations = {
       },
       claudeMarketplace: {
         description:
-          'My engineering conventions packaged as plugins for AI coding agents.',
+          'Open-source plugins that keep AI coding agents to my code, Android and design standards.',
         summary: 'Plugins that teach AI coding agents how I build software.',
         highlights: [
           'Four plugins with skills, hooks and review agents: code style, Android and Compose, release workflow and web design',
@@ -103,7 +102,7 @@ export const en: Translations = {
         ],
       },
     },
-    playStore: 'Play Store ↗',
+    playStore: 'Get it on Google Play ↗',
     playStoreSoon: 'Play Store — coming soon',
     github: 'GitHub ↗',
     liveDemo: 'Live Demo ↗',

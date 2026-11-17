@@ -15,7 +15,7 @@ The refresh was split into four parts, done in this order:
 | 2 | Skills section redesign | **Done** (`61b5ff2..HEAD` of 2026-11-16). Spec: `specs/2026-11-16-skills-section-redesign-design.md`. Plan: `plans/2026-11-16-skills-section-redesign.md` |
 | 3 | Hero section redesign | Not started. The headline is reopened, see below |
 | 4 | Follow-ups deferred from part 1 | Open, see below |
-| 5 | Telegram release pipeline project | Not started. The owner will provide it, then it's added to Projects and linked from the Skills DevOps card |
+| 5 | Projects update (Carlos V + release pipeline, Claude Marketplace, PartyPuzl on Google Play) | **Done** (`ca1d8aa` and the review-fix commit after it). Spec: `specs/2026-11-16-projects-update-design.md`. Plan: `plans/2026-11-16-projects-update.md`. Source zips at the repo root are untracked; their names are swapped (`store-screenshots.zip` = PartyPuzl, `screenshots.zip` = Carlos V) |
 
 **New positioning (owner, 2026-11-16):** a mobile engineer who now builds whole systems with AI
 agents (DevOps, code structure, infrastructure). Mobile stays the proven core, and agentic work is
@@ -111,6 +111,13 @@ None of these are visible bugs. Pick them up when convenient.
 - [ ] **Few lit signs at 1440px:** once the glow is counted, the margins there are too narrow for
   most signs, so they get dimmed. Decide whether that's acceptable or whether signs should get
   narrower (smaller max-width or padding).
+
+**From the Projects update reviews (minor, deferred):**
+- [ ] Clamp the modal index (`ProjectModal.tsx`): ArrowRight on a tile project sets it to -1, and a shorter theme set could leave it out of range.
+- [ ] The `<ul>` in `PreviewTiles` sits inside the card `<button>` (invalid content, noisy accessible name). Use spans, or `aria-hidden` on the card copy.
+- [ ] Phoebe Store has only dark-UI screenshots, so it doesn't match the light theme. It needs a light set from the owner.
+- [ ] Plugin tiles show package ids only. A translated plain-word line ("Code style", ...) could help recruiters.
+- [ ] Rollup names the shared vendor chunk `screenshotsFor-*.js`. Cosmetic.
 
 **Code cleanups (no visual change):**
 - [ ] Re-run the dim check after `document.fonts.ready` (or attach a ResizeObserver to the cells),

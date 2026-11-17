@@ -34,8 +34,8 @@
 .label {
     min-width: 0;
     font-size: 14px;
-    font-weight: 600;
-    color: var(--text-h);
+    font-weight: 500;
+    color: var(--text);
 }
 
 :global([data-theme="pulp-fiction"]) .tile {
@@ -46,8 +46,4 @@
 :global([data-theme="pulp-fiction"]) .iconTile {
     color: var(--accent-strong);
     border-radius: var(--radius-sm);
-}
-
-:global([data-theme="blade-runner"]) .tile {
-    border-color: var(--border-strong);
 }

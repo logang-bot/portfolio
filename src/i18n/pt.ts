@@ -63,13 +63,13 @@ export const pt: Translations = {
     items: {
       carlosV: {
         description:
-          'Um app nativo Android de vendas e estoque para um negócio real, feito para funcionar offline.',
+          'Um app de vendas e estoque para um negócio real, feito com agentes de IA e publicado no Telegram do cliente por um pipeline automatizado.',
         summary: 'Um app de vendas e estoque para um negócio real, com um pipeline de publicação automatizado.',
         highlights: [
           'Clientes, pedidos, pagamentos, catálogo de produtos e relatórios em PDF',
           'Funciona offline: as alterações entram em fila e sincronizam com o Supabase em segundo plano',
           'Um pipeline do GitHub Actions gera um APK assinado e o publica, com notas de versão, no canal do Telegram do cliente',
-          'Feito com agentes de IA seguindo meus próprios plugins',
+          'Feito com agentes de IA que seguem as regras dos meus próprios plugins (veja Claude Marketplace)',
         ],
       },
       partyPuzl: {
@@ -79,7 +79,6 @@ export const pt: Translations = {
         highlights: [
           'Quatro modos em um só app: verdade ou desafio, desafios, trivia e minijogos rápidos',
           'Feito com Kotlin e Jetpack Compose, usando MVVM',
-          'Disponível no Google Play',
         ],
       },
       phoebeStore: {
@@ -94,7 +93,7 @@ export const pt: Translations = {
       },
       claudeMarketplace: {
         description:
-          'Minhas convenções de engenharia empacotadas como plugins para agentes de IA que programam.',
+          'Plugins de código aberto que mantêm agentes de IA dentro dos meus padrões de código, Android e design.',
         summary: 'Plugins que ensinam agentes de IA a construir software do meu jeito.',
         highlights: [
           'Quatro plugins com skills, hooks e agentes de revisão: estilo de código, Android e Compose, fluxo de publicação e web design',
@@ -103,7 +102,7 @@ export const pt: Translations = {
         ],
       },
     },
-    playStore: 'Play Store ↗',
+    playStore: 'Baixe no Google Play ↗',
     playStoreSoon: 'Play Store — em breve',
     github: 'GitHub ↗',
     liveDemo: 'Demo ↗',

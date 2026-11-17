@@ -23,6 +23,7 @@ export interface Project {
   playStoreUrl?: string
   playStoreComingSoon?: boolean
   githubUrl?: string
+  pipelineUrl?: string
   liveDemoUrl?: string
 }
 
@@ -48,6 +49,8 @@ export const projects: Project[] = [
     screenshots: themedScreenshots('carlosv', 8),
     tags: ['Kotlin', 'Jetpack Compose', 'Room', 'Supabase', 'GitHub Actions'],
     githubUrl: 'https://github.com/logang-bot/EcommerceCarlosVMobileApp',
+    pipelineUrl:
+      'https://github.com/logang-bot/EcommerceCarlosVMobileApp/blob/main/.github/workflows/release.yml',
   },
   {
     id: 'partyPuzl',

@@ -83,7 +83,7 @@ export default function ProjectModal({ project, onClose }: Props) {
           <Icon name="close" size={20} />
         </button>
 
-        <div className={styles.carousel}>
+        <div className={`${styles.carousel} ${hasImages ? '' : styles.carouselCompact}`}>
           {hasImages ? (
             <>
               <img
@@ -152,7 +152,12 @@ export default function ProjectModal({ project, onClose }: Props) {
           </ul>
           <div className={styles.links}>
             {project.playStoreUrl && (
-              <a href={project.playStoreUrl} target="_blank" rel="noopener noreferrer">
+              <a
+                href={project.playStoreUrl}
+                className={styles.primaryLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {t.projects.playStore}
               </a>
             )}
@@ -162,6 +167,11 @@ export default function ProjectModal({ project, onClose }: Props) {
             {project.liveDemoUrl && (
               <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer">
                 {t.projects.liveDemo}
+              </a>
+            )}
+            {project.pipelineUrl && (
+              <a href={project.pipelineUrl} target="_blank" rel="noopener noreferrer">
+                {t.skills.links.pipeline}
               </a>
             )}
             {project.githubUrl && (

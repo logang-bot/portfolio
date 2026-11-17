@@ -108,10 +108,15 @@
   to { opacity: 1; }
 }
 
+.carouselCompact {
+  height: auto;
+  padding: 48px 0;
+}
+
 .tiles {
   width: 100%;
   max-width: 480px;
-  padding: 32px;
+  padding: 0 32px;
 }
 
 .placeholder {
@@ -159,6 +164,10 @@
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+  box-shadow: var(--shadow-sm);
 }
 
 .dot {
@@ -244,6 +253,17 @@
   color: var(--on-accent);
 }
 
+.links a.primaryLink {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+.links a.primaryLink:hover {
+  background: var(--accent-strong);
+}
+
 .linkDisabled {
   font-size: 14px;
   color: var(--text);
@@ -297,6 +317,16 @@
 }
 
 :global([data-theme="pulp-fiction"]) .links a:hover {
+  background: var(--accent-strong);
+  color: var(--on-accent);
+}
+
+:global([data-theme="blade-runner"]) .links a.primaryLink {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .links a.primaryLink {
   background: var(--accent-strong);
   color: var(--on-accent);
 }

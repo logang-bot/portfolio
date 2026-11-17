@@ -63,13 +63,13 @@ export const es: Translations = {
     items: {
       carlosV: {
         description:
-          'Una app nativa de Android de ventas e inventario para un negocio real, pensada para funcionar sin conexión.',
+          'Una app de ventas e inventario para un negocio real, hecha con agentes de IA y publicada en el Telegram del cliente con un pipeline automatizado.',
         summary: 'Una app de ventas e inventario para un negocio real, con un pipeline de publicación automatizado.',
         highlights: [
           'Clientes, pedidos, pagos, catálogo de productos y reportes en PDF',
           'Funciona sin conexión: los cambios se encolan y se sincronizan con Supabase en segundo plano',
           'Un pipeline de GitHub Actions compila un APK firmado y lo publica, con notas de versión, en el canal de Telegram del cliente',
-          'Hecha con agentes de IA siguiendo mis propios plugins',
+          'Hecha con agentes de IA que siguen las reglas de mis propios plugins (ver Claude Marketplace)',
         ],
       },
       partyPuzl: {
@@ -79,7 +79,6 @@ export const es: Translations = {
         highlights: [
           'Cuatro modos en una sola app: verdad o reto, retos, trivia y minijuegos rápidos',
           'Hecho con Kotlin y Jetpack Compose, usando MVVM',
-          'Disponible en Google Play',
         ],
       },
       phoebeStore: {
@@ -94,7 +93,7 @@ export const es: Translations = {
       },
       claudeMarketplace: {
         description:
-          'Mis convenciones de ingeniería empaquetadas como plugins para agentes de IA que programan.',
+          'Plugins de código abierto que mantienen a los agentes de IA dentro de mis estándares de código, Android y diseño.',
         summary: 'Plugins que enseñan a los agentes de IA cómo construyo software.',
         highlights: [
           'Cuatro plugins con skills, hooks y agentes de revisión: estilo de código, Android y Compose, flujo de publicación y diseño web',
@@ -103,12 +102,12 @@ export const es: Translations = {
         ],
       },
     },
-    playStore: 'Play Store ↗',
+    playStore: 'Descárgala en Google Play ↗',
     playStoreSoon: 'Play Store — próximamente',
     github: 'GitHub ↗',
     liveDemo: 'Demo ↗',
     comingSoon: 'Próximamente…',
-    filters: { all: 'Todos', mobile: 'Mobile', web: 'Web', gaming: 'Gaming', aiTooling: 'Herramientas de IA' },
+    filters: { all: 'Todos', mobile: 'Móvil', web: 'Web', gaming: 'Gaming', aiTooling: 'Herramientas de IA' },
     modal: { close: 'Cerrar', previous: 'Anterior', next: 'Siguiente', screenshot: 'Captura {n}' },
   },
   skills: {
