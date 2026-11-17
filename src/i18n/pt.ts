@@ -94,15 +94,6 @@ export const pt: Translations = {
     label: 'Habilidades',
     heading: 'Como eu construo',
     subtitle: 'De apps nativos a sistemas completos, com agentes de IA no processo.',
-    categories: {
-      languages: 'Linguagens',
-      android: 'Android',
-      ios: 'iOS',
-      architecture: 'Arquitetura',
-      crossPlatform: 'Multiplataforma',
-      backendWeb: 'Backend e Web',
-      tools: 'Ferramentas',
-    },
     pillars: {
       agentic: {
         title: 'Desenvolvimento agêntico',

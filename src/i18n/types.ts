@@ -45,15 +45,6 @@ export interface Translations {
     label: string
     heading: string
     subtitle: string
-    categories: {
-      languages: string
-      android: string
-      ios: string
-      architecture: string
-      crossPlatform: string
-      backendWeb: string
-      tools: string
-    }
     pillars: Record<PillarId, { title: string; summary: string }>
     inProgress: string
     alsoUsed: string

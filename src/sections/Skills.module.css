@@ -1,45 +1,47 @@
-/* Section wrapper */
 .section {
     position: relative;
 }
 
-/* Content sits above glow */
 .content {
     position: relative;
     z-index: 1;
 }
 
-.gridWrap {
-    position: relative;
+.subtitle {
+    margin-top: 12px;
+    font-size: 18px;
+    color: var(--text);
 }
 
 .grid {
-    position: relative;
-    z-index: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-top: 48px;
 }
 
-.group {
-    composes: glassCard from '../styles/shared.module.css';
-    padding: 24px;
+.wide {
+    grid-column: span 2;
 }
 
-.group h3 {
+.alsoUsed {
+    margin-top: 24px;
     font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 12px;
-}
-
-.list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.item {
-    font-size: 14px;
+    line-height: 1.6;
     color: var(--text);
+}
+
+.alsoUsed strong {
+    font-weight: 600;
+    color: var(--text-h);
+}
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wide {
+        grid-column: span 1;
+    }
 }

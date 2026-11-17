@@ -2,66 +2,12 @@ import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
 import { useFadeUp } from "../hooks/useFadeUp";
 import GlowBackground from "../components/GlowBackground";
-import { type Translations } from "../i18n/translations";
+import SkillPillar from "../components/SkillPillar";
+import { alsoUsed, skillPillars, type PillarId } from "../data/skills";
 import styles from "./Skills.module.css";
 import shared from "../styles/shared.module.css";
 
-type SkillCategoryKey = keyof Translations["skills"]["categories"];
-
-const skillGroups: { key: SkillCategoryKey; skills: string[] }[] = [
-  {
-    key: "languages",
-    skills: [
-      "Kotlin",
-      "Swift",
-      "JavaScript",
-      "TypeScript",
-      "C#",
-      "C++",
-      "HTML/CSS",
-    ],
-  },
-  {
-    key: "android",
-    skills: [
-      "Jetpack Compose",
-      "XML / Views",
-      "Room",
-      "Retrofit",
-      "Navigation Component",
-      "Maps API",
-      "Lottie",
-      "Firebase",
-    ],
-  },
-  {
-    key: "ios",
-    skills: ["SwiftUI", "UIKit", "CoreData", "Apple Maps API"],
-  },
-  {
-    key: "architecture",
-    skills: ["MVVM", "MVC", "Clean Architecture", "MVP", "VIPER"],
-  },
-  {
-    key: "crossPlatform",
-    skills: [".NET Android", ".NET iOS", "Xamarin", "MAUI", "React Native"],
-  },
-  {
-    key: "backendWeb",
-    skills: [
-      "Node.js",
-      "Express",
-      "React.js",
-      "MongoDB",
-      "Microsoft SQL Server",
-      "Docker",
-    ],
-  },
-  {
-    key: "tools",
-    skills: ["Android Studio", "Xcode", "Azure DevOps", "CI/CD", "Unit Testing"],
-  },
-];
+const widePillars: PillarId[] = ["agentic", "mobile"];
 
 export default function Skills() {
   const { t } = useLanguage();
@@ -74,22 +20,20 @@ export default function Skills() {
       <div className={styles.content}>
         <p className={shared.sectionLabel}>{t.skills.label}</p>
         <h2>{t.skills.heading}</h2>
-        <div className={styles.gridWrap}>
-          <div className={styles.grid}>
-            {skillGroups.map(({ key, skills }) => (
-              <div key={String(key)} className={styles.group}>
-                <h3>{t.skills.categories[key]}</h3>
-                <div className={styles.list}>
-                  {skills.map((skill) => (
-                    <span key={skill} className={styles.item}>
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+        <p className={styles.subtitle}>{t.skills.subtitle}</p>
+        <div className={styles.grid}>
+          {skillPillars.map((pillar) => (
+            <SkillPillar
+              key={pillar.id}
+              pillar={pillar}
+              lead={pillar.id === "agentic"}
+              className={widePillars.includes(pillar.id) ? styles.wide : ""}
+            />
+          ))}
         </div>
+        <p className={styles.alsoUsed}>
+          <strong>{t.skills.alsoUsed}:</strong> {alsoUsed.join(" · ")}
+        </p>
       </div>
     </section>
   );

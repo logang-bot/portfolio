@@ -94,15 +94,6 @@ export const en: Translations = {
     label: 'Skills',
     heading: 'How I build',
     subtitle: 'From native apps to whole systems, with AI agents in the loop.',
-    categories: {
-      languages: 'Languages',
-      android: 'Android',
-      ios: 'iOS',
-      architecture: 'Architecture',
-      crossPlatform: 'Cross-platform',
-      backendWeb: 'Backend & Web',
-      tools: 'Tools',
-    },
     pillars: {
       agentic: {
         title: 'Agentic development',

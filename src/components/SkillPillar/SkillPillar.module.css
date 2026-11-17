@@ -1,0 +1,92 @@
+.card {
+    composes: glassCard from '../../styles/shared.module.css';
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    padding: 24px;
+}
+
+.lead {
+    padding: 32px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.iconTile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--accent-bg);
+    color: var(--accent);
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-h);
+}
+
+.lead .title {
+    font-size: 24px;
+}
+
+.summary {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.lead .summary {
+    max-width: 60ch;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.badge {
+    margin-left: 4px;
+    font-weight: 600;
+    color: var(--accent-strong);
+}
+
+.link {
+    margin-top: auto;
+    align-self: flex-start;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    border-radius: var(--radius-sm);
+}
+
+.link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+:global([data-theme="pulp-fiction"]) .lead {
+    box-shadow: var(--shadow-lg);
+}
+
+:global([data-theme="pulp-fiction"]) .iconTile,
+:global([data-theme="pulp-fiction"]) .link {
+    color: var(--accent-strong);
+}
+
+:global([data-theme="blade-runner"]) .lead {
+    border-width: 2px;
+}
