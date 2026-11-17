@@ -50,6 +50,10 @@ export const skillPillars: SkillPillar[] = [
       { name: 'Docker', inProgress: true },
       { name: 'Kubernetes', inProgress: true },
     ],
+    link: {
+      href: 'https://github.com/logang-bot/EcommerceCarlosVMobileApp/blob/main/.github/workflows/release.yml',
+      labelKey: 'pipeline',
+    },
   },
   {
     id: 'mobile',
