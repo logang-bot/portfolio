@@ -26,7 +26,7 @@
 
 .alsoUsed {
     margin-top: 24px;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.6;
     color: var(--text);
 }
@@ -36,12 +36,18 @@
     color: var(--text-h);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     .grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .wide {
         grid-column: span 1;
+    }
+}
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
     }
 }

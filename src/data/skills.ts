@@ -30,7 +30,7 @@ export const skillPillars: SkillPillar[] = [
   {
     id: 'agentic',
     icon: 'sparkles',
-    tags: named('Claude Code', 'OpenCode', 'Skills', 'Hooks', 'Review agents'),
+    tags: named('Claude Code', 'OpenCode', 'Agent plugins'),
     link: { href: 'https://github.com/logang-bot/claude-marketplace', labelKey: 'marketplace' },
   },
   {
@@ -54,14 +54,12 @@ export const skillPillars: SkillPillar[] = [
   {
     id: 'mobile',
     icon: 'smartphone',
-    tags: named('Jetpack Compose', 'SwiftUI', 'UIKit', 'Room', 'Retrofit', 'CoreData', 'Firebase', 'Supabase'),
+    tags: named('Kotlin', 'Swift', 'Jetpack Compose', 'SwiftUI', 'UIKit', 'Room', 'Retrofit', 'CoreData', 'Firebase', 'Supabase'),
     link: { href: '#projects', labelKey: 'projects' },
   },
 ]
 
 export const alsoUsed: string[] = [
-  'Kotlin',
-  'Swift',
   'TypeScript',
   'JavaScript',
   'C#',

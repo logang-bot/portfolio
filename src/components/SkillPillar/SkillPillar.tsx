@@ -1,7 +1,7 @@
 import { useLanguage } from '../../context/LanguageContext'
 import { projects } from '../../data/projects'
 import { isExternal } from '../../data/links'
-import type { SkillTag } from '../../data/skills'
+import type { ProjectId } from '../../data/projects'
 import Icon from '../Icon'
 import shared from '../../styles/shared.module.css'
 import styles from './SkillPillar.module.css'
@@ -11,6 +11,7 @@ export default function SkillPillar({ pillar, lead = false, className = '' }: Sk
   const { t } = useLanguage()
   const copy = t.skills.pillars[pillar.id]
   const link = pillar.link
+  const [usedInBefore, usedInAfter] = t.skills.usedIn.split('{project}')
 
   return (
     <article className={`${styles.card} ${lead ? styles.lead : ''} ${className}`}>
@@ -24,7 +25,14 @@ export default function SkillPillar({ pillar, lead = false, className = '' }: Sk
       <ul className={styles.tags}>
         {pillar.tags.map((tag) => (
           <li key={tag.name} className={shared.tag}>
-            {tagLabel(tag)}
+            {tag.name}
+            {tag.provenBy && (
+              <span className={styles.proof}>
+                , {usedInBefore}
+                <strong>{projectName(tag.provenBy)}</strong>
+                {usedInAfter}
+              </span>
+            )}
             {tag.inProgress && <span className={styles.badge}>· {t.skills.inProgress}</span>}
           </li>
         ))}
@@ -43,7 +51,6 @@ export default function SkillPillar({ pillar, lead = false, className = '' }: Sk
   )
 }
 
-function tagLabel(tag: SkillTag): string {
-  const project = projects.find((p) => p.id === tag.provenBy)
-  return project ? `${tag.name} · ${project.name}` : tag.name
+function projectName(id: ProjectId): string {
+  return projects.find((p) => p.id === id)?.name ?? id
 }

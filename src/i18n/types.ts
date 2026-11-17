@@ -47,6 +47,7 @@ export interface Translations {
     subtitle: string
     pillars: Record<PillarId, { title: string; summary: string }>
     inProgress: string
+    usedIn: string
     alsoUsed: string
     links: Record<PillarLinkKey, string>
   }

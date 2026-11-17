@@ -92,19 +92,19 @@ export const en: Translations = {
   },
   skills: {
     label: 'Skills',
-    heading: 'How I build',
-    subtitle: 'From native apps to whole systems, with AI agents in the loop.',
+    heading: 'How I build with AI agents',
+    subtitle: 'Native Android and iOS at the core. Now I build whole systems, from code structure to release pipelines.',
     pillars: {
       agentic: {
         title: 'Agentic development',
-        summary: 'I build software with AI agents and write my own plugins to keep them to my standards.',
+        summary: 'I build software with AI agents and write my own plugins (skills, hooks and review agents) to keep them to my standards.',
       },
       architecture: {
         title: 'Architecture',
         summary: 'I pick the pattern that fits the app and its team.',
       },
       devopsInfra: {
-        title: 'DevOps & Infrastructure',
+        title: 'DevOps & Infra',
         summary: 'Pipelines that build and ship my apps; containers and clusters in progress.',
       },
       mobile: {
@@ -113,10 +113,11 @@ export const en: Translations = {
       },
     },
     inProgress: 'in progress',
+    usedIn: 'used in {project}',
     alsoUsed: 'Also used',
     links: {
-      marketplace: 'My plugin marketplace ↗',
-      projects: 'See projects',
+      marketplace: 'My AI agent plugins on GitHub ↗',
+      projects: 'See the apps I\'ve built',
     },
   },
   contact: {

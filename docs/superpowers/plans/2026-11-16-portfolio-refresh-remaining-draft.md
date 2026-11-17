@@ -12,7 +12,7 @@ The refresh was split into four parts, done in this order:
 | # | Part | State |
 |---|---|---|
 | 1 | Themed parallax backgrounds (Blade Runner + Pulp Fiction) | **Done**, pushed (`06e0bbd..b796082`). Spec: `specs/2026-11-16-themed-parallax-backgrounds-design.md`. Plan: `plans/2026-11-16-themed-parallax-backgrounds.md` |
-| 2 | Skills section redesign | **Design approved.** Spec: `specs/2026-11-16-skills-section-redesign-design.md`. Task plan next |
+| 2 | Skills section redesign | **Done** (`61b5ff2..HEAD` of 2026-11-16). Spec: `specs/2026-11-16-skills-section-redesign-design.md`. Plan: `plans/2026-11-16-skills-section-redesign.md` |
 | 3 | Hero section redesign | Not started. The headline is reopened, see below |
 | 4 | Follow-ups deferred from part 1 | Open, see below |
 | 5 | Telegram release pipeline project | Not started. The owner will provide it, then it's added to Projects and linked from the Skills DevOps card |
@@ -79,6 +79,9 @@ auto-fill grid (`minmax(200px, 1fr)`). Each card is a heading plus a plain verti
 - Illustration column: one 768×1376 illustration per theme (`public/img_*_illustration*.webp`).
   They are faceless on purpose and share the same pose and canvas.
 - Below 900px wide it stacks into one column.
+
+**Raised by the Skills review, for the hero:** the hero subtitle names .NET MAUI as a core skill,
+but Skills now lists it under "Also used". Align the two.
 
 **Fixed by DESIGN.md unless the owner reopens them:**
 - The headline states the role. **Reopened:** the current headline is mobile-only and has to

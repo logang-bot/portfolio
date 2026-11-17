@@ -92,19 +92,19 @@ export const es: Translations = {
   },
   skills: {
     label: 'Habilidades',
-    heading: 'Cómo construyo',
-    subtitle: 'De apps nativas a sistemas completos, con agentes de IA en el proceso.',
+    heading: 'Cómo construyo con agentes de IA',
+    subtitle: 'Android e iOS nativos como base. Ahora construyo sistemas completos, desde la arquitectura hasta los pipelines de publicación.',
     pillars: {
       agentic: {
         title: 'Desarrollo agéntico',
-        summary: 'Construyo software con agentes de IA y escribo mis propios plugins para que sigan mis estándares.',
+        summary: 'Construyo software con agentes de IA y escribo mis propios plugins (skills, hooks y agentes de revisión) para que sigan mis estándares.',
       },
       architecture: {
         title: 'Arquitectura',
         summary: 'Elijo el patrón que encaja con cada app y su equipo.',
       },
       devopsInfra: {
-        title: 'DevOps e infraestructura',
+        title: 'DevOps e infra',
         summary: 'Pipelines que compilan y publican mis apps; contenedores y clústeres en progreso.',
       },
       mobile: {
@@ -113,10 +113,11 @@ export const es: Translations = {
       },
     },
     inProgress: 'en progreso',
+    usedIn: 'usado en {project}',
     alsoUsed: 'También he usado',
     links: {
-      marketplace: 'Mi marketplace de plugins ↗',
-      projects: 'Ver proyectos',
+      marketplace: 'Mis plugins para agentes de IA en GitHub ↗',
+      projects: 'Ver las apps que he creado',
     },
   },
   contact: {
