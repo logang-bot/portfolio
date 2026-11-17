@@ -44,6 +44,12 @@ export const pt: Translations = {
       'Minha base são apps nativos Android e iOS, com Kotlin, Jetpack Compose e Swift. Com agentes de IA construo também o resto do sistema: arquitetura, testes e pipelines de publicação.',
     ctaWork: 'Ver meu trabalho',
     ctaContact: 'Entre em contato',
+    proof: [
+      '4+ anos de experiência',
+      'Staff Engineer na Jalasoft',
+      'Publicado no Google Play',
+    ],
+    socialLabel: 'Perfil no {name}',
   },
   about: {
     label: 'Sobre mim',

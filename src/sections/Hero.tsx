@@ -3,6 +3,7 @@ import { useTheme } from "../context/ThemeContext";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { greetingConnectors, greetings } from "../data/greetings";
 import { heroIllustrations } from "../data/heroIllustrations";
+import HeroProof from "../components/HeroProof";
 import styles from "./Hero.module.css";
 import shared from "../styles/shared.module.css";
 
@@ -41,6 +42,7 @@ export default function Hero() {
             {t.hero.ctaContact}
           </a>
         </div>
+        <HeroProof />
       </div>
       <img
         src={heroIllustrations[theme]}

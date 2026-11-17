@@ -30,6 +30,8 @@ export interface Translations {
     subtitle: string
     ctaWork: string
     ctaContact: string
+    proof: string[]
+    socialLabel: string
   }
   about: { label: string; heading: string; p1: string; highlights: string[]; p3: string; resume: string }
   projects: {
