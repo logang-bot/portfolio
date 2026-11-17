@@ -1,0 +1,29 @@
+.lamp {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--neon-1) 18%, transparent), transparent 70%);
+}
+
+.tube {
+    position: absolute;
+    right: 16px;
+    bottom: 4px;
+    left: 16px;
+    height: 3px;
+    border-radius: var(--radius-pill);
+    background: var(--neon-1);
+    box-shadow:
+        0 0 6px var(--neon-1),
+        0 0 16px var(--neon-1);
+}
+
+.powerOn {
+    animation: var(--duration-slow) linear forwards;
+    animation-name: global(neon-power-on);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .powerOn {
+        animation: none;
+    }
+}

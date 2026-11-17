@@ -61,16 +61,8 @@
 }
 
 .lit {
-    animation: powerOn var(--duration-slow) linear forwards;
-}
-
-@keyframes powerOn {
-    0% { opacity: 0; }
-    20% { opacity: 1; }
-    35% { opacity: 0.3; }
-    55% { opacity: 1; }
-    70% { opacity: 0.5; }
-    100% { opacity: 1; }
+    animation: var(--duration-slow) linear forwards;
+    animation-name: global(neon-power-on);
 }
 
 /* Behind the text a sign stays steady: no flicker next to the copy */
