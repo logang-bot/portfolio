@@ -1,3 +1,4 @@
+import type { PillarId, PillarLinkKey } from '../data/skills'
 import type { ProjectId } from '../data/projects'
 
 export type Language = 'en' | 'es' | 'pt'
@@ -43,6 +44,7 @@ export interface Translations {
   skills: {
     label: string
     heading: string
+    subtitle: string
     categories: {
       languages: string
       android: string
@@ -52,6 +54,10 @@ export interface Translations {
       backendWeb: string
       tools: string
     }
+    pillars: Record<PillarId, { title: string; summary: string }>
+    inProgress: string
+    alsoUsed: string
+    links: Record<PillarLinkKey, string>
   }
   contact: { label: string; heading: string; description: string; ctaEmail: string }
   footer: { rights: string; backToTop: string }
