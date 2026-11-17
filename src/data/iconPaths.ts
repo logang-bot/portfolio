@@ -20,6 +20,10 @@ export type IconName =
   | 'glasses'
   | 'car'
   | 'motorbike'
+  | 'sparkles'
+  | 'layers'
+  | 'workflow'
+  | 'smartphone'
 
 export type IconShape =
   | { kind: 'path'; d: string }
@@ -117,5 +121,26 @@ export const iconShapes: Record<IconName, IconShape[]> = {
     { kind: 'path', d: 'M8 17h3a1 1 0 0 0 1-1 6 6 0 0 1 6-6 1 1 0 0 0 1-1v-.75A5 5 0 0 0 17 5' },
     { kind: 'circle', cx: 19, cy: 17, r: 3 },
     { kind: 'circle', cx: 5, cy: 17, r: 3 },
+  ],
+  sparkles: [
+    { kind: 'path', d: 'M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z' },
+    { kind: 'path', d: 'M20 3v4' },
+    { kind: 'path', d: 'M22 5h-4' },
+    { kind: 'path', d: 'M4 17v2' },
+    { kind: 'path', d: 'M5 18H3' },
+  ],
+  layers: [
+    { kind: 'path', d: 'M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z' },
+    { kind: 'path', d: 'M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12' },
+    { kind: 'path', d: 'M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17' },
+  ],
+  workflow: [
+    { kind: 'rect', x: 3, y: 3, width: 8, height: 8, rx: 2 },
+    { kind: 'path', d: 'M7 11v4a2 2 0 0 0 2 2h4' },
+    { kind: 'rect', x: 13, y: 13, width: 8, height: 8, rx: 2 },
+  ],
+  smartphone: [
+    { kind: 'rect', x: 5, y: 2, width: 14, height: 20, rx: 2 },
+    { kind: 'path', d: 'M12 18h.01' },
   ],
 }
