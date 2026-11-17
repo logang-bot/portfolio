@@ -43,7 +43,7 @@ bg 5.05:1, white on gradient stops 5.36/6.29:1; dark accent on bg 10.44:1, dark 
 - `.btnPrimary` in `src/styles/shared.module.css` uses `background: var(--accent-gradient, var(--accent))`.
   BR and PF already override `.btnPrimary` with solid `var(--accent)`/`--accent-strong`, so check
   that the override still wins.
-- `src/components/GlowBackground.module.css`: the 4 hard-coded violet blobs become cyan
+- `src/components/GlowBackground.module.css`: the 6 hard-coded violet blob values (3 light, 3 dark) become cyan
   (`#0e7490` / `#22d3ee`) and indigo (`#4f46e5` / `#818cf8`) at the same alphas.
 - `DESIGN.md`: the personality line ("violet main colour") and the `palette:` token line get the new
   values plus an indigo secondary. Hero notes: the headline now states "mobile + agentic". The
