@@ -15,8 +15,8 @@ The refresh was split into four parts, done in this order:
 | 2 | Skills section redesign | **Done** (`61b5ff2..HEAD` of 2026-11-16). Spec: `specs/2026-11-16-skills-section-redesign-design.md`. Plan: `plans/2026-11-16-skills-section-redesign.md` |
 | 3 | Hero section redesign | **Done** (`aa68234..HEAD` of 2026-11-16). Cyan accent + gradient CTA, agentic headline, proof row. Spec: `specs/2026-11-16-hero-redesign-design.md`. Plan: `plans/2026-11-16-hero-redesign.md` |
 | 4 | Follow-ups deferred from part 1 | Open, see below |
-| 6 | Navbar liquid-glass hover bubble (iOS 26 style) | Not started. Needs a brainstorm, see below |
 | 5 | Projects update (Carlos V + release pipeline, Claude Marketplace, PartyPuzl on Google Play) | **Done** (`ca1d8aa` and the review-fix commit after it). Spec: `specs/2026-11-16-projects-update-design.md`. Plan: `plans/2026-11-16-projects-update.md`. Source zips at the repo root are untracked; their names are swapped (`store-screenshots.zip` = PartyPuzl, `screenshots.zip` = Carlos V) |
+| 6 | Navbar liquid-glass hover bubble (iOS 26 style) | Not started. Needs a brainstorm, see below |
 
 **New positioning (owner, 2026-11-16):** a mobile engineer who now builds whole systems with AI
 agents (DevOps, code structure, infrastructure). Mobile stays the proven core, and agentic work is
@@ -81,12 +81,12 @@ auto-fill grid (`minmax(200px, 1fr)`). Each card is a heading plus a plain verti
   They are faceless on purpose and share the same pose and canvas.
 - Below 900px wide it stacks into one column.
 
-**Raised by the Skills review, for the hero:** the hero subtitle names .NET MAUI as a core skill,
-but Skills now lists it under "Also used". Align the two.
+**Raised by the Skills review, for the hero:** ~~the hero subtitle names .NET MAUI as a core
+skill~~. Done: the new subtitle and the meta/og descriptions no longer name it.
 
 **Fixed by DESIGN.md unless the owner reopens them:**
-- The headline states the role. **Reopened:** the current headline is mobile-only and has to
-  reflect "mobile + agentic systems". Update the matching note in `DESIGN.md` as well.
+- The headline states the role. ~~Reopened~~ Done: it now reads "Mobile engineer building whole
+  systems with AI agents", and `DESIGN.md` is updated.
 - Only the greeting line animates.
 - The primary CTA is the most prominent element.
 
