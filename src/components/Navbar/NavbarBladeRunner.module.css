@@ -1,0 +1,22 @@
+:global([data-theme="blade-runner"]) .langSwitcher,
+:global([data-theme="blade-runner"]) .hamburger {
+    border-color: var(--accent);
+}
+
+:global([data-theme="blade-runner"]) .langBtn {
+    color: var(--accent);
+}
+
+:global([data-theme="blade-runner"]) .langBtn:hover {
+    color: var(--on-accent-hover);
+}
+
+:global([data-theme="blade-runner"]) .langBtnActive,
+:global([data-theme="blade-runner"]) .langBtnActive:hover {
+    background: var(--accent-bg);
+    color: var(--text-h);
+}
+
+:global([data-theme="blade-runner"]) .hamburger span {
+    background: var(--accent);
+}

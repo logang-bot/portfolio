@@ -1,0 +1,47 @@
+:global([data-theme="pulp-fiction"]) .logoName,
+:global([data-theme="pulp-fiction"]) .links a,
+:global([data-theme="pulp-fiction"]) .links a:hover,
+:global([data-theme="pulp-fiction"]) .langBtn,
+:global([data-theme="pulp-fiction"]) .langBtn:hover {
+    color: var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .langSwitcher,
+:global([data-theme="pulp-fiction"]) .hamburger {
+    border: 2.5px solid var(--ink);
+    border-radius: var(--radius-sm);
+    box-shadow: 3px 3px 0 var(--on-accent);
+    transition:
+        transform var(--duration-fast) ease-out,
+        box-shadow var(--duration-fast) ease-out;
+}
+
+:global([data-theme="pulp-fiction"]) .langSwitcher {
+    padding: 4px;
+}
+
+:global([data-theme="pulp-fiction"]) .langBtn {
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    border-radius: 0;
+}
+
+:global([data-theme="pulp-fiction"]) .langBtnActive,
+:global([data-theme="pulp-fiction"]) .langBtnActive:hover {
+    background: var(--on-accent);
+    color: var(--ink);
+}
+
+:global([data-theme="pulp-fiction"]) .hamburger span {
+    background: var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .hamburger:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .hamburger:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+}

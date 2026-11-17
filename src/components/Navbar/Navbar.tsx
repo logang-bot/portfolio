@@ -1,18 +1,25 @@
 import { useCallback, useRef, useState } from "react";
-import { useLanguage } from "../context/LanguageContext";
-import { useTheme } from "../context/ThemeContext";
-import { useDismissOnOutside } from "../hooks/useDismissOnOutside";
-import { type Language } from "../i18n/translations";
-import Icon from "./Icon";
-import EggThemeMenu from "./EggThemeMenu";
-import { fillTemplate } from "../utils/fillTemplate";
-import styles from "./Navbar.module.css";
+import { useLanguage } from "../../context/LanguageContext";
+import { useTheme } from "../../context/ThemeContext";
+import { useDismissOnOutside } from "../../hooks/useDismissOnOutside";
+import { type Language } from "../../i18n/translations";
+import Icon from "../Icon";
+import EggThemeMenu from "../EggThemeMenu";
+import { fillTemplate } from "../../utils/fillTemplate";
+import { navSectionIds } from "../../data/navLinks";
+import base from "./Navbar.module.css";
+import mobile from "./NavbarMobile.module.css";
+import bladeRunner from "./NavbarBladeRunner.module.css";
+import pulpFiction from "./NavbarPulpFiction.module.css";
+import { mergeCssModules } from "../../utils/mergeCssModules";
 
 const LANGUAGES: { code: Language; label: string }[] = [
   { code: "en", label: "EN" },
   { code: "es", label: "ES" },
   { code: "pt", label: "PT" },
 ];
+
+const styles = mergeCssModules(base, mobile, bladeRunner, pulpFiction);
 
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
@@ -48,18 +55,11 @@ export default function Navbar() {
         className={`${styles.right} ${menuOpen ? styles.rightOpen : ""}`}
       >
         <ul className={styles.links}>
-          <li>
-            <a href="#about" onClick={closeMenu}>{t.nav.about}</a>
-          </li>
-          <li>
-            <a href="#projects" onClick={closeMenu}>{t.nav.projects}</a>
-          </li>
-          <li>
-            <a href="#skills" onClick={closeMenu}>{t.nav.skills}</a>
-          </li>
-          <li>
-            <a href="#contact" onClick={closeMenu}>{t.nav.contact}</a>
-          </li>
+          {navSectionIds.map((id) => (
+            <li key={id}>
+              <a href={`#${id}`} onClick={closeMenu}>{t.nav[id]}</a>
+            </li>
+          ))}
         </ul>
         <div className={styles.langSwitcher}>
           {LANGUAGES.map(({ code, label }) => (
