@@ -112,6 +112,11 @@ None of these are visible bugs. Pick them up when convenient.
   most signs, so they get dimmed. Decide whether that's acceptable or whether signs should get
   narrower (smaller max-width or padding).
 
+**Site icon (owner request, 2026-11-16):**
+- [ ] Replace the lightning-bolt favicon with the owner's initials. Files: `public/favicon.svg` and
+  `public/apple-touch-icon.png` (linked from `index.html`). Use Inter and the violet accent, readable
+  at 16px. Check the browser tab in light and dark.
+
 **From the Projects update reviews (minor, deferred):**
 - [ ] Clamp the modal index (`ProjectModal.tsx`): ArrowRight on a tile project sets it to -1, and a shorter theme set could leave it out of range.
 - [ ] The `<ul>` in `PreviewTiles` sits inside the card `<button>` (invalid content, noisy accessible name). Use spans, or `aria-hidden` on the card copy.
