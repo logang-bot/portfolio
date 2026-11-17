@@ -15,11 +15,23 @@ export function useMarkerPosition({ targetId, containerRef, markerRef }: MarkerP
     const marker = markerRef.current
     if (!container || !marker) return
     const place = () => placeMarker(marker, findLink(container, targetId))
-    if (targetId && wasHidden.current) snapIntoPlace(marker, place)
-    else place()
+    const appearing = targetId !== null && wasHidden.current
     wasHidden.current = targetId === null
-    return observeResize(container, place)
+    return trackPlacement({ container, marker, place, appearing })
   }, [targetId, containerRef, markerRef])
+}
+
+interface PlacementTracking {
+  container: HTMLElement
+  marker: HTMLElement
+  place: () => void
+  appearing: boolean
+}
+
+function trackPlacement({ container, marker, place, appearing }: PlacementTracking): () => void {
+  if (appearing) snapIntoPlace(marker, place)
+  else place()
+  return observeResize(container, place)
 }
 
 function findLink(container: HTMLElement, id: NavSectionId | null): HTMLElement | null {
@@ -35,7 +47,8 @@ function placeMarker(marker: HTMLElement, link: HTMLElement | null): void {
 function snapIntoPlace(marker: HTMLElement, place: () => void): void {
   marker.dataset.snap = ''
   place()
-  requestAnimationFrame(() => delete marker.dataset.snap)
+  void marker.getBoundingClientRect()
+  delete marker.dataset.snap
 }
 
 function observeResize(container: HTMLElement, onResize: () => void): () => void {
