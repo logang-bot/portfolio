@@ -34,10 +34,14 @@ export const en: Translations = {
     },
   },
   hero: {
-    headline: 'Software engineer building native Android and iOS apps',
+    headline: {
+      before: 'Mobile engineer building whole systems with ',
+      highlight: 'AI agents',
+      after: '',
+    },
     name: 'Alvaro Choque',
     subtitle:
-      'I build Android and iOS apps with Kotlin, Jetpack Compose, Swift and .NET MAUI. I use AI coding agents at every step, with automated tests and a clear code structure keeping the work reliable.',
+      'Native Android and iOS apps are my core, built with Kotlin, Jetpack Compose and Swift. With AI agents I build the rest of the system too: code structure, tests and release pipelines.',
     ctaWork: 'View my work',
     ctaContact: 'Get in touch',
   },

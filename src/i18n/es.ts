@@ -34,10 +34,14 @@ export const es: Translations = {
     },
   },
   hero: {
-    headline: 'Ingeniero de software que crea apps nativas para Android e iOS',
+    headline: {
+      before: 'Ingeniero móvil que crea sistemas completos con ',
+      highlight: 'agentes de IA',
+      after: '',
+    },
     name: 'Alvaro Choque',
     subtitle:
-      'Desarrollo apps Android e iOS con Kotlin, Jetpack Compose, Swift y .NET MAUI. Uso agentes de IA en cada paso, y las pruebas automáticas y una arquitectura clara mantienen el trabajo fiable.',
+      'Mi base son las apps nativas Android e iOS, con Kotlin, Jetpack Compose y Swift. Con agentes de IA construyo también el resto del sistema: arquitectura, pruebas y pipelines de publicación.',
     ctaWork: 'Ver mi trabajo',
     ctaContact: 'Contáctame',
   },

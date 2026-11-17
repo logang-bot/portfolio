@@ -68,6 +68,7 @@ relax: SHADOW-03
   `--bg-item-opacity-dim`, `--bg-item-blur-dim`.
 - Neon signs power on once (500ms flicker) when first scrolled into view, never in a loop, and
   not at all when dimmed or under reduced motion.
-- Headline states the role ("Software engineer building native Android and iOS apps"). Only the
-  greeting line animates.
+- Headline states the role and the agentic edge ("Mobile engineer building whole systems with AI
+  agents"); the key phrase carries the accent gradient in light/dark and the solid accent in
+  BR/PF. Only the greeting line animates.
 - Hero illustrations are faceless on purpose.

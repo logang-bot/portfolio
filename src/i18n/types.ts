@@ -24,7 +24,13 @@ export interface Translations {
       toDark: string
     }
   }
-  hero: { headline: string; name: string; subtitle: string; ctaWork: string; ctaContact: string }
+  hero: {
+    headline: { before: string; highlight: string; after: string }
+    name: string
+    subtitle: string
+    ctaWork: string
+    ctaContact: string
+  }
   about: { label: string; heading: string; p1: string; highlights: string[]; p3: string; resume: string }
   projects: {
     label: string

@@ -47,6 +47,20 @@
     text-wrap: balance;
 }
 
+.highlight {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+}
+
+:global([data-theme="blade-runner"]) .highlight,
+:global([data-theme="pulp-fiction"]) .highlight {
+    background: none;
+    color: var(--accent-strong);
+}
+
 .subtitle {
     font-size: 20px;
     max-width: 520px;

@@ -2,6 +2,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { greetingConnectors, greetings } from "../data/greetings";
+import { heroIllustrations } from "../data/heroIllustrations";
 import styles from "./Hero.module.css";
 import shared from "../styles/shared.module.css";
 
@@ -10,6 +11,7 @@ export default function Hero() {
   const { theme } = useTheme();
   const greeting = useTypewriter(lang);
   const introSuffix = `${greetingConnectors[lang]} ${t.hero.name}`;
+  const { before, highlight, after } = t.hero.headline;
 
   return (
     <section id="hero" className={styles.hero}>
@@ -25,7 +27,11 @@ export default function Hero() {
             {introSuffix}
           </span>
         </p>
-        <h1 className={styles.headline}>{t.hero.headline}</h1>
+        <h1 className={styles.headline}>
+          {before}
+          <span className={styles.highlight}>{highlight}</span>
+          {after}
+        </h1>
         <p className={styles.subtitle}>{t.hero.subtitle}</p>
         <div className={styles.cta}>
           <a href="#projects" className={`${shared.btn} ${shared.btnPrimary}`}>
@@ -37,15 +43,7 @@ export default function Hero() {
         </div>
       </div>
       <img
-        src={
-          theme === "blade-runner"
-            ? "/img_bladerunner_illustration.webp"
-            : theme === "pulp-fiction"
-              ? "/img_pulpfiction_illustration.webp"
-              : theme === "dark"
-                ? "/img_hero_illustration_dark.webp"
-                : "/img_hero_illustration_light.webp"
-        }
+        src={heroIllustrations[theme]}
         alt=""
         aria-hidden="true"
         width={768}
