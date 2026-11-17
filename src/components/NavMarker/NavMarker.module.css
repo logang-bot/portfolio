@@ -1,0 +1,50 @@
+.marker {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 0;
+    width: calc(var(--marker-w, 0px) + 32px);
+    height: 36px;
+    translate: calc(var(--marker-x, 0px) - 16px) -50%;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        translate var(--duration-base) ease-out,
+        width var(--duration-base) ease-out,
+        opacity var(--duration-fast) ease-out;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+:global([data-theme="light"]) .inner,
+:global([data-theme="dark"]) .inner {
+    border: 1px solid var(--glass-edge);
+    border-radius: var(--radius-pill);
+    background: var(--glass-fill);
+    box-shadow:
+        inset 0 1px 0 var(--glass-highlight),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+        var(--shadow-sm);
+    -webkit-backdrop-filter: blur(8px) saturate(180%);
+    backdrop-filter: blur(8px) saturate(180%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marker {
+        transition: opacity var(--duration-fast) ease-out;
+    }
+}
+
+@media (max-width: 768px) {
+    .marker {
+        display: none;
+    }
+}

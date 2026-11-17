@@ -6,7 +6,7 @@ import { type Language } from "../../i18n/translations";
 import Icon from "../Icon";
 import EggThemeMenu from "../EggThemeMenu";
 import { fillTemplate } from "../../utils/fillTemplate";
-import { navSectionIds } from "../../data/navLinks";
+import NavLinks from "../NavLinks";
 import base from "./Navbar.module.css";
 import mobile from "./NavbarMobile.module.css";
 import bladeRunner from "./NavbarBladeRunner.module.css";
@@ -54,13 +54,7 @@ export default function Navbar() {
         id="navbar-menu"
         className={`${styles.right} ${menuOpen ? styles.rightOpen : ""}`}
       >
-        <ul className={styles.links}>
-          {navSectionIds.map((id) => (
-            <li key={id}>
-              <a href={`#${id}`} onClick={closeMenu}>{t.nav[id]}</a>
-            </li>
-          ))}
-        </ul>
+        <NavLinks onNavigate={closeMenu} />
         <div className={styles.langSwitcher}>
           {LANGUAGES.map(({ code, label }) => (
             <button

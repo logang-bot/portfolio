@@ -1,0 +1,63 @@
+.wrap {
+    position: relative;
+}
+
+.links {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    font-size: 14px;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: color var(--duration-fast);
+}
+
+.link:hover,
+.link[aria-current="true"] {
+    color: var(--text-h);
+}
+
+.link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+}
+
+:global([data-theme="pulp-fiction"]) .link,
+:global([data-theme="pulp-fiction"]) .link:hover {
+    color: var(--on-accent);
+}
+
+:global([data-theme="pulp-fiction"]) .link[aria-current="true"] {
+    color: var(--paper);
+}
+
+@media (max-width: 768px) {
+    .links {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .link {
+        display: block;
+        padding: 4px 0;
+        font-size: 16px;
+    }
+
+    :global([data-theme="light"]) .link[aria-current="true"],
+    :global([data-theme="dark"]) .link[aria-current="true"] {
+        margin-left: -12px;
+        padding: 4px 12px;
+        border: 1px solid var(--glass-edge);
+        border-radius: var(--radius-pill);
+        background: var(--glass-fill);
+        box-shadow: inset 0 1px 0 var(--glass-highlight), var(--shadow-sm);
+    }
+}

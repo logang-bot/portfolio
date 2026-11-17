@@ -1,6 +1,4 @@
 :global([data-theme="pulp-fiction"]) .logoName,
-:global([data-theme="pulp-fiction"]) .links a,
-:global([data-theme="pulp-fiction"]) .links a:hover,
 :global([data-theme="pulp-fiction"]) .langBtn,
 :global([data-theme="pulp-fiction"]) .langBtn:hover {
     color: var(--on-accent);
