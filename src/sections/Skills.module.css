@@ -31,6 +31,10 @@
     color: var(--text);
 }
 
+.term {
+    white-space: nowrap;
+}
+
 .alsoUsed strong {
     font-weight: 600;
     color: var(--text-h);

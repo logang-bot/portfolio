@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
 import { useFadeUp } from "../hooks/useFadeUp";
@@ -32,7 +33,15 @@ export default function Skills() {
           ))}
         </div>
         <p className={styles.alsoUsed}>
-          <strong>{t.skills.alsoUsed}:</strong> {alsoUsed.join(" · ")}
+          <strong>{t.skills.alsoUsed}:</strong>{" "}
+          {alsoUsed.map((term, i) => (
+            <Fragment key={term}>
+              {i > 0 && " · "}
+              <span data-term className={styles.term}>
+                {term}
+              </span>
+            </Fragment>
+          ))}
         </p>
       </div>
     </section>
