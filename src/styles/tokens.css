@@ -16,6 +16,7 @@
     --nav-menu-bg: rgba(250, 248, 245, 0.95);
     --nav-border: rgba(33, 37, 41, 0.2);
     --glass-fill: rgba(255, 255, 255, 0.25);
+    --nav-bg-lens: rgba(250, 248, 245, 0.7);
     --glass-edge: rgba(255, 255, 255, 0.5);
     --glass-highlight: rgba(255, 255, 255, 0.6);
 
@@ -63,6 +64,7 @@
     --nav-menu-bg: rgba(15, 17, 23, 0.95);
     --nav-border: rgba(255, 255, 255, 0.06);
     --glass-fill: rgba(255, 255, 255, 0.08);
+    --nav-bg-lens: rgba(15, 17, 23, 0.7);
     --glass-edge: rgba(255, 255, 255, 0.14);
     --glass-highlight: rgba(255, 255, 255, 0.18);
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);

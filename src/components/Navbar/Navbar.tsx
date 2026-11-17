@@ -7,6 +7,7 @@ import Icon from "../Icon";
 import EggThemeMenu from "../EggThemeMenu";
 import { fillTemplate } from "../../utils/fillTemplate";
 import NavLinks from "../NavLinks";
+import LiquidGlassFilter from "../LiquidGlassFilter";
 import base from "./Navbar.module.css";
 import mobile from "./NavbarMobile.module.css";
 import bladeRunner from "./NavbarBladeRunner.module.css";
@@ -32,6 +33,7 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar} ref={menuRef}>
+      <LiquidGlassFilter />
       <div className={styles.logo}>
         <EggThemeMenu />
         <a href="#hero" className={styles.logoName} onClick={closeMenu}>

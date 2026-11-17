@@ -37,6 +37,12 @@
     backdrop-filter: blur(8px) saturate(180%);
 }
 
+:global(html[data-glass="lens"][data-theme="light"]) .inner,
+:global(html[data-glass="lens"][data-theme="dark"]) .inner {
+    -webkit-backdrop-filter: url(#liquid-glass) blur(2px) saturate(180%);
+    backdrop-filter: url(#liquid-glass) blur(2px) saturate(180%);
+}
+
 @media (prefers-reduced-motion: reduce) {
     .marker {
         transition: opacity var(--duration-fast) ease-out;

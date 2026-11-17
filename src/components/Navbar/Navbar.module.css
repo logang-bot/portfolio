@@ -163,3 +163,10 @@
 .hamburgerOpen span:nth-child(3) {
     transform: translateY(-6px) rotate(-45deg);
 }
+
+:global(html[data-glass="lens"][data-theme="light"]) .navbar::before,
+:global(html[data-glass="lens"][data-theme="dark"]) .navbar::before {
+    background: var(--nav-bg-lens);
+    -webkit-backdrop-filter: blur(4px) saturate(160%);
+    backdrop-filter: blur(4px) saturate(160%);
+}
