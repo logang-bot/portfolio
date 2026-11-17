@@ -102,3 +102,15 @@ convention. All strings in en/es/pt. Commit on `main` as `logang-bot`, no traile
   section and a project modal for leftover violet.
 - `/web-design:design-audit` on the changed files.
 - Update the roadmap: Part 3 done, navbar liquid-glass added as a new part, favicon note → cyan.
+
+## Revisions after the design and UX review (2026-11-16)
+- Light accent and gradient start darkened from `#0e7490` to `#0e6a84`. Light background tiles
+  sit behind text undimmed, and `#0e7490` dropped to 4.22:1 on a tile. `#0e6a84` gives 5.80:1 on
+  the background, 4.85:1 on a tile, and 6.15:1 for white text.
+- Hero spacing now separates the groups: greeting→headline 8px, headline→subtitle 24px, 32px
+  before the CTAs, and 32px before the proof row.
+- Copy fixes:
+  - "4+ years of experience".
+  - "An app on Google Play" / "Una app en Google Play" / "Um app no Google Play". The earlier
+    "Publicado…" had no noun.
+  - EN subtitle "architecture" instead of "code structure", to match ES/PT.

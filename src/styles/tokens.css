@@ -5,12 +5,12 @@
     --border: #e5e7eb;
     --border-strong: #9ca3af;
     --code-bg: #f9fafb;
-    --accent: #0e7490;
-    --accent-strong: #0e7490;
+    --accent: #0e6a84;
+    --accent-strong: #0e6a84;
     --on-accent: #ffffff;
-    --accent-bg: rgba(14, 116, 144, 0.08);
-    --accent-border: rgba(14, 116, 144, 0.3);
-    --accent-gradient: linear-gradient(135deg, #0e7490, #4f46e5);
+    --accent-bg: rgba(14, 106, 132, 0.08);
+    --accent-border: rgba(14, 106, 132, 0.3);
+    --accent-gradient: linear-gradient(135deg, #0e6a84, #4f46e5);
     --ink: #1a0f08;
     --nav-bg: rgba(250, 248, 245, 0.6);
     --nav-menu-bg: rgba(250, 248, 245, 0.95);

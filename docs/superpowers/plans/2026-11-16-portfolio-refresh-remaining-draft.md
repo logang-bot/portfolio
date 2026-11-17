@@ -13,8 +13,9 @@ The refresh was split into four parts, done in this order:
 |---|---|---|
 | 1 | Themed parallax backgrounds (Blade Runner + Pulp Fiction) | **Done**, pushed (`06e0bbd..b796082`). Spec: `specs/2026-11-16-themed-parallax-backgrounds-design.md`. Plan: `plans/2026-11-16-themed-parallax-backgrounds.md` |
 | 2 | Skills section redesign | **Done** (`61b5ff2..HEAD` of 2026-11-16). Spec: `specs/2026-11-16-skills-section-redesign-design.md`. Plan: `plans/2026-11-16-skills-section-redesign.md` |
-| 3 | Hero section redesign | Not started. The headline is reopened, see below |
+| 3 | Hero section redesign | **Done** (`aa68234..HEAD` of 2026-11-16). Cyan accent + gradient CTA, agentic headline, proof row. Spec: `specs/2026-11-16-hero-redesign-design.md`. Plan: `plans/2026-11-16-hero-redesign.md` |
 | 4 | Follow-ups deferred from part 1 | Open, see below |
+| 6 | Navbar liquid-glass hover bubble (iOS 26 style) | Not started. Needs a brainstorm, see below |
 | 5 | Projects update (Carlos V + release pipeline, Claude Marketplace, PartyPuzl on Google Play) | **Done** (`ca1d8aa` and the review-fix commit after it). Spec: `specs/2026-11-16-projects-update-design.md`. Plan: `plans/2026-11-16-projects-update.md`. Source zips at the repo root are untracked; their names are swapped (`store-screenshots.zip` = PartyPuzl, `screenshots.zip` = Carlos V) |
 
 **New positioning (owner, 2026-11-16):** a mobile engineer who now builds whole systems with AI
@@ -96,6 +97,15 @@ but Skills now lists it under "Also used". Align the two.
 - How the hero works with the BR neon city and PF sticker backgrounds from part 1. At 1440px,
   lit signs mostly can't fit in the margins.
 
+## Part 6: Navbar liquid-glass hover bubble
+
+**Owner request (2026-11-16):** the navbar feels too simple. They want the iOS 26 "liquid glass"
+look: a glassy bubble that appears under a nav item on hover. Not designed yet. Start with
+`/superpowers:brainstorming`. Things to settle: whether the bubble slides between items or appears
+per item, keyboard focus behaviour, reduced motion, the mobile menu, and how it looks in Blade
+Runner and Pulp Fiction (which restyle the navbar). The bubble should pick up the new cyan accent.
+Files: `src/components/Navbar.tsx`, `src/components/Navbar.module.css`.
+
 ## Part 4: Follow-ups deferred from part 1
 
 None of these are visible bugs. Pick them up when convenient.
@@ -114,8 +124,9 @@ None of these are visible bugs. Pick them up when convenient.
 
 **Site icon (owner request, 2026-11-16):**
 - [ ] Replace the lightning-bolt favicon with the owner's initials. Files: `public/favicon.svg` and
-  `public/apple-touch-icon.png` (linked from `index.html`). Use Inter and the violet accent, readable
-  at 16px. Check the browser tab in light and dark.
+  `public/apple-touch-icon.png` (linked from `index.html`). Use Inter and the cyan accent, readable
+  at 16px. The accent is now cyan (`#0e6a84` light / `#22d3ee` dark), so the old violet favicon no
+  longer matches. Check the browser tab in light and dark.
 
 **From the Projects update reviews (minor, deferred):**
 - [ ] Clamp the modal index (`ProjectModal.tsx`): ArrowRight on a tile project sets it to -1, and a shorter theme set could leave it out of range.

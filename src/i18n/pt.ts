@@ -47,7 +47,7 @@ export const pt: Translations = {
     proof: [
       '4+ anos de experiência',
       'Staff Engineer na Jalasoft',
-      'Publicado no Google Play',
+      'Um app no Google Play',
     ],
     socialLabel: 'Perfil no {name}',
   },

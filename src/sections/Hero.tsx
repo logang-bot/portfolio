@@ -42,7 +42,7 @@ export default function Hero() {
             {t.hero.ctaContact}
           </a>
         </div>
-        <HeroProof />
+        <HeroProof className={styles.proof} />
       </div>
       <img
         src={heroIllustrations[theme]}

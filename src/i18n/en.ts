@@ -41,13 +41,13 @@ export const en: Translations = {
     },
     name: 'Alvaro Choque',
     subtitle:
-      'Native Android and iOS apps are my core, built with Kotlin, Jetpack Compose and Swift. With AI agents I build the rest of the system too: code structure, tests and release pipelines.',
+      'Native Android and iOS apps are my core, built with Kotlin, Jetpack Compose and Swift. With AI agents I build the rest of the system too: architecture, tests and release pipelines.',
     ctaWork: 'View my work',
     ctaContact: 'Get in touch',
     proof: [
-      '4+ years experience',
+      '4+ years of experience',
       'Staff Engineer at Jalasoft',
-      'Published on Google Play',
+      'An app on Google Play',
     ],
     socialLabel: '{name} profile',
   },

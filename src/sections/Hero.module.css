@@ -8,7 +8,6 @@
 .content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
     flex: 1 1 0;
     min-width: 0;
 }
@@ -42,6 +41,7 @@
 }
 
 .headline {
+    margin-top: 8px;
     font-size: clamp(36px, 5vw, 56px);
     max-width: 20ch;
     text-wrap: balance;
@@ -62,9 +62,14 @@
 }
 
 .subtitle {
+    margin-top: 24px;
     font-size: 20px;
     max-width: 520px;
     line-height: 1.6;
+}
+
+.proof {
+    margin-top: 32px;
 }
 
 .cursor {
@@ -86,7 +91,7 @@
 .cta {
     display: flex;
     gap: 12px;
-    margin-top: 8px;
+    margin-top: 32px;
     flex-wrap: wrap;
 }
 
