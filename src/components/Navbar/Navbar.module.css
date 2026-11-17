@@ -1,18 +1,33 @@
 .navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 12px;
+    left: 50%;
+    translate: -50% 0;
     z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 48px;
-    height: var(--nav-height);
+    width: min(100% - 32px, var(--content-max));
+    height: var(--nav-pill-height);
+    padding: 0 12px;
+    border: 1px solid var(--nav-border);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-md);
+}
+
+.navbar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
     background: var(--nav-bg);
-    border-bottom: 1px solid var(--nav-border);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+
+.navbar > * {
+    position: relative;
 }
 
 .logo {
