@@ -79,6 +79,8 @@ relax: SHADOW-03
   or keyboard-focused link. Light/dark marker: a liquid-glass bubble (`--glass-*` tokens). Chromium
   adds a refracting lens via the `#liquid-glass` SVG filter, gated by `html[data-glass="lens"]`,
   which `src/main.tsx` sets from a user-agent engine check. Other browsers get the frosted bubble.
+  The same glass bubble marks the active language (sliding on hover) and forms the light/dark
+  switch thumb, which swells on hover; in BR/PF the language picker keeps its own style.
   The pill tint stays at least 0.82 opaque so links keep 4.5:1 over any content. Below 900px the
   links move into a card menu.
 - Always write `-webkit-backdrop-filter` before `backdrop-filter`. The CSS minifier drops the

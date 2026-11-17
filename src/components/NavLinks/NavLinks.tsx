@@ -1,4 +1,4 @@
-import { useRef, useState, type FocusEvent } from 'react'
+import { useState, type FocusEvent } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
 import { navSectionIds, type NavSectionId } from '../../data/navLinks'
 import { useActiveSection } from '../../hooks/useActiveSection'
@@ -14,7 +14,6 @@ export default function NavLinks({ onNavigate }: NavLinksProps) {
   const [hovered, setHovered] = useState<NavSectionId | null>(null)
   const [focused, setFocused] = useState<NavSectionId | null>(null)
   const [arrival, setArrival] = useState(0)
-  const wrapRef = useRef<HTMLDivElement>(null)
   const current = destination ?? active
 
   const hover = (id: NavSectionId) => {
@@ -36,7 +35,6 @@ export default function NavLinks({ onNavigate }: NavLinksProps) {
 
   return (
     <div
-      ref={wrapRef}
       className={styles.wrap}
       onPointerLeave={() => setHovered(null)}
       onBlur={releaseOnFocusExit}
@@ -57,7 +55,11 @@ export default function NavLinks({ onNavigate }: NavLinksProps) {
           </li>
         ))}
       </ul>
-      <NavMarker targetId={hovered ?? focused ?? current} arrival={arrival} containerRef={wrapRef} />
+      <NavMarker target={linkSelector(hovered ?? focused ?? current)} arrival={arrival} />
     </div>
   )
+}
+
+function linkSelector(id: NavSectionId | null): string | null {
+  return id ? `a[href="#${id}"]` : null
 }

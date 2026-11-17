@@ -42,8 +42,4 @@
             transform var(--duration-fast) ease,
             visibility 0s;
     }
-
-    .langSwitcher {
-        align-self: flex-start;
-    }
 }

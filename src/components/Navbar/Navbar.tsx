@@ -2,11 +2,10 @@ import { useCallback, useRef, useState } from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import { useTheme } from "../../context/ThemeContext";
 import { useDismissOnOutside } from "../../hooks/useDismissOnOutside";
-import { type Language } from "../../i18n/translations";
 import Icon from "../Icon";
 import EggThemeMenu from "../EggThemeMenu";
-import { fillTemplate } from "../../utils/fillTemplate";
 import NavLinks from "../NavLinks";
+import LanguageSwitch from "../LanguageSwitch";
 import LiquidGlassFilter from "../LiquidGlassFilter";
 import base from "./Navbar.module.css";
 import mobile from "./NavbarMobile.module.css";
@@ -14,16 +13,10 @@ import bladeRunner from "./NavbarBladeRunner.module.css";
 import pulpFiction from "./NavbarPulpFiction.module.css";
 import { mergeCssModules } from "../../utils/mergeCssModules";
 
-const LANGUAGES: { code: Language; label: string }[] = [
-  { code: "en", label: "EN" },
-  { code: "es", label: "ES" },
-  { code: "pt", label: "PT" },
-];
-
 const styles = mergeCssModules(base, mobile, bladeRunner, pulpFiction);
 
 export default function Navbar() {
-  const { lang, setLang, t } = useLanguage();
+  const { t } = useLanguage();
   const { theme, toggleTheme, isEggTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -57,19 +50,7 @@ export default function Navbar() {
         className={`${styles.right} ${menuOpen ? styles.rightOpen : ""}`}
       >
         <NavLinks onNavigate={closeMenu} />
-        <div className={styles.langSwitcher}>
-          {LANGUAGES.map(({ code, label }) => (
-            <button
-              key={code}
-              onClick={() => setLang(code)}
-              className={`${styles.langBtn} ${lang === code ? styles.langBtnActive : ""}`}
-              aria-label={fillTemplate(t.nav.a11y.switchLanguage, { lang: label })}
-              aria-pressed={lang === code}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+        <LanguageSwitch />
         {!isEggTheme && (
           <button
             onClick={toggleTheme}

@@ -1,0 +1,86 @@
+.switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+}
+
+.option {
+    position: relative;
+    z-index: 1;
+    padding: 4px 10px;
+    border: none;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color var(--duration-fast);
+}
+
+.option:hover {
+    color: var(--text-h);
+}
+
+.optionActive,
+.optionActive:hover {
+    color: var(--text-h);
+    font-weight: 700;
+}
+
+.option:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+:global([data-theme="blade-runner"]) .switch {
+    border-color: var(--border-strong);
+}
+
+:global([data-theme="blade-runner"]) .option {
+    color: var(--accent);
+}
+
+:global([data-theme="blade-runner"]) .option:hover {
+    color: var(--on-accent-hover);
+}
+
+:global([data-theme="blade-runner"]) .optionActive,
+:global([data-theme="blade-runner"]) .optionActive:hover {
+    background: var(--accent-bg);
+    color: var(--text-h);
+}
+
+:global([data-theme="pulp-fiction"]) .switch {
+    padding: 4px;
+    border: 2.5px solid var(--ink);
+    border-radius: var(--radius-sm);
+}
+
+:global([data-theme="pulp-fiction"]) .option {
+    border-radius: 0;
+    color: var(--on-accent);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+:global([data-theme="pulp-fiction"]) .optionActive,
+:global([data-theme="pulp-fiction"]) .optionActive:hover {
+    background: var(--on-accent);
+    color: var(--ink);
+}
+
+:global([data-theme="pulp-fiction"]) .option:focus-visible {
+    outline-color: var(--on-accent);
+}
+
+@media (max-width: 900px) {
+    .switch {
+        align-self: flex-start;
+    }
+}

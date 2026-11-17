@@ -6,25 +6,26 @@ import styles from './NavMarker.module.css'
 import type { NavMarkerProps } from './types'
 import { useMarkerPosition } from './useMarkerPosition'
 
-export default function NavMarker({ targetId, arrival, containerRef }: NavMarkerProps) {
+export default function NavMarker({ target, arrival, variant = 'links' }: NavMarkerProps) {
   const { theme } = useTheme()
   const markerRef = useRef<HTMLSpanElement>(null)
   const arrived = arrival > 0
-  useMarkerPosition({ targetId, containerRef, markerRef })
+  const themed = variant === 'links'
+  useMarkerPosition({ target, markerRef })
 
   return (
     <span
       ref={markerRef}
-      className={`${styles.marker} ${targetId ? styles.visible : ''}`}
+      className={`${styles.marker} ${styles[variant]} ${target ? styles.visible : ''}`}
       aria-hidden="true"
     >
       <span key={arrival} className={styles.inner}>
-        {theme === 'pulp-fiction' && (
+        {themed && theme === 'pulp-fiction' && (
           <span className={`${pulpFiction.sight} ${arrived ? pulpFiction.lockOn : ''}`}>
             <span className={pulpFiction.ring} />
           </span>
         )}
-        {theme === 'blade-runner' && (
+        {themed && theme === 'blade-runner' && (
           <span className={`${bladeRunner.lamp} ${arrived ? bladeRunner.powerOn : ''}`}>
             <span className={bladeRunner.tube} />
           </span>

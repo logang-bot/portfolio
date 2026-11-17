@@ -1,24 +1,22 @@
 import { useLayoutEffect, useRef, type RefObject } from 'react'
-import type { NavSectionId } from '../../data/navLinks'
 
 export interface MarkerPlacement {
-  targetId: NavSectionId | null
-  containerRef: RefObject<HTMLElement | null>
+  target: string | null
   markerRef: RefObject<HTMLElement | null>
 }
 
-export function useMarkerPosition({ targetId, containerRef, markerRef }: MarkerPlacement): void {
+export function useMarkerPosition({ target, markerRef }: MarkerPlacement): void {
   const wasHidden = useRef(true)
 
   useLayoutEffect(() => {
-    const container = containerRef.current
     const marker = markerRef.current
-    if (!container || !marker) return
-    const place = () => placeMarker(marker, findLink(container, targetId))
-    const appearing = targetId !== null && wasHidden.current
-    wasHidden.current = targetId === null
+    const container = marker?.parentElement
+    if (!marker || !container) return
+    const place = () => placeMarker(marker, findTarget(container, target))
+    const appearing = target !== null && wasHidden.current
+    wasHidden.current = target === null
     return trackPlacement({ container, marker, place, appearing })
-  }, [targetId, containerRef, markerRef])
+  }, [target, markerRef])
 }
 
 interface PlacementTracking {
@@ -34,14 +32,16 @@ function trackPlacement({ container, marker, place, appearing }: PlacementTracki
   return observeResize(container, place)
 }
 
-function findLink(container: HTMLElement, id: NavSectionId | null): HTMLElement | null {
-  return id ? container.querySelector<HTMLElement>(`a[href="#${id}"]`) : null
+function findTarget(container: HTMLElement, selector: string | null): HTMLElement | null {
+  return selector ? container.querySelector<HTMLElement>(selector) : null
 }
 
-function placeMarker(marker: HTMLElement, link: HTMLElement | null): void {
-  if (!link) return
-  marker.style.setProperty('--marker-x', `${link.offsetLeft}px`)
-  marker.style.setProperty('--marker-w', `${link.offsetWidth}px`)
+function placeMarker(marker: HTMLElement, target: HTMLElement | null): void {
+  if (!target) return
+  marker.style.setProperty('--marker-x', `${target.offsetLeft}px`)
+  marker.style.setProperty('--marker-y', `${target.offsetTop}px`)
+  marker.style.setProperty('--marker-w', `${target.offsetWidth}px`)
+  marker.style.setProperty('--marker-h', `${target.offsetHeight}px`)
 }
 
 function snapIntoPlace(marker: HTMLElement, place: () => void): void {

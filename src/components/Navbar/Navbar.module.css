@@ -49,40 +49,6 @@
     gap: 24px;
 }
 
-.langSwitcher {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 2px;
-}
-
-.langBtn {
-    background: transparent;
-    border: none;
-    padding: 4px 8px;
-    border-radius: var(--radius-sm);
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text);
-    cursor: pointer;
-    transition:
-        background var(--duration-fast),
-        color var(--duration-fast);
-    font-family: inherit;
-}
-
-.langBtn:hover {
-    color: var(--text-h);
-}
-
-.langBtnActive,
-.langBtnActive:hover {
-    color: var(--text-h);
-    font-weight: 700;
-}
-
 .themeToggle {
     background: none;
     border: none;
@@ -114,12 +80,30 @@
     position: absolute;
     top: 3px;
     left: 3px;
+    z-index: 2;
     width: 22px;
     height: 22px;
+    border: 1px solid var(--glass-edge);
     border-radius: 50%;
-    background: #fff;
-    box-shadow: var(--shadow-sm);
-    transition: transform var(--duration-fast) ease;
+    background: var(--glass-thumb);
+    box-shadow:
+        inset 0 1px 0 var(--glass-highlight),
+        0 0 0 1px var(--glass-outline),
+        var(--shadow-sm);
+    -webkit-backdrop-filter: blur(2px) saturate(180%);
+    backdrop-filter: blur(2px) saturate(180%);
+    transition:
+        transform var(--duration-fast) ease,
+        scale var(--duration-fast) ease;
+}
+
+.themeToggle:hover .themeToggleThumb {
+    scale: 1.15;
+}
+
+:global(html[data-glass="lens"]) .themeToggleThumb {
+    -webkit-backdrop-filter: url(#liquid-glass) saturate(180%);
+    backdrop-filter: url(#liquid-glass) saturate(180%);
 }
 
 .themeToggleThumbDark {
