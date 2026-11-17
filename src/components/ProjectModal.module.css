@@ -108,6 +108,12 @@
   to { opacity: 1; }
 }
 
+.tiles {
+  width: 100%;
+  max-width: 480px;
+  padding: 32px;
+}
+
 .placeholder {
   color: var(--text);
   font-size: 14px;

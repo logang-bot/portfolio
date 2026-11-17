@@ -61,6 +61,17 @@ export const es: Translations = {
     viewDetails: 'Ver detalles →',
     screenshotAlt: 'Captura {n} de {name}',
     items: {
+      carlosV: {
+        description:
+          'Una app nativa de Android de ventas e inventario para un negocio real, pensada para funcionar sin conexión.',
+        summary: 'Una app de ventas e inventario para un negocio real, con un pipeline de publicación automatizado.',
+        highlights: [
+          'Clientes, pedidos, pagos, catálogo de productos y reportes en PDF',
+          'Funciona sin conexión: los cambios se encolan y se sincronizan con Supabase en segundo plano',
+          'Un pipeline de GitHub Actions compila un APK firmado y lo publica, con notas de versión, en el canal de Telegram del cliente',
+          'Hecha con agentes de IA siguiendo mis propios plugins',
+        ],
+      },
       partyPuzl: {
         description:
           'Un juego de fiesta nativo para Android para grupos de amigos: verdad o reto, retos, trivia y minijuegos rápidos.',
@@ -68,7 +79,7 @@ export const es: Translations = {
         highlights: [
           'Cuatro modos en una sola app: verdad o reto, retos, trivia y minijuegos rápidos',
           'Hecho con Kotlin y Jetpack Compose, usando MVVM',
-          'Lanzamiento en Play Store próximamente',
+          'Disponible en Google Play',
         ],
       },
       phoebeStore: {
@@ -81,13 +92,23 @@ export const es: Translations = {
           'Kotlin, Jetpack Compose y Clean Architecture, con Supabase para el inicio de sesión y los datos, sin servidor propio que mantener',
         ],
       },
+      claudeMarketplace: {
+        description:
+          'Mis convenciones de ingeniería empaquetadas como plugins para agentes de IA que programan.',
+        summary: 'Plugins que enseñan a los agentes de IA cómo construyo software.',
+        highlights: [
+          'Cuatro plugins con skills, hooks y agentes de revisión: estilo de código, Android y Compose, flujo de publicación y diseño web',
+          'Los hooks revisan el tamaño del código y las reglas de diseño mientras el agente escribe',
+          'Los usé para construir este portafolio y mis apps de Android',
+        ],
+      },
     },
     playStore: 'Play Store ↗',
     playStoreSoon: 'Play Store — próximamente',
     github: 'GitHub ↗',
     liveDemo: 'Demo ↗',
     comingSoon: 'Próximamente…',
-    filters: { all: 'Todos', mobile: 'Mobile', web: 'Web', gaming: 'Gaming' },
+    filters: { all: 'Todos', mobile: 'Mobile', web: 'Web', gaming: 'Gaming', aiTooling: 'Herramientas de IA' },
     modal: { close: 'Cerrar', previous: 'Anterior', next: 'Siguiente', screenshot: 'Captura {n}' },
   },
   skills: {
@@ -118,6 +139,7 @@ export const es: Translations = {
     links: {
       marketplace: 'Mis plugins para agentes de IA en GitHub ↗',
       projects: 'Ver las apps que he creado',
+      pipeline: 'Ver el pipeline de publicación ↗',
     },
   },
   contact: {

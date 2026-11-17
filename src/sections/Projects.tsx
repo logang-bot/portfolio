@@ -3,10 +3,12 @@ import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
 import { useFadeUp } from '../hooks/useFadeUp'
 import GlowBackground from '../components/GlowBackground'
+import PreviewTiles from '../components/PreviewTiles'
 
 const ProjectModal = lazy(() => import('../components/ProjectModal'))
 import { type Translations } from '../i18n/translations'
 import { toThumbnailPath } from '../utils/toThumbnailPath'
+import { screenshotsFor } from '../utils/screenshotsFor'
 import { fillTemplate } from '../utils/fillTemplate'
 import { projects, type Project } from '../data/projects'
 import styles from './Projects.module.css'
@@ -14,7 +16,7 @@ import shared from '../styles/shared.module.css'
 
 type FilterKey = keyof Translations['projects']['filters']
 
-const FILTERS: FilterKey[] = ['all', 'mobile', 'web', 'gaming']
+const FILTERS: FilterKey[] = ['all', 'mobile', 'web', 'gaming', 'aiTooling']
 
 // Only offer filters that match at least one project, so empty categories
 // never show up. They reappear automatically once a project uses them.
@@ -25,7 +27,8 @@ const showFilters = visibleFilters.length > 2
 
 function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
   const { t } = useLanguage()
-  const thumbs = project.screenshots.slice(0, 3).map(toThumbnailPath)
+  const { theme } = useTheme()
+  const thumbs = screenshotsFor(project.screenshots, theme).slice(0, 3).map(toThumbnailPath)
 
   return (
     <button type="button" className={styles.card} onClick={onClick}>
@@ -39,11 +42,13 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
                 alt={fillTemplate(t.projects.screenshotAlt, { name: project.name, n: i + 1 })}
                 className={styles.thumb}
                 width={184}
-                height={408}
+                height={413}
                 loading="lazy"
               />
             ))}
           </div>
+        ) : project.tiles ? (
+          <PreviewTiles tiles={project.tiles} />
         ) : (
           <div className={styles.placeholder}>{t.projects.noScreenshots}</div>
         )}

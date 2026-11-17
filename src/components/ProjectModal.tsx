@@ -1,7 +1,10 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useLanguage } from '../context/LanguageContext'
+import { useTheme } from '../context/ThemeContext'
 import Icon from './Icon'
+import PreviewTiles from './PreviewTiles'
+import { screenshotsFor } from '../utils/screenshotsFor'
 import { prefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { fillTemplate } from '../utils/fillTemplate'
 import shared from '../styles/shared.module.css'
@@ -17,6 +20,8 @@ interface Props {
 
 export default function ProjectModal({ project, onClose }: Props) {
   const { t } = useLanguage()
+  const { theme } = useTheme()
+  const images = useMemo(() => screenshotsFor(project.screenshots, theme), [project.screenshots, theme])
   const [closing, setClosing] = useState(false)
   const [index, setIndex] = useState(0)
 
@@ -27,7 +32,7 @@ export default function ProjectModal({ project, onClose }: Props) {
   }, [onClose])
 
   useEffect(() => {
-    const count = project.screenshots.length
+    const count = images.length
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close()
       if (e.key === 'ArrowLeft') setIndex((i) => Math.max(0, i - 1))
@@ -35,7 +40,7 @@ export default function ProjectModal({ project, onClose }: Props) {
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [close, project.screenshots.length])
+  }, [close, images.length])
 
   useEffect(() => {
     const prev = document.body.style.overflow
@@ -47,13 +52,12 @@ export default function ProjectModal({ project, onClose }: Props) {
 
   // Preload every screenshot so navigating the carousel never flashes blank
   useEffect(() => {
-    project.screenshots.forEach((src) => {
+    images.forEach((src) => {
       const img = new Image()
       img.src = src
     })
-  }, [project.screenshots])
+  }, [images])
 
-  const images = project.screenshots
   const hasImages = images.length > 0
   const copy = t.projects.items[project.id]
 
@@ -122,6 +126,10 @@ export default function ProjectModal({ project, onClose }: Props) {
                 </>
               )}
             </>
+          ) : project.tiles ? (
+            <div className={styles.tiles}>
+              <PreviewTiles tiles={project.tiles} />
+            </div>
           ) : (
             <div className={styles.placeholder}>{t.projects.noScreenshots}</div>
           )}

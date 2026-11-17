@@ -61,6 +61,17 @@ export const pt: Translations = {
     viewDetails: 'Ver detalhes →',
     screenshotAlt: 'Captura {n} de {name}',
     items: {
+      carlosV: {
+        description:
+          'Um app nativo Android de vendas e estoque para um negócio real, feito para funcionar offline.',
+        summary: 'Um app de vendas e estoque para um negócio real, com um pipeline de publicação automatizado.',
+        highlights: [
+          'Clientes, pedidos, pagamentos, catálogo de produtos e relatórios em PDF',
+          'Funciona offline: as alterações entram em fila e sincronizam com o Supabase em segundo plano',
+          'Um pipeline do GitHub Actions gera um APK assinado e o publica, com notas de versão, no canal do Telegram do cliente',
+          'Feito com agentes de IA seguindo meus próprios plugins',
+        ],
+      },
       partyPuzl: {
         description:
           'Um jogo de festa nativo para Android para grupos de amigos: verdade ou desafio, desafios, trivia e minijogos rápidos.',
@@ -68,7 +79,7 @@ export const pt: Translations = {
         highlights: [
           'Quatro modos em um só app: verdade ou desafio, desafios, trivia e minijogos rápidos',
           'Feito com Kotlin e Jetpack Compose, usando MVVM',
-          'Lançamento na Play Store em breve',
+          'Disponível no Google Play',
         ],
       },
       phoebeStore: {
@@ -81,13 +92,23 @@ export const pt: Translations = {
           'Kotlin, Jetpack Compose e Clean Architecture, com Supabase para login e dados, sem servidor próprio para manter',
         ],
       },
+      claudeMarketplace: {
+        description:
+          'Minhas convenções de engenharia empacotadas como plugins para agentes de IA que programam.',
+        summary: 'Plugins que ensinam agentes de IA a construir software do meu jeito.',
+        highlights: [
+          'Quatro plugins com skills, hooks e agentes de revisão: estilo de código, Android e Compose, fluxo de publicação e web design',
+          'Os hooks verificam o tamanho do código e as regras de design enquanto o agente escreve',
+          'Usados para construir este portfólio e meus apps Android',
+        ],
+      },
     },
     playStore: 'Play Store ↗',
     playStoreSoon: 'Play Store — em breve',
     github: 'GitHub ↗',
     liveDemo: 'Demo ↗',
     comingSoon: 'Em breve…',
-    filters: { all: 'Todos', mobile: 'Mobile', web: 'Web', gaming: 'Gaming' },
+    filters: { all: 'Todos', mobile: 'Mobile', web: 'Web', gaming: 'Gaming', aiTooling: 'Ferramentas de IA' },
     modal: { close: 'Fechar', previous: 'Anterior', next: 'Próximo', screenshot: 'Captura {n}' },
   },
   skills: {
@@ -118,6 +139,7 @@ export const pt: Translations = {
     links: {
       marketplace: 'Meus plugins para agentes de IA no GitHub ↗',
       projects: 'Ver os apps que criei',
+      pipeline: 'Ver o pipeline de publicação ↗',
     },
   },
   contact: {

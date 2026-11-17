@@ -2,7 +2,7 @@ import type { IconName } from './iconPaths'
 import type { ProjectId } from './projects'
 
 export type PillarId = 'agentic' | 'architecture' | 'devopsInfra' | 'mobile'
-export type PillarLinkKey = 'marketplace' | 'projects'
+export type PillarLinkKey = 'marketplace' | 'pipeline' | 'projects'
 
 export interface SkillTag {
   name: string

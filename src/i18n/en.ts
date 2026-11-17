@@ -61,6 +61,17 @@ export const en: Translations = {
     viewDetails: 'View details →',
     screenshotAlt: '{name} screenshot {n}',
     items: {
+      carlosV: {
+        description:
+          'A native Android sales and inventory app for a real business, built to work offline.',
+        summary: 'A sales and inventory app for a real business, with an automated release pipeline.',
+        highlights: [
+          'Customers, orders, payments, product catalogue and PDF reports',
+          'Works offline: changes queue up and sync to Supabase in the background',
+          'A GitHub Actions pipeline builds a signed APK and posts it, with release notes, to the client\'s Telegram channel',
+          'Built with AI agents following my own plugins',
+        ],
+      },
       partyPuzl: {
         description:
           'A native Android party game for groups of friends: truth or dare, dare challenges, trivia and quick mini-games.',
@@ -68,7 +79,7 @@ export const en: Translations = {
         highlights: [
           'Four modes in one app: truth or dare, dare challenges, trivia and quick mini-games',
           'Built with Kotlin and Jetpack Compose, using MVVM',
-          'Play Store release coming soon',
+          'Available on Google Play',
         ],
       },
       phoebeStore: {
@@ -81,13 +92,23 @@ export const en: Translations = {
           'Kotlin, Jetpack Compose and Clean Architecture, with Supabase for sign-in and data, so there is no server to maintain',
         ],
       },
+      claudeMarketplace: {
+        description:
+          'My engineering conventions packaged as plugins for AI coding agents.',
+        summary: 'Plugins that teach AI coding agents how I build software.',
+        highlights: [
+          'Four plugins with skills, hooks and review agents: code style, Android and Compose, release workflow and web design',
+          'Hooks check code size and design rules while the agent writes',
+          'Used to build this portfolio and my Android apps',
+        ],
+      },
     },
     playStore: 'Play Store ↗',
     playStoreSoon: 'Play Store — coming soon',
     github: 'GitHub ↗',
     liveDemo: 'Live Demo ↗',
     comingSoon: 'Coming soon…',
-    filters: { all: 'All', mobile: 'Mobile', web: 'Web', gaming: 'Gaming' },
+    filters: { all: 'All', mobile: 'Mobile', web: 'Web', gaming: 'Gaming', aiTooling: 'AI tooling' },
     modal: { close: 'Close', previous: 'Previous', next: 'Next', screenshot: 'Screenshot {n}' },
   },
   skills: {
@@ -118,6 +139,7 @@ export const en: Translations = {
     links: {
       marketplace: 'My AI agent plugins on GitHub ↗',
       projects: 'See the apps I\'ve built',
+      pipeline: 'See the release pipeline ↗',
     },
   },
   contact: {

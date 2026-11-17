@@ -38,7 +38,7 @@ export interface Translations {
     github: string
     liveDemo: string
     comingSoon: string
-    filters: { all: string; mobile: string; web: string; gaming: string }
+    filters: { all: string; mobile: string; web: string; gaming: string; aiTooling: string }
     modal: { close: string; previous: string; next: string; screenshot: string }
   }
   skills: {

@@ -24,6 +24,9 @@ export type IconName =
   | 'layers'
   | 'workflow'
   | 'smartphone'
+  | 'braces'
+  | 'gitBranch'
+  | 'palette'
 
 export type IconShape =
   | { kind: 'path'; d: string }
@@ -142,5 +145,22 @@ export const iconShapes: Record<IconName, IconShape[]> = {
   smartphone: [
     { kind: 'rect', x: 5, y: 2, width: 14, height: 20, rx: 2 },
     { kind: 'path', d: 'M12 18h.01' },
+  ],
+  braces: [
+    { kind: 'path', d: 'M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1' },
+    { kind: 'path', d: 'M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1' },
+  ],
+  gitBranch: [
+    { kind: 'path', d: 'M6 3v12' },
+    { kind: 'circle', cx: 18, cy: 6, r: 3 },
+    { kind: 'circle', cx: 6, cy: 18, r: 3 },
+    { kind: 'path', d: 'M18 9a9 9 0 0 1-9 9' },
+  ],
+  palette: [
+    { kind: 'path', d: 'M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z' },
+    { kind: 'circle', cx: 13.5, cy: 6.5, r: 0.5 },
+    { kind: 'circle', cx: 17.5, cy: 10.5, r: 0.5 },
+    { kind: 'circle', cx: 6.5, cy: 12.5, r: 0.5 },
+    { kind: 'circle', cx: 8.5, cy: 7.5, r: 0.5 },
   ],
 }
