@@ -1,4 +1,11 @@
-:global([data-theme="blade-runner"]) .langSwitcher,
+:global([data-theme="blade-runner"]) .navbar {
+    box-shadow: none;
+}
+
+:global([data-theme="blade-runner"]) .langSwitcher {
+    border-color: var(--border-strong);
+}
+
 :global([data-theme="blade-runner"]) .hamburger {
     border-color: var(--accent);
 }

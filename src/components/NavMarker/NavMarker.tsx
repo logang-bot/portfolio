@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { useTheme } from '../../context/ThemeContext'
-import Reticle from './Reticle'
 import pulpFiction from './NavMarkerPulpFiction.module.css'
 import bladeRunner from './NavMarkerBladeRunner.module.css'
 import styles from './NavMarker.module.css'
@@ -21,8 +20,8 @@ export default function NavMarker({ targetId, arrival, containerRef }: NavMarker
     >
       <span key={arrival} className={styles.inner}>
         {theme === 'pulp-fiction' && (
-          <span className={arrived ? pulpFiction.lockOn : undefined}>
-            <Reticle />
+          <span className={`${pulpFiction.sight} ${arrived ? pulpFiction.lockOn : ''}`}>
+            <span className={pulpFiction.ring} />
           </span>
         )}
         {theme === 'blade-runner' && (

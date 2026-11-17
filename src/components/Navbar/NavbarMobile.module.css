@@ -1,4 +1,4 @@
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .navbar {
         padding: 0 8px 0 12px;
     }
@@ -22,18 +22,25 @@
         box-shadow: var(--shadow-md);
         -webkit-backdrop-filter: blur(16px);
         backdrop-filter: blur(16px);
+        visibility: hidden;
         opacity: 0;
         transform: translateY(-8px);
         pointer-events: none;
         transition:
             opacity var(--duration-fast) ease,
-            transform var(--duration-fast) ease;
+            transform var(--duration-fast) ease,
+            visibility 0s linear var(--duration-fast);
     }
 
     .rightOpen {
+        visibility: visible;
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
+        transition:
+            opacity var(--duration-fast) ease,
+            transform var(--duration-fast) ease,
+            visibility 0s;
     }
 
     .langSwitcher {

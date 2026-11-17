@@ -64,7 +64,7 @@
     padding: 4px 8px;
     border-radius: var(--radius-sm);
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text);
     cursor: pointer;
     transition:
@@ -79,8 +79,8 @@
 
 .langBtnActive,
 .langBtnActive:hover {
-    background: var(--border);
     color: var(--text-h);
+    font-weight: 700;
 }
 
 .themeToggle {
@@ -167,6 +167,6 @@
 :global(html[data-glass="lens"][data-theme="light"]) .navbar::before,
 :global(html[data-glass="lens"][data-theme="dark"]) .navbar::before {
     background: var(--nav-bg-lens);
-    -webkit-backdrop-filter: blur(4px) saturate(160%);
-    backdrop-filter: blur(4px) saturate(160%);
+    -webkit-backdrop-filter: blur(8px) saturate(160%);
+    backdrop-filter: blur(8px) saturate(160%);
 }

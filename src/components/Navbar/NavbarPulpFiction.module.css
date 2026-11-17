@@ -16,6 +16,7 @@
 
 :global([data-theme="pulp-fiction"]) .langSwitcher {
     padding: 4px;
+    box-shadow: none;
 }
 
 :global([data-theme="pulp-fiction"]) .langBtn {
@@ -50,7 +51,7 @@
     box-shadow: 4px 4px 0 var(--accent);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     :global([data-theme="pulp-fiction"]) .right {
         border: 2.5px solid var(--ink);
         border-radius: var(--radius-sm);

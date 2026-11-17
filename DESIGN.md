@@ -13,9 +13,10 @@ reuse the same tokens, layout and type, and change only the ingredients below:
 |---|---|---|
 | Colour | Deep navy background, warm cream text, neon-orange accent | Mustard-yellow background, ink-brown text, deep red accent |
 | Images | Navy base, neon logo and sign parallax, hologram finale | Mustard halftone, print-sticker logo and prop parallax, briefcase finale |
-| Shadows | Orange glow on the primary button; neon glows on background logos and signs only | Hard ink offset shadows, no blur (cards, buttons, prop stickers) |
+| Shadows | Orange glow on the primary button; neon glows on background logos and signs and the pink nav tube only | Hard ink offset shadows, no blur (cards, buttons, prop stickers) |
 | Border-radius | Same as base | Small (4px) or none |
 | Type | Uppercase buttons, weight 600 | Headings 900, body 500, uppercase buttons 800 |
+| Navbar | Navy pill; pink (`--neon-1`) neon tube under the current or hovered link, flickers on hover arrival | Black ink bar (4px corners, red offset shadow), mustard links; red gun-sight reticle (`--nav-marker`) with a 200ms lock-on |
 
 ## Audience and goal
 Recruiters, hiring managers and tech leads, mostly on desktop, often on mobile. Primary actions:
@@ -72,3 +73,13 @@ relax: SHADOW-03
   agents"); the key phrase carries the accent gradient in light/dark and the solid accent in
   BR/PF. Only the greeting line animates.
 - Hero illustrations are faceless on purpose.
+- Navbar: a floating pill 12px from the top, as wide as `--content-max`. `--nav-height` (80px) is
+  the space reserved above content, and `--nav-pill-height` (56px) is the pill itself. One marker
+  rests on the current section's link (scroll-tracked; hidden on the hero) and slides to the hovered
+  or keyboard-focused link. Light/dark marker: a liquid-glass bubble (`--glass-*` tokens). Chromium
+  adds a refracting lens via the `#liquid-glass` SVG filter, gated by `html[data-glass="lens"]`,
+  which `src/main.tsx` sets from a user-agent engine check. Other browsers get the frosted bubble.
+  The pill tint stays at least 0.82 opaque so links keep 4.5:1 over any content. Below 900px the
+  links move into a card menu.
+- Always write `-webkit-backdrop-filter` before `backdrop-filter`. The CSS minifier drops the
+  unprefixed line when the prefixed one follows it.

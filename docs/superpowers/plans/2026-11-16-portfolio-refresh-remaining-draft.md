@@ -16,7 +16,7 @@ The refresh was split into four parts, done in this order:
 | 3 | Hero section redesign | **Done** (`aa68234..HEAD` of 2026-11-16). Cyan accent + gradient CTA, agentic headline, proof row. Spec: `specs/2026-11-16-hero-redesign-design.md`. Plan: `plans/2026-11-16-hero-redesign.md` |
 | 4 | Follow-ups deferred from part 1 | Open, see below |
 | 5 | Projects update (Carlos V + release pipeline, Claude Marketplace, PartyPuzl on Google Play) | **Done** (`ca1d8aa` and the review-fix commit after it). Spec: `specs/2026-11-16-projects-update-design.md`. Plan: `plans/2026-11-16-projects-update.md`. Source zips at the repo root are untracked; their names are swapped (`store-screenshots.zip` = PartyPuzl, `screenshots.zip` = Carlos V) |
-| 6 | Navbar liquid-glass hover bubble (iOS 26 style) | Not started. Needs a brainstorm, see below |
+| 6 | Navbar floating pill + liquid-glass marker | **Done** (`0409d5a..HEAD` of 2026-11-16). Spec: `specs/2026-11-16-navbar-floating-pill-design.md`. Plan: `plans/2026-11-16-navbar-floating-pill.md` |
 
 **New positioning (owner, 2026-11-16):** a mobile engineer who now builds whole systems with AI
 agents (DevOps, code structure, infrastructure). Mobile stays the proven core, and agentic work is

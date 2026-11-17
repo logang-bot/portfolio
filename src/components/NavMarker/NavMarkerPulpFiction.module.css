@@ -1,17 +1,47 @@
-.reticle {
+.sight {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    overflow: visible;
-    fill: none;
-    stroke: var(--nav-marker);
-    stroke-width: 2;
+    inset: 0;
 }
 
-.dot {
-    fill: var(--nav-marker);
-    stroke: none;
+.ring {
+    position: absolute;
+    inset: 0 8px;
+    border: 2px solid var(--nav-marker);
+    border-radius: var(--radius-pill);
+}
+
+.ring::before,
+.ring::after {
+    content: "";
+    position: absolute;
+}
+
+.ring::before {
+    top: 50%;
+    right: -10px;
+    left: -10px;
+    height: 2px;
+    translate: 0 -50%;
+    background: linear-gradient(
+        to right,
+        var(--nav-marker) 8px,
+        transparent 8px calc(100% - 8px),
+        var(--nav-marker) calc(100% - 8px)
+    );
+}
+
+.ring::after {
+    top: -5px;
+    bottom: -5px;
+    left: 50%;
+    width: 2px;
+    translate: -50% 0;
+    background: linear-gradient(
+        to bottom,
+        var(--nav-marker) 3px,
+        transparent 3px calc(100% - 3px),
+        var(--nav-marker) calc(100% - 3px)
+    );
 }
 
 .lockOn {
