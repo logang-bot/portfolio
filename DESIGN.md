@@ -3,7 +3,8 @@
 ## Personality
 Startup/Upbeat for the base light and dark themes. Why: a software engineer's portfolio aimed at
 recruiters and tech leads. It should feel modern, friendly and competent: medium sans-serif, soft
-warm-grey surfaces, a violet main colour, rounded corners and frosted-glass cards.
+warm-grey surfaces, a cyan main colour with an indigo gradient on the primary button, rounded
+corners and frosted-glass cards.
 
 Two hidden easter-egg themes (opened from the avatar in the navbar) are custom sub-styles. They
 reuse the same tokens, layout and type, and change only the ingredients below:
@@ -30,7 +31,7 @@ font-families: Inter
 icon-pack: lucide
 type-scale: 12 14 16 18 20 24 36 56 64
 spacing-scale: 2 4 8 12 16 24 32 48 64 80 96 128
-palette: primary #7c3aed; primary-dark-theme #a78bfa; grey #4b5563; heading #111827; background #faf8f5
+palette: primary #0e7490; primary-dark-theme #22d3ee; secondary #4f46e5; secondary-dark-theme #818cf8; grey #4b5563; heading #111827; background #faf8f5
 radius: 2 4 8 16 999
 shadows: sm 0 1px 3px rgba(17,24,39,.08); md 0 10px 15px -3px rgba(17,24,39,.08); lg 0 24px 48px -12px rgba(17,24,39,.18)
 relax: SHADOW-03

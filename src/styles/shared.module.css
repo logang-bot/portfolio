@@ -42,7 +42,7 @@
 }
 
 .btnPrimary {
-    background: var(--accent);
+    background: var(--accent-gradient);
     color: var(--on-accent);
 }
 
